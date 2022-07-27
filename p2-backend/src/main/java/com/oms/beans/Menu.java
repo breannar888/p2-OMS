@@ -10,22 +10,22 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-//@Table(name = "")
+@Table(name = "Menu")
 public class Menu {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
+	@Column(name= "Menu_Id")
 	private int menuID;
 	
-	@Column
+	@Column(name= "Name")
 	//@NotBlank
 	private String menuItem;
 	
-	@Column
+	@Column(name= "Price")
 	private double price;
 	
-	@Column
+	@Column(name= "Image_Path")
 	private String imagePath;
 
 	public Menu() {

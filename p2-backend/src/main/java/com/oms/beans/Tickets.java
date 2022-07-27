@@ -6,15 +6,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+//@Entity
 public class Tickets {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
+	//@Id
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@Column
 	private int ticketID;
 	
-	@Column
+	//@Column
 	private int ticketName;
 	
 	public Tickets() {
