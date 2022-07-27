@@ -60,10 +60,27 @@ h1{
     background-color: #8ECAE6 !important;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: #023047 !important;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .nav-link {
     font-size: max(3vmin, 11px);
+    
+}
+
+main {
+    margin-top: 20px;
+}
+
+#submit {
+    background-color: #FFB703;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.input-group-text {
+    background-color: #FFB703;
     
 }

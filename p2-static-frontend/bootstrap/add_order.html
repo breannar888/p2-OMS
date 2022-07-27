@@ -17,31 +17,59 @@
 </head>
 
 <body>
-    <aside class="d-flex flex-column col-4 col-lg-2">
-        <span class="header">Order <br> Management <br> System</span>
-        <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-                <a href="#" class="nav-link active" aria-current="page">
-                    Add Orders
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link link-dark">
-                    Current Orders
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link link-dark">
-                    Manage Menu
-                </a>
-            </li>
-        </ul>
-
+    <aside class="d-inline-block col-4 col-lg-3">
+        <div class="d-inline-flex flex-column  ">
+            <span class="header">Order <br> Management <br> System</span>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" aria-current="page">
+                        Add Orders
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link link-dark">
+                        Current Orders
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link link-dark">
+                        Manage Menu
+                    </a>
+                </li>
+            </ul>
+        </div>
     </aside>
 
-    <main class="justify-content-center">
+    <main class="col-7 d-inline-block">
         <h1>Add Order</h1>
-        <form>
+        <form >
+            <div class="form-group">
+                <label for="item">Menu Item</label>
+                <select class="form-select" id="item">
+                    <option selected>&nbsp;</option>
+                    <option value="1">Asiago Chicken Pasta</option>
+                    <option value="2">Argentinian-Style Steak</option>
+                    <option value="3">All-American Burger</option>
+                    <option value="4">Shrimp Scampi</option>
+                    <option value="5">Chicken Fajitas</option>
+                    <option value="6">Grilled Salmon</option>
+                  </select>
+            </div>
+
+            <div class="form-group">
+                <label for="notes">Notes</label>
+                <textarea name="notes" class="form-control" id="notes" cols="10" rows="5"></textarea>
+            </div>
+
+            <div class="form-group">
+                <div class=" d-inline-block col-5">
+                    <div class="input-group">
+                        <span class="input-group-text">Total $</span>
+                        <input class="form-control" type="text" placeholder="0.00" disabled>
+                    </div>
+                </div>
+                <button type="submit" class="btn col-3 d-inline-block align-baseline float-end" id="submit">Submit</button>
+            </div>
             
         </form>
     </main>
