@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=STIX+Two+Text:wght@400..700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+html{
+    --mdc-typography-font-family: "Inter", sans-serif;
+    --mdc-typography-headline1-font-family: "STIX Two Text";
+    --mdc-typography-headline2-font-family: "STIX Two Text";
+    --mdc-typography-headline3-font-family: "STIX Two Text";
+    --mdc-typography-headline4-font-family: "STIX Two Text";
+    --mdc-typography-headline5-font-family: "STIX Two Text";
+    --mdc-typography-headline6-font-family: "STIX Two Text";
+    --mdc-typography-body1-font-family: "Inter";
+    --mdc-typography-body2-font-family: "Inter";
+    --mdc-typography-subtitle1-font-family: "Inter";
+    --mdc-typography-subtitle2-font-family: "STIX Two Text";
+    --mdc-typography-button-font-family: "Inter";
+    --mdc-typography-overline-font-family: "Inter";
+    --mdc-typography-caption-font-family: "Inter";
+
+    --mdc-typography-headline1-font-size: 107px;
+    --mdc-typography-headline2-font-size: 67px;
+    --mdc-typography-headline3-font-size: 54px;
+    --mdc-typography-headline4-font-size: 38px;
+    --mdc-typography-headline5-font-size: 27px;
+    --mdc-typography-headline6-font-size: 24px;
+    --mdc-typography-body1-font-size: 15;
+    --mdc-typography-body2-font-size: 13;
+    --mdc-typography-subtitle1-font-size: 18;
+    --mdc-typography-subtitle2-font-size: 16;
+    --mdc-typography-button-font-size: 13;
+    --mdc-typography-overline-font-size: 10;
+    --mdc-typography-caption-font-size: 12;
+
+    --mdc-theme-primary: black;
+    --mdc-theme-secondary: white;
+    --mdc-theme-background: ;
+    --mdc-theme-surface: ;
+    --mdc-theme-on-primary: ;
+    --mdc-theme-on-secondary: ;
+    --mdc-theme-on-surface: ;
+
+    --mdc-ripple-activated-opacity: 0;
+
+}
+
+h1 {
+    font-family: 'STIX Two Text';
+}
+
+.mdc-drawer {
+    background-color: #8ECAE6;
+    width: 200px;
+    height: 100vh;
+}
+
+.mdc-drawer__header {
+    background-color: #023047;
+    padding: 15px;
+    text-shadow: 0px 4px 4px black;
+
+}
+
+.mdc-drawer__title {
+    /* color: var(--mdc-theme-secondary) !important; */
+    color: white !important;
+    font-weight: 700;
+
+}
+
+.mdc-list-item {
+    padding-top: 3vh;
+
+}
+
+
+.mdc-list-item--activated  {
+    font-weight: bold;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+aside {
+    float: left; 
+}
+
+main {
+    /* margin-left: 300px; */
+}
+
+h1{
+    text-align: center;
+}
+
+.mdc-select {
+    width: 75%;
+    margin-bottom: 35px;
+}
+
+.mdc-text-field {
+    margin: auto;
+    width: 75%;
+    margin-bottom: 35px;
+}
