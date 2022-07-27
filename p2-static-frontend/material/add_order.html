@@ -55,7 +55,6 @@
                 </span>
             </div>
 
-            <!-- Other elements from the select remain. -->
             <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
                 <ul class="mdc-list" role="listbox" aria-label="Food picker listbox">
                     <li class="mdc-list-item mdc-list-item--selected" aria-selected="true" data-value="" role="option">
@@ -101,29 +100,50 @@
             </div>
 
         </div>
-        <label class="mdc-text-field mdc-text-field--outlined">
+        <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea mdc-text-field--no-label">
             <span class="mdc-notched-outline">
-                <span class="mdc-notched-outline__leading"></span>
-                <span class="mdc-notched-outline__notch">
-                    <span class="mdc-floating-label" id="my-label-id">Note</span>
-                </span>
-                <span class="mdc-notched-outline__trailing"></span>
+              <span class="mdc-notched-outline__leading"></span>
+              <span class="mdc-notched-outline__notch">
+                <span class="mdc-floating-label" id="my-label-id">Notes</span>
+              </span>
+              <span class="mdc-notched-outline__trailing"></span>
             </span>
-            <input type="text" class="mdc-text-field__input" aria-labelledby="my-label-id">
-        </label>
+            <span class="mdc-text-field__resizer">
+              <textarea class="mdc-text-field__input" rows="8" cols="40" aria-label="Label"></textarea>
+            </span>
+          </label>
+
+          <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--disabled">
+            <span class="mdc-notched-outline">
+              <span class="mdc-notched-outline__leading"></span>
+              <span class="mdc-notched-outline__notch">
+                <span class="mdc-floating-label" id="my-label-id">$0.00</span>
+              </span>
+              <span class="mdc-notched-outline__trailing"></span>
+            </span>
+            <input type="text" class="mdc-text-field__input" aria-labelledby="my-label-id" disabled>
+          </label>
+
+          <button class="mdc-button mdc-button--raised">
+            <span class="mdc-button__label">Contained Button</span>
+          </button>
     </main>
 
     <script>
 
         const MDCSelect = mdc.select.MDCSelect;
-        const select = new MDCSelect(document.querySelector('.mdc-select'));
-
-        // select.listen('MDCSelect:change', () => {
-        //     alert(`Selected option at index ${select.selectedIndex} with value "${select.value}"`);
-        // });
-
         const MDCTextField = mdc.textField.MDCTextField;
+        const MDCRipple = mdc.ripple.MDCRipple;
+
+        const select = new MDCSelect(document.querySelector('.mdc-select'));
         const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
+        MDCRipple.attachTo(document.querySelector('.mdc-button'));
+
+        for (li of document.querySelectorAll('.mdc-list-item')) {
+            MDCRipple.attachTo(li);
+        }
+
+
     </script>
 </body>
 
