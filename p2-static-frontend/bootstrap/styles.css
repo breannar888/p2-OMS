@@ -4,6 +4,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0..1,0');
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@100..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@100..800&display=swap');
+
 html{
     --lightBlue: #8ECAE6;
     --mediumBlue: #219EBC;
@@ -11,8 +15,10 @@ html{
     --yellow: #FFB703;
     --orange: #FB8500;
 
-    --serifStack: 'STIX Two Text', serif;
-    --sansStack : 'Inter', sans-serif;
+    /* --serifStack: 'STIX Two Text', serif; */
+    --serifStack: 'Roboto Serif', serif;
+    /* --sansStack : 'Inter', sans-serif; */
+    --sansStack : 'Roboto Flex', sans-serif;
 }
 
 
@@ -24,11 +30,13 @@ h1 {
 h2 {
     font-family: var(--serifStack);
     text-align: center;
+    font-weight: 400;
+
 }
 
-.flex-column {
+ul {
     background-color: var(--lightBlue) !important;
-    height: 100vh;
+    font-size: 2vw;
 }
 
 .header {
@@ -37,11 +45,9 @@ h2 {
     text-shadow: 0px 4px 4px black;
     color: white;
     font-weight: 700;
-    font-size: max(4vmin, 14px);
+    font-size: 2.5vw;
     font-family: 'STIX Two Text', serif;
 }
-
-
 
 .mdc-list-item {
     padding-top: 3vh;
@@ -55,8 +61,10 @@ h2 {
 }
 
 aside {
-    float: left;
+    /* float: left; */
     font-family: var(--sansStack);
+    font-weight: 300;
+
 }
 
 
@@ -64,27 +72,11 @@ h1 {
     text-align: center;
 }
 
-.mdc-select {
-    width: 75%;
-    margin-bottom: 35px;
-}
-
-.mdc-text-field {
-    margin: auto;
-    width: 75%;
-    margin-bottom: 35px;
-}
-
 .active {
     background-color: var(--lightBlue) !important;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: var(--darkBlue) !important;
     font-weight: 700;
-}
-
-.nav-link {
-    font-size: max(3vmin, 11px);
-
 }
 
 main {
@@ -127,6 +119,18 @@ table{
     
 }
 
-.col-4 {
-    width: 33%;
+.btn {
+    font-family: var(--sansStack);
+}
+
+.manage-edit {
+    background-color: var(--orange);
+}
+.manage-add {
+    background-color: var(--yellow);
+}
+
+.card {
+    font-family: var(--sansStack);
+    
 }

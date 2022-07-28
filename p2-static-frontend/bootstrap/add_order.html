@@ -17,62 +17,67 @@
 </head>
 
 <body>
-    <aside class="d-inline-block col-4 col-lg-3">
-        <div class="d-inline-flex flex-column  ">
-            <span class="header">Order <br> Management <br> System</span>
-            <ul class="nav nav-pills flex-column mb-auto">
+    <div class="row">
+        <aside class="col-3">
+            <div class="header">Order <br> Management <br> System</div>
+            <ul class="nav d-block h-100">
                 <li class="nav-item">
-                    <a href="#" class="nav-link active" aria-current="page">
+                    <a href="add_order.html" class="nav-link active" aria-current="page">
                         Add Orders
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link link-dark">
+                    <a href="current_orders.html" class="nav-link link-dark">
                         Current Orders
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link link-dark">
+                    <a href="manage_menu.html" class="nav-link link-dark">
                         Manage Menu
                     </a>
                 </li>
+                <li>
+                    <a href="orders_log.html" class="nav-link link-dark">
+                        Orders Log
+                    </a>
+                </li>
             </ul>
-        </div>
-    </aside>
-
-    <main class="col-7 d-inline-block">
-        <h1>Add Order</h1>
-        <form >
-            <div class="form-group">
-                <label for="item">Menu Item</label>
-                <select class="form-select" id="item">
-                    <option selected>&nbsp;</option>
-                    <option value="1">Asiago Chicken Pasta</option>
-                    <option value="2">Argentinian-Style Steak</option>
-                    <option value="3">All-American Burger</option>
-                    <option value="4">Shrimp Scampi</option>
-                    <option value="5">Chicken Fajitas</option>
-                    <option value="6">Grilled Salmon</option>
-                  </select>
-            </div>
-
-            <div class="form-group">
-                <label for="notes">Notes</label>
-                <textarea name="notes" class="form-control" id="notes" cols="10" rows="5"></textarea>
-            </div>
-
-            <div class="form-group">
-                <div class=" d-inline-block col-5">
-                    <div class="input-group">
-                        <span class="input-group-text">Total $</span>
-                        <input class="form-control" type="text" placeholder="0.00" disabled>
+        </aside>
+        <main class="container col-9">
+            <h1>Add Order</h1>
+            <form>
+                <div class="row row-cols-1">
+                    <div class="form-group col-11">
+                        <label for="item">Menu Item</label>
+                        <select class="form-select" id="item">
+                            <option selected>&nbsp;</option>
+                            <option value="1">Asiago Chicken Pasta</option>
+                            <option value="2">Argentinian-Style Steak</option>
+                            <option value="3">All-American Burger</option>
+                            <option value="4">Shrimp Scampi</option>
+                            <option value="5">Chicken Fajitas</option>
+                            <option value="6">Grilled Salmon</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-11">
+                        <label for="notes">Notes</label>
+                        <textarea name="notes" class="form-control" id="notes" cols="10" rows="5"></textarea>
                     </div>
                 </div>
-                <button type="submit" class="btn col-3 d-inline-block align-baseline float-end" id="submit">Submit</button>
-            </div>
-            
-        </form>
-    </main>
+                <div class="row">
+                    <div class="form-group col-5">
+                        <div class="input-group">
+                            <span class="input-group-text">Total $</span>
+                            <input class="form-control" type="text" placeholder="0.00" disabled>
+                        </div>
+                    </div>
+                    <div class="col-4"></div>
+                    <button type="submit" class="btn col-2 p-0" id="submit">Submit</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
 
 </body>
 
