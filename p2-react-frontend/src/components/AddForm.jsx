@@ -1,25 +1,46 @@
 import React from "react";
+import { TicketState } from "../context/OrderContext";
+
 
 export const AddForm = () => {
+
+  const { ticket, setTicket } = TicketState();
+  console.log(ticket);
+
   return (
     <main className="container col-9 col-lg-10 p-3">
       <h1>Add Order</h1>
       <form>
         <div className="row row-cols-1">
-          <div className="form-group col-11">
-            <label for="item">Menu Item</label>
-            <select className="form-select" id="item">
-              <option selected>&nbsp;</option>
-              <option value="1">Asiago Chicken Pasta</option>
-              <option value="2">Argentinian-Style Steak</option>
-              <option value="3">All-American Burger</option>
-              <option value="4">Shrimp Scampi</option>
-              <option value="5">Chicken Fajitas</option>
-              <option value="6">Grilled Salmon</option>
-            </select>
+          <div className="row row-cols-2">
+            <div className="form-group col-5">
+              <label htmlFor="item">Menu Item</label>
+              <select className="form-select" id="item">
+                <option >&nbsp;</option>
+                <option value="1">Asiago Chicken Pasta</option>
+                <option value="2">Argentinian-Style Steak</option>
+                <option value="3">All-American Burger</option>
+                <option value="4">Shrimp Scampi</option>
+                <option value="5">Chicken Fajitas</option>
+                <option value="6">Grilled Salmon</option>
+              </select>
+            </div>
+            <div className="col-1"></div>
+            <div className="form-group col-5">
+              <label htmlFor="item">Tickets</label>
+              <select className="form-select" id="item">
+                <option value="new" >(Add ticket)</option>
+                {ticket.map((ticket) => {
+                  return (
+                    <option key={ticket.ticketID} value={ticket.ticketID}>{ticket.ticketName}</option>
+                  )
+                })}
+              </select>
+            </div>
           </div>
+          <TicketName />
           <div className="form-group col-11">
-            <label for="notes">Notes</label>
+            <label htmlFor="notes">Notes</label>
             <textarea
               name="notes"
               className="form-control"
@@ -50,3 +71,12 @@ export const AddForm = () => {
     </main>
   );
 };
+
+const TicketName = () => (
+  <div className="row">
+    <div className="form-group col-11">
+      <label htmlFor="notes">Ticket Name</label>
+      <input className="form-control"></input>
+    </div>
+  </div>
+)

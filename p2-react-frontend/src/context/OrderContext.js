@@ -4,27 +4,31 @@ import axios from "axios";
 import React from "react";
 
 export const OrderContext = createContext();
+export const TicketContext = createContext();
 
 const OrderProvider = (props) => {
   const [order, setOrder] = useState([]);
   const [menu, setMenu] = useState([]);
+  const [ticket, setTicket] = useState([]);
   const [updateValues, setUpdateValues] = useState(false);
 
   useEffect(() => {
     axios
       .all([
-        axios.get("http://10.0.0.50:8080/order"),
-        axios.get("http://10.0.0.50:8080/menu"),
-        axios.get("http://10.0.0.50:8080/ticket"),
-        // axios.get("http://localhost:8080/order"),
-        // axios.get("http://localhost:8080/menu"),
-        // axios.get("http://localhost:8080/ticket"),
+        // these GET requests are for when I look at the page on my iPad
+        // axios.get("http://10.0.0.50:8080/order"),
+        // axios.get("http://10.0.0.50:8080/menu"),
+        // axios.get("http://10.0.0.50:8080/ticket"),
+        axios.get("http://localhost:8080/order"),
+        axios.get("http://localhost:8080/menu"),
+        axios.get("http://localhost:8080/ticket"),
       ])
       .then(
-        axios.spread((orderResp, menuResp) => {
+        axios.spread((orderResp, menuResp, ticketResp) => {
           setOrder(orderResp.data);
           setMenu(menuResp.data);
-          console.log("order: ", orderResp.data, "menu: ",  menuResp.data)
+          setTicket(ticketResp.data);
+          // console.log("order: ", orderResp.data, "menu: ",  menuResp.data, "ticket: ", ticketResp.data)
         })
       )
       .catch((error) => console.log(error));
@@ -35,6 +39,8 @@ const OrderProvider = (props) => {
     setOrder,
     menu,
     setMenu,
+    ticket,
+    setTicket,
     updateValues,
     setUpdateValues,
   };
@@ -51,3 +57,9 @@ export default OrderProvider;
 export const OrderState = () => {
   return useContext(OrderContext);
 };
+
+export const TicketState = () => {
+  console.log(useContext(OrderContext));
+  return useContext(OrderContext);
+};
+
