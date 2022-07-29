@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ import com.oms.data.MenuRepository;
 
 @RestController
 @RequestMapping("/menu")
-@CrossOrigin(origins = "*") 
+@CrossOrigin(origins = "*")
 public class MenuController {
 
 	@Autowired
@@ -28,7 +29,7 @@ public class MenuController {
 	@GetMapping
 	@ResponseBody
 	public Object findAll(@RequestParam(required = false) String menuItem) {
-		//find by name
+		// find by name
 		if (menuItem != null) {
 			return repo.findByMenuItemLike("%" + menuItem + "%");
 		} else {
@@ -42,6 +43,10 @@ public class MenuController {
 	}
 
 	// findById
+	@GetMapping("/{id}")
+	public ResponseEntity<Menu> findById(@PathVariable int id) {
+		return ResponseEntity.ok(repo.findById(id).orElse(new Menu()));
+	}
 
 	// Pagination
 }

@@ -27,24 +27,13 @@ public class Menu {
 	
 	@Column(name= "Image_Path")
 	private String imagePath;
+	
+	@ManyToOne // DO NOT use Eager unless you 100% ALWAYS need the child record
+	@JoinColumn(name = "Order_ID")
+	private Orders orders;
 
 	public Menu() {
 		super();
-	}
-
-	public Menu(int menuID, String menuItem, double price, String imagePath) {
-		super();
-		this.menuID = menuID;
-		this.menuItem = menuItem;
-		this.price = price;
-		this.imagePath = imagePath;
-	}
-
-	public Menu(int menuID, String menuItem, double price) {
-		super();
-		this.menuID = menuID;
-		this.menuItem = menuItem;
-		this.price = price;
 	}
 
 	public int getMenuID() {
@@ -77,6 +66,14 @@ public class Menu {
 
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+	
+	public Orders getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Orders orders) {
+		this.orders = orders;
 	}
 
 	@Override
