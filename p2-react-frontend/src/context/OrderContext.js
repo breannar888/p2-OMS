@@ -13,8 +13,12 @@ const OrderProvider = (props) => {
   useEffect(() => {
     axios
       .all([
-        axios.get("http://localhost:8080/order"),
-        axios.get("http://localhost:8080/menu"),
+        axios.get("http://10.0.0.50:8080/order"),
+        axios.get("http://10.0.0.50:8080/menu"),
+        axios.get("http://10.0.0.50:8080/ticket"),
+        // axios.get("http://localhost:8080/order"),
+        // axios.get("http://localhost:8080/menu"),
+        // axios.get("http://localhost:8080/ticket"),
       ])
       .then(
         axios.spread((orderResp, menuResp) => {
