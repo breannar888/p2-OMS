@@ -11,9 +11,7 @@ html{
     --yellow: #FFB703;
     --orange: #FB8500;
 
-    /* --serifStack: 'STIX Two Text', serif; */
     --serifStack: 'Roboto Serif', serif;
-    /* --sansStack : 'Inter', sans-serif; */
     --sansStack : 'Roboto Flex', sans-serif;
 }
 
@@ -34,7 +32,7 @@ h2 {
 
 ul {
     background-color: var(--lightBlue) !important;
-    font-size: 2vw;
+    font-size: 1.75vw;
 }
 
 .header {
@@ -47,24 +45,11 @@ ul {
     font-family: var(--serifStack)
 }
 
-.mdc-list-item {
-    padding-top: 3vh;
-
-}
-
-
-.mdc-list-item--activated {
-    font-weight: bold;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
 aside {
-    /* float: left; */
     font-family: var(--sansStack);
     font-weight: 300;
 
 }
-
 
 h1 {
     text-align: center;
