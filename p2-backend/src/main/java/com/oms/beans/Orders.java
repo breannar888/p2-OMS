@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,14 +21,17 @@ public class Orders {
 	@Column(name= "Order_ID")
 	private int orderID;
 	
-	@OneToMany(mappedBy = "orders")
-	private Set<Menu> menuItems;
+	@ManyToOne
+	@JoinColumn(name = "Menu_ID")
+	private Menu menu;
 	
-	@Column(name= "Status_ID")
-	private int statusID;
+	@ManyToOne
+	@JoinColumn(name = "Status_ID")
+	private Status status;
 
-	@Column(name= "Ticket_ID")
-	private int ticketID;
+	@ManyToOne
+	@JoinColumn(name = "Ticket_ID")
+	private Tickets ticket;
 	
 	@Column(name= "Notes")
 	private String notes;
@@ -34,14 +39,22 @@ public class Orders {
 	public Orders() {
 		super();
 	}
-	
-	public Orders(int orderID, Set<Menu> menuItems, int statusID, int ticketID, String notes) {
+
+	public Orders(int orderID, Menu menu, Status status, Tickets ticket, String notes) {
 		super();
 		this.orderID = orderID;
-		this.menuItems = menuItems;
-		this.statusID = statusID;
-		this.ticketID = ticketID;
+		this.menu = menu;
+		this.status = status;
+		this.ticket = ticket;
 		this.notes = notes;
+	}
+
+	public Menu getMenu() {
+		return menu;
+	}
+
+	public void setMenu(Menu menu) {
+		this.menu = menu;
 	}
 
 	public int getOrderID() {
@@ -52,28 +65,20 @@ public class Orders {
 		this.orderID = orderID;
 	}
 
-	public Set<Menu> getMenuItems() {
-		return menuItems;
+	public Status getStatus() {
+		return status;
 	}
 
-	public void setMenuItems(Set<Menu> menuItems) {
-		this.menuItems = menuItems;
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
-	public int getStatusID() {
-		return statusID;
+	public Tickets getTicket() {
+		return ticket;
 	}
 
-	public void setStatusID(int statusID) {
-		this.statusID = statusID;
-	}
-
-	public int getTicketID() {
-		return ticketID;
-	}
-
-	public void setTicketID(int ticketID) {
-		this.ticketID = ticketID;
+	public void setTicket(Tickets ticket) {
+		this.ticket = ticket;
 	}
 
 	public String getNotes() {
