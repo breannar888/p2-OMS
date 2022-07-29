@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import "./App.css";
 import { AddForm, NavSidebar, OrdersLog, OrdersTable, Menu } from "./components/";
 import { AddOrderPage } from "./pages/AddOrderPage";
@@ -8,10 +8,10 @@ function App() {
     <div className="row">
       <BrowserRouter>
         <NavSidebar>
-          <Link to="/add" className="nav-link link-dark"> Add Orders</Link>
-          <Link to="/current" className="nav-link link-dark"> Current Orders</Link>
-          <Link to="/menu" className="nav-link link-dark"> Manage Menu</Link>
-          <Link to="/log" className="nav-link link-dark"> Orders Log</Link>
+          <NavLink to="/add" className="nav-link link-dark"> Add Orders</NavLink>
+          <NavLink to="/current" className="nav-link link-dark"> Current Orders</NavLink>
+          <NavLink to="/menu" className="nav-link link-dark"> Manage Menu</NavLink>
+          <NavLink to="/log" className="nav-link link-dark"> Orders Log</NavLink>
         </NavSidebar>
         <Routes>
           <Route path="/" element={<AddForm />}></Route>
