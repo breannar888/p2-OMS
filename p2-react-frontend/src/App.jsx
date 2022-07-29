@@ -1,27 +1,27 @@
 import {NavSidebar} from './components/NavSidebar';
-import {BrowserRouter, Routes, Route, Link} from 'react-router-dom';
-
+import {BrowserRouter, Routes, Route, Link, useLocation} from 'react-router-dom';
+import { AddOrder, CurrentOrders, ManageMenu, OrdersLog } from './components';
 import './App.css';
 
 function App() {
     return (
         <div className="row">
             <BrowserRouter>
-                <NavSidebar>
-                    <Link to="/add"> Add Orders</Link>
-                    <Link to="/current"> Current Orders</Link>
-                    <Link to="/menu"> Manage Menu</Link>
-                    <Link to="/log"> Orders Log</Link>
+                <NavSidebar location={useLocation}>
+                    <Link to="/add" className='nav-link link-dark'> Add Orders</Link>
+                    <Link to="/current" className='nav-link link-dark'> Current Orders</Link>
+                    <Link to="/menu" className='nav-link link-dark'> Manage Menu</Link>
+                    <Link to="/log" className='nav-link link-dark'> Orders Log</Link>
                 </NavSidebar>
 
-                {/* <Routes>
-                    <Route path='/' element={<Table />}></Route>
-                    <Route path='/add' element={<Form />}></Route>
-                    <Route path='/current' element={<Table />}></Route>
-                    <Route path='/menu' element={<Error500 />}></Route>
-                    <Route path='/log' element={<Error500 />}></Route>
-                    <Route path='/*' element={<add />}></Route>
-                </Routes> */}
+                <Routes>
+                    <Route path='/' element={<AddOrder />}></Route>
+                    <Route path='/add' element={<AddOrder />}></Route>
+                    <Route path='/current' element={<CurrentOrders />}></Route>
+                    <Route path='/menu' element={<ManageMenu />}></Route>
+                    <Route path='/log' element={<OrdersLog />}></Route>
+                    <Route path='/*' element={<AddOrder />}></Route>
+                </Routes>
             </BrowserRouter>
         </div>
     );

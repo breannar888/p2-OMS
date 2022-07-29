@@ -46,7 +46,7 @@ ul {
     color: white;
     font-weight: 700;
     font-size: 2.5vw;
-    font-family: 'STIX Two Text', serif;
+    font-family: var(--serifStack)
 }
 
 .mdc-list-item {
