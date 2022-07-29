@@ -15,10 +15,10 @@ function App() {
       <OrderProvider>
         <BrowserRouter>
           <NavSidebar>
-            <Link to="/add"> Add Orders</Link>
-            <Link to="/current"> Current Orders</Link>
-            <Link to="/menu"> Manage Menu</Link>
-            <Link to="/log"> Orders Log</Link>
+            <NavLink to="/add"> Add Orders</NavLink>
+            <NavLink to="/current"> Current Orders</NavLink>
+            <NavLink to="/menu"> Manage Menu</NavLink>
+            <NavLink to="/log"> Orders Log</NavLink>
           </NavSidebar>
           <Routes>
             <Route path="/" element={<AddForm />}></Route>
