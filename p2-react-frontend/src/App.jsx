@@ -8,10 +8,10 @@ function App() {
     <div className="row">
       <BrowserRouter>
         <NavSidebar>
-          <Link to="/add"> Add Orders</Link>
-          <Link to="/current"> Current Orders</Link>
-          <Link to="/menu"> Manage Menu</Link>
-          <Link to="/log"> Orders Log</Link>
+          <Link to="/add" className="nav-link link-dark"> Add Orders</Link>
+          <Link to="/current" className="nav-link link-dark"> Current Orders</Link>
+          <Link to="/menu" className="nav-link link-dark"> Manage Menu</Link>
+          <Link to="/log" className="nav-link link-dark"> Orders Log</Link>
         </NavSidebar>
         <Routes>
           <Route path="/" element={<AddForm />}></Route>
