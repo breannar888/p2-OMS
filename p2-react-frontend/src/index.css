@@ -1,13 +1,136 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=STIX+Two+Text:wght@400..700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0..1,0');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@100..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@100..800&display=swap');
+
+html{
+    --lightBlue: #8ECAE6;
+    --mediumBlue: #219EBC;
+    --darkBlue: #023047;
+    --yellow: #FFB703;
+    --orange: #FB8500;
+
+    /* --serifStack: 'STIX Two Text', serif; */
+    --serifStack: 'Roboto Serif', serif;
+    /* --sansStack : 'Inter', sans-serif; */
+    --sansStack : 'Roboto Flex', sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+
+h1 {
+    font-family: var(--serifStack);
+}
+
+h2 {
+    font-family: var(--serifStack);
+    text-align: center;
+    font-weight: 400;
+
+}
+
+ul {
+    background-color: var(--lightBlue) !important;
+    font-size: 2vw;
+}
+
+.header {
+    background-color: var(--darkBlue);
+    padding: 15px;
+    text-shadow: 0px 4px 4px black;
+    color: white;
+    font-weight: 700;
+    font-size: 2.5vw;
+    font-family: 'STIX Two Text', serif;
+}
+
+.mdc-list-item {
+    padding-top: 3vh;
+
+}
+
+
+.mdc-list-item--activated {
+    font-weight: bold;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+aside {
+    /* float: left; */
+    font-family: var(--sansStack);
+    font-weight: 300;
+
+}
+
+
+h1 {
+    text-align: center;
+}
+
+.active {
+    background-color: var(--lightBlue) !important;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: var(--darkBlue) !important;
+    font-weight: 700;
+}
+
+main {
+    margin-top: 20px;
+}
+
+#submit {
+    background-color: var(--yellow);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.input-group-text {
+    background-color: var(--yellow);
+
+}
+
+thead {
+    background-color: var(--yellow);
+
+}
+
+i {
+    cursor: pointer;
+}
+
+.trash:hover {
+    font-variation-settings: 'FILL' 1;
+    color: var(--orange);
+}
+
+.next:hover {
+    color: var(--mediumBlue);
+}
+
+table{
+    font-family: var(--sansStack);
+    
+}
+
+.btn {
+    font-family: var(--sansStack);
+}
+
+.manage-edit {
+    background-color: var(--orange);
+}
+.manage-add {
+    background-color: var(--yellow);
+}
+
+.card {
+    font-family: var(--sansStack);
+    
 }

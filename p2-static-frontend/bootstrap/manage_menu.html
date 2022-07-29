@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap - Order Management System</title>
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+    <div class="row">
+        <aside class="col-3">
+            <div class="header">Order <br> Management <br> System</div>
+            <ul class="nav d-block h-100">
+                <li class="nav-item">
+                    <a href="add_order.html" class="nav-link active" aria-current="page">
+                        Add Orders
+                    </a>
+                </li>
+                <li>
+                    <a href="current_orders.html" class="nav-link link-dark">
+                        Current Orders
+                    </a>
+                </li>
+                <li>
+                    <a href="manage_menu.html" class="nav-link link-dark">
+                        Manage Menu
+                    </a>
+                </li>
+                <li>
+                    <a href="orders_log.html" class="nav-link link-dark">
+                        Orders Log
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <main class="col-9">
+            <div class="container">
+                <h1>Manage Menu</h1>
+                <button class="btn manage-add">Add New Item</button>
+            </div>
+            <div class="row row-cols-3" id="here">
+            </div>
+
+        </main>
+    </div>
+    <script>
+        const main = document.querySelector("main");
+        const here = document.querySelector("#here");
+        const images = ['chicken_pasta', 'argentinean_steak', 'american_burger', 'shrimp_scampi', 'chicken_fajita', 'grilled_salmon'];
+        const items = ['Asiago Chicken Pasta', 'Argentinean-style Steak', 'All-American burgers', 'Shrimp Scampi', 'Chicken Fajitas', 'Grilled Salmon'];
+        const prices = ['$12.99', '$18.99', '$11.99', '$16.99', '$14.99', '$13.99'];
+
+
+        for (let i = 0; i < 6; i++) {
+            const card = document.createElement("div");
+
+            card.innerHTML = `
+            <div class="col m-2">
+                <div class="card">
+                    <img src="../images/${images[i]}.jpg" class="card-img-top" alt="${items[i]}">
+                    <div class="card-body">
+                        <h5 class="card-title">${items[i]}</h5>
+                        <p class="card-text">${prices[i]}</p>
+                        <button class="btn btn-sm manage-edit">Edit</button>
+                    </div>
+                </div>
+            </div>
+            `
+            here.appendChild(card)
+        }
+
+
+
+    </script>
+</body>
+
+</html>
