@@ -12,6 +12,7 @@ import OrderProvider from "./context/OrderContext";
 function App() {
   return (
     <div className="row">
+      <OrderProvider>
         <BrowserRouter>
           <NavSidebar>
             <Link to="/add"> Add Orders</Link>
@@ -28,6 +29,7 @@ function App() {
             <Route path="/*" element={<AddForm />}></Route>
           </Routes>
         </BrowserRouter>
+      </OrderProvider>
     </div>
   );
 }
