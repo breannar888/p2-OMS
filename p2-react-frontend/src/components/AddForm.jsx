@@ -9,14 +9,32 @@ export const AddForm = () => {
       <h1>Add Order</h1>
       <form>
         <div className="row row-cols-1">
-          <div className="form-group col-11">
-            <label htmlFor="item">Menu Item</label>
-            <select className="form-select" id="item">
-              <option defaultValue="">&nbsp;</option>
-              {menu.map((item) => (
-                <option value={item.menuItem} key={item.menuID}>{item.menuItem}</option>
-              ))}
-            </select>
+          <div className="row row-cols-2">
+            <div className="form-group col-5">
+              <label htmlFor="item">Menu Item</label>
+              <select className="form-select" id="item">
+                <option >&nbsp;</option>
+                <option value="1">Asiago Chicken Pasta</option>
+                <option value="2">Argentinian-Style Steak</option>
+                <option value="3">All-American Burger</option>
+                <option value="4">Shrimp Scampi</option>
+                <option value="5">Chicken Fajitas</option>
+                <option value="6">Grilled Salmon</option>
+              </select>
+            </div>
+            
+            <div className="col-1"></div>
+            <div className="form-group col-5">
+              <label htmlFor="item">Tickets</label>
+              <select className="form-select" id="item" onChange={ticketChange} >
+                <option value="new" >(Add ticket)</option>
+                {ticket.map((ticket) => {
+                  return (
+                    <option key={ticket.ticketID} value={ticket.ticketID}>{ticket.ticketName}</option>
+                  )
+                })}
+              </select>
+            </div>
           </div>
           {ticketNew ? <TicketName /> : <></> }
           <div className="form-group col-11">
