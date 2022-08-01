@@ -26,7 +26,7 @@ export const OrdersTable = () => {
                     <tr key={order.orderID}>
                       <th scope="row">{order.ticket.ticketID}</th>
                       <td>{order.menu.menuItem}</td>
-                      <td>{order.menu.notes}</td>
+                      <td>{order.notes}</td>
                       <td>
                         <i className="material-symbols-outlined edit" title="Edit order">edit</i>
                         <i className="material-symbols-outlined trash" title="Delete order">delete_forever</i>
@@ -57,7 +57,7 @@ export const OrdersTable = () => {
                     <tr key={order.orderID}>
                       <th scope="row">{order.ticket.ticketID}</th>
                       <td>{order.menu.menuItem}</td>
-                      <td>{order.menu.notes}</td>
+                      <td>{order.notes}</td>
                       <td>
                         <i className="material-symbols-outlined edit" title="Edit order">edit</i>
                         <i className="material-symbols-outlined trash" title="Delete order">delete_forever</i>
@@ -88,7 +88,7 @@ export const OrdersTable = () => {
                     <tr key={order.orderID}>
                       <th scope="row">{order.ticket.ticketID}</th>
                       <td>{order.menu.menuItem}</td>
-                      <td>{order.menu.notes}</td>
+                      <td>{order.notes}</td>
                       <td>
                         <i className="material-symbols-outlined edit" title="Edit order">edit</i>
                         <i className="material-symbols-outlined trash" title="Delete order">delete_forever</i>
