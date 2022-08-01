@@ -20,7 +20,7 @@ const OrderProvider = (props) => {
         axios.spread((orderResp, menuResp) => {
           setOrder(orderResp.data);
           setMenu(menuResp.data);
-          console.log("order: ", orderResp.data, "menu: ",  menuResp.data)
+          console.log("order: ", orderResp.data, "menu: ",  menuResp.data);
         })
       )
       .catch((error) => console.log(error));
