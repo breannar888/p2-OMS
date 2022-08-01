@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useRef } from "react";
+import { useState } from "react";
 import { TicketState } from "../context/OrderContext";
 
 
 export const AddForm = () => {
 
   const { ticket, setTicket } = TicketState();
-  console.log(ticket);
+
+  const [ticketNew, setTicketNew] = useState(true);
+  
+  const ticketChange = (event) => {
+    console.log("please");
+    event.target.value === "new" ? setTicketNew(true) : setTicketNew(false);
+    console.log(ticketNew);
+  }
 
   return (
     <main className="container col-9 col-lg-10 p-3">
@@ -28,7 +36,7 @@ export const AddForm = () => {
             <div className="col-1"></div>
             <div className="form-group col-5">
               <label htmlFor="item">Tickets</label>
-              <select className="form-select" id="item">
+              <select className="form-select" id="item" onChange={ticketChange} >
                 <option value="new" >(Add ticket)</option>
                 {ticket.map((ticket) => {
                   return (
@@ -38,7 +46,7 @@ export const AddForm = () => {
               </select>
             </div>
           </div>
-          <TicketName />
+          {ticketNew ? <TicketName /> : <></> }
           <div className="form-group col-11">
             <label htmlFor="notes">Notes</label>
             <textarea
