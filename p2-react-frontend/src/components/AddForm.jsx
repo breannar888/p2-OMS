@@ -1,11 +1,10 @@
-import React, { useRef } from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { TicketState } from "../context/OrderContext";
 
 
 export const AddForm = () => {
 
-  const { ticket, setTicket } = TicketState();
+  const { ticket } = TicketState();
 
   const [ticketNew, setTicketNew] = useState(true);
   

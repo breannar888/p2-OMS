@@ -2,7 +2,7 @@ import React from "react";
 import { OrderState } from "../context/OrderContext";
 
 export const OrdersTable = () => {
-  const { order, setOrder } = OrderState();
+  const { order } = OrderState();
 
   return (
     <main className="container col-9">
@@ -35,7 +35,7 @@ export const OrdersTable = () => {
                       </td>
                     </tr>
                   );
-                }
+                } else {return <></>}
               })}
             </tbody>
           </table>
@@ -67,7 +67,7 @@ export const OrdersTable = () => {
                       </td>
                     </tr>
                   );
-                }
+                } else {return <></>}
               })}
             </tbody>
           </table>
@@ -99,7 +99,7 @@ export const OrdersTable = () => {
                       </td>
                     </tr>
                   );
-                }
+                } else {return <></>}
               })}
             </tbody>
           </table>
