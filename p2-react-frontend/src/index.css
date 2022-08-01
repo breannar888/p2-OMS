@@ -107,6 +107,11 @@ i {
     color: var(--mediumBlue);
 }
 
+.edit:hover {
+    font-variation-settings: 'FILL' 1;
+    color: var(--yellow);
+}
+
 table{
     font-family: var(--sansStack);
     

@@ -18,6 +18,7 @@ export const AddForm = () => {
               ))}
             </select>
           </div>
+          {ticketNew ? <TicketName /> : <></> }
           <div className="form-group col-11">
             <label htmlFor="notes">Notes</label>
             <textarea
@@ -50,3 +51,12 @@ export const AddForm = () => {
     </main>
   );
 };
+
+const TicketName = () => (
+  <div className="row">
+    <div className="form-group col-11">
+      <label htmlFor="notes">Ticket Name</label>
+      <input className="form-control"></input>
+    </div>
+  </div>
+)
