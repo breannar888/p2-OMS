@@ -28,10 +28,9 @@ export const OrdersTable = () => {
                       <td>{order.menu.menuItem}</td>
                       <td>{order.menu.notes}</td>
                       <td>
-                        <i className="material-symbols-outlined trash">
-                          delete_forever
-                        </i>
-                        <i className="material-symbols-outlined next">east</i>
+                        <i className="material-symbols-outlined edit" title="Edit order">edit</i>
+                        <i className="material-symbols-outlined trash" title="Delete order">delete_forever</i>
+                        <i className="material-symbols-outlined next" title="Update Order Status">east</i>
                       </td>
                     </tr>
                   );
@@ -60,10 +59,9 @@ export const OrdersTable = () => {
                       <td>{order.menu.menuItem}</td>
                       <td>{order.menu.notes}</td>
                       <td>
-                        <i className="material-symbols-outlined trash">
-                          delete_forever
-                        </i>
-                        <i className="material-symbols-outlined next">east</i>
+                        <i className="material-symbols-outlined edit" title="Edit order">edit</i>
+                        <i className="material-symbols-outlined trash" title="Delete order">delete_forever</i>
+                        <i className="material-symbols-outlined next" title="Update Order Status">east</i>
                       </td>
                     </tr>
                   );
@@ -92,10 +90,9 @@ export const OrdersTable = () => {
                       <td>{order.menu.menuItem}</td>
                       <td>{order.menu.notes}</td>
                       <td>
-                        <i className="material-symbols-outlined trash">
-                          delete_forever
-                        </i>
-                        <i className="material-symbols-outlined next">east</i>
+                        <i className="material-symbols-outlined edit" title="Edit order">edit</i>
+                        <i className="material-symbols-outlined trash" title="Delete order">delete_forever</i>
+                        <i className="material-symbols-outlined next" title="Update Order Status">east</i>
                       </td>
                     </tr>
                   );
