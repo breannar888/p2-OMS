@@ -27,7 +27,15 @@ const OrderProvider = (props) => {
         axios.spread((orderResp, menuResp, ticketResp) => {
           setOrder(orderResp.data);
           setMenu(menuResp.data);
-          console.log("order: ", orderResp.data, "menu: ",  menuResp.data);
+          setTicket(ticketResp.data);
+          /*console.log(
+            "order: ",
+            orderResp.data,
+            "menu: ",
+            menuResp.data,
+            "ticket: ",
+            ticketResp.data
+          );*/
         })
       )
       .catch((error) => console.log(error));
@@ -58,7 +66,5 @@ export const OrderState = () => {
 };
 
 export const TicketState = () => {
-  console.log(useContext(OrderContext));
   return useContext(OrderContext);
 };
-
