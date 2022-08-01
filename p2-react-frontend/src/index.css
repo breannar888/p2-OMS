@@ -127,3 +127,7 @@ table{
     font-family: var(--sansStack);
     
 }
+.edit:hover {
+    font-variation-settings: 'FILL' 1;
+    color: var(--yellow);
+}
