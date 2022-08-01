@@ -1,18 +1,8 @@
-import React, { useState } from "react";
-import { TicketState } from "../context/OrderContext";
-
+import React from "react";
+import { OrderState } from "../context/OrderContext";
 
 export const AddForm = () => {
-
-  const { ticket } = TicketState();
-
-  const [ticketNew, setTicketNew] = useState(true);
-  
-  const ticketChange = (event) => {
-    console.log("please");
-    event.target.value === "new" ? setTicketNew(true) : setTicketNew(false);
-    console.log(ticketNew);
-  }
+  const { menu } = OrderState();
 
   return (
     <main className="container col-9 col-lg-10 p-3">

@@ -1,8 +1,10 @@
 import React from "react";
+import { OrderItems } from "./OrderItems";
 import { OrderState } from "../context/OrderContext";
 
 export const OrdersTable = () => {
-  const { order } = OrderState();
+
+  const {order} = OrderState();
 
   return (
     <main className="container col-9">
@@ -22,20 +24,8 @@ export const OrdersTable = () => {
             <tbody>
               {order.map((order) => {
                 if (order.status.statusID === 1) {
-                  return (
-                    <tr key={order.orderID}>
-                      <th scope="row">{order.ticket.ticketID}</th>
-                      <td>{order.menu.menuItem}</td>
-                      <td>{order.menu.notes}</td>
-                      <td>
-                        <i className="material-symbols-outlined trash">
-                          delete_forever
-                        </i>
-                        <i className="material-symbols-outlined next">east</i>
-                      </td>
-                    </tr>
-                  );
-                } else {return <></>}
+                  return <OrderItems order={order} key={order.orderID}/>;
+                }
               })}
             </tbody>
           </table>
@@ -54,20 +44,8 @@ export const OrdersTable = () => {
             <tbody>
               {order.map((order) => {
                 if (order.status.statusID === 2) {
-                  return (
-                    <tr key={order.orderID}>
-                      <th scope="row">{order.ticket.ticketID}</th>
-                      <td>{order.menu.menuItem}</td>
-                      <td>{order.menu.notes}</td>
-                      <td>
-                        <i className="material-symbols-outlined trash">
-                          delete_forever
-                        </i>
-                        <i className="material-symbols-outlined next">east</i>
-                      </td>
-                    </tr>
-                  );
-                } else {return <></>}
+                  return <OrderItems order={order} key={order.orderID}/>;
+                }
               })}
             </tbody>
           </table>
@@ -86,20 +64,8 @@ export const OrdersTable = () => {
             <tbody>
               {order.map((order) => {
                 if (order.status.statusID === 3) {
-                  return (
-                    <tr key={order.orderID}>
-                      <th scope="row">{order.ticket.ticketID}</th>
-                      <td>{order.menu.menuItem}</td>
-                      <td>{order.menu.notes}</td>
-                      <td>
-                        <i className="material-symbols-outlined trash">
-                          delete_forever
-                        </i>
-                        <i className="material-symbols-outlined next">east</i>
-                      </td>
-                    </tr>
-                  );
-                } else {return <></>}
+                  return <OrderItems order={order} key={order.orderID}/>;
+                }
               })}
             </tbody>
           </table>
