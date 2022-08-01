@@ -7,10 +7,7 @@ import axios from "axios";
 export const AddForm = () => {
   const { menu, ticket, updateValues, setUpdateValues } = OrderState();
   const navigate = useNavigate();
-
-
   const [ticketNew, setTicketNew] = useState(true);
-
   const menuID = useRef();
   const ticketID = useRef();
   const ticketName = useRef();
@@ -23,13 +20,27 @@ export const AddForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // await axios.post("http://10.0.0.50:8080/order/", {
-    await axios.post("http://localhost:8080/order/", {
-      menu: { menuID: menuID.current.value },
-      ticket: { ticketID: ticketID.current.value },
-      status: { statusID: 1 },
-      notes: notes.current.value,
-    })
+    if (ticketID.current.value === 'new') {
+        // await axios.post("http://10.0.0.50:8080/order/", {
+         console.log(ticketName.current.value);
+        await axios.post("http://localhost:8080/ticket/", {
+          ticketName: ticketName.current.value
+        })
+        .then (axios.post("http://localhost:8080/order/", {
+            menu: { menuID: menuID.current.value },
+            // ticket: { ticketID: ticketID.current.value },
+            ticket: { ticketID: 1 },
+            status: { statusID: 1 },
+            notes: notes.current.value,
+          }))
+    } else {
+      await axios.post("http://localhost:8080/order/", {
+        menu: { menuID: menuID.current.value },
+        ticket: { ticketID: ticketID.current.value },
+        status: { statusID: 1 },
+        notes: notes.current.value,
+      })
+    }
     setUpdateValues(!updateValues)
     navigate("../current");
 
@@ -102,7 +113,7 @@ const TicketName = forwardRef((props, ref) => (
   <div className="row">
     <div className="form-group col-11">
       <label htmlFor="notes">Ticket Name</label>
-      <input className="form-control" ref={ref}></input>
+      <input className="form-control" ref={ref} {...props}></input>
     </div>
   </div>
 ));
