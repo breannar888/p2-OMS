@@ -4,7 +4,6 @@ import axios from "axios";
 import React from "react";
 
 export const OrderContext = createContext();
-export const TicketContext = createContext();
 
 const OrderProvider = (props) => {
   const [order, setOrder] = useState([]);
@@ -27,7 +26,8 @@ const OrderProvider = (props) => {
         axios.spread((orderResp, menuResp, ticketResp) => {
           setOrder(orderResp.data);
           setMenu(menuResp.data);
-          console.log("order: ", orderResp.data, "menu: ",  menuResp.data);
+          setTicket(ticketResp.data);
+          // console.log("order: ", orderResp.data, "menu: ",  menuResp.data);
         })
       )
       .catch((error) => console.log(error));
@@ -57,8 +57,5 @@ export const OrderState = () => {
   return useContext(OrderContext);
 };
 
-export const TicketState = () => {
-  console.log(useContext(OrderContext));
-  return useContext(OrderContext);
-};
+
 
