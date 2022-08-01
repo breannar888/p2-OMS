@@ -2,7 +2,7 @@ import React from "react";
 import { OrderState } from "../context/OrderContext";
 
 export const OrdersTable = () => {
-  const { order, setOrder } = OrderState();
+  const { order } = OrderState();
 
   return (
     <main className="container col-9">
@@ -28,14 +28,13 @@ export const OrdersTable = () => {
                       <td>{order.menu.menuItem}</td>
                       <td>{order.notes}</td>
                       <td>
-                        <i className="material-symbols-outlined trash">
-                          delete_forever
-                        </i>
-                        <i className="material-symbols-outlined next">east</i>
+                        <i className="material-symbols-outlined edit" title="Edit order">edit</i>
+                        <i className="material-symbols-outlined trash" title="Delete order">delete_forever</i>
+                        <i className="material-symbols-outlined next" title="Update Order Status">east</i>
                       </td>
                     </tr>
                   );
-                }
+                } else {return <></>}
               })}
             </tbody>
           </table>
@@ -60,14 +59,13 @@ export const OrdersTable = () => {
                       <td>{order.menu.menuItem}</td>
                       <td>{order.notes}</td>
                       <td>
-                        <i className="material-symbols-outlined trash">
-                          delete_forever
-                        </i>
-                        <i className="material-symbols-outlined next">east</i>
+                        <i className="material-symbols-outlined edit" title="Edit order">edit</i>
+                        <i className="material-symbols-outlined trash" title="Delete order">delete_forever</i>
+                        <i className="material-symbols-outlined next" title="Update Order Status">east</i>
                       </td>
                     </tr>
                   );
-                }
+                } else {return <></>}
               })}
             </tbody>
           </table>
@@ -92,14 +90,13 @@ export const OrdersTable = () => {
                       <td>{order.menu.menuItem}</td>
                       <td>{order.notes}</td>
                       <td>
-                        <i className="material-symbols-outlined trash">
-                          delete_forever
-                        </i>
-                        <i className="material-symbols-outlined next">east</i>
+                        <i className="material-symbols-outlined edit" title="Edit order">edit</i>
+                        <i className="material-symbols-outlined trash" title="Delete order">delete_forever</i>
+                        <i className="material-symbols-outlined next" title="Update Order Status">east</i>
                       </td>
                     </tr>
                   );
-                }
+                } else {return <></>}
               })}
             </tbody>
           </table>
