@@ -32,6 +32,7 @@ export const AddForm = () => {
                 <option value="6">Grilled Salmon</option>
               </select>
             </div>
+            
             <div className="col-1"></div>
             <div className="form-group col-5">
               <label htmlFor="item">Tickets</label>
