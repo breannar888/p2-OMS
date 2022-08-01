@@ -13,6 +13,7 @@ export const AddForm = () => {
     event.target.value === "new" ? setTicketNew(true) : setTicketNew(false);
     console.log(ticketNew);
   }
+  //
 
   return (
     <main className="container col-9 col-lg-10 p-3">
