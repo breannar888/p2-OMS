@@ -39,7 +39,7 @@ export const OrderItems = ({ order }) => {
     }
   };
 
-  const handleUpdate = async () => {
+  const handleToggle = async () => {
     setToggle(!toggle);
   };
 
@@ -72,7 +72,7 @@ export const OrderItems = ({ order }) => {
           delete_forever
         </i>
         <i
-          onClick={handleUpdate}
+          onClick={handleToggle}
           className="material-symbols-outlined edit"
           title="Edit order"
         >
