@@ -22,13 +22,13 @@ export const AddForm = () => {
     let menuIDValue = menuID.current.value;
     let ticketIDValue = ticketID.current.value;
     let notesValue = notes.current.value;
-    let ticketNameValue = ticketName.current.value;
-
     
+
+
     if (ticketIDValue === 'new') {
       // await axios.post("http://10.0.0.50:8080/ticket/", {
       await axios.post("http://localhost:8080/ticket/", {
-        ticketName: ticketNameValue
+        ticketName: ticketName.current.value
       })
         .then(res => ticketIDValue = res.data.ticketID)
     }
