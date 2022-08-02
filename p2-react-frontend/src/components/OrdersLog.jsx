@@ -21,17 +21,17 @@ export const OrdersLog = () => {
         <tbody>
           {order.map((order) => (
             <tr key={order.orderID}>
-              <th scope="col">{order.ticket.ticketID}</th>
-              <th scope="col">{order.ticket.ticketName}</th>
-              <th scope="col">{order.menu.menuItem}</th>
-              <th scope="col">{order.notes}</th>
-              <th scope="col">{order.status.statusCode}</th>
-              <th scope="col">{order.menu.price}</th>
-              <th scope="col">
+              <td>{order.ticket.ticketID}</td>
+              <td>{order.ticket.ticketName}</td>
+              <td>{order.menu.menuItem}</td>
+              <td>{order.notes}</td>
+              <td>{order.status.statusCode}</td>
+              <td>{order.menu.price}</td>
+              <td>
                 <i className="material-symbols-outlined trash">
                   delete_forever
                 </i>
-              </th>
+              </td>
             </tr>
           ))}
         </tbody>
