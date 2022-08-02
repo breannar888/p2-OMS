@@ -134,3 +134,8 @@ table{
     font-family: var(--sansStack);
     
 }
+
+.login {
+    background-color: var(--lightBlue);
+    margin-top: 30px;
+}
