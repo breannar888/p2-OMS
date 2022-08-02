@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -24,7 +25,7 @@ public class Menu {
 	private int menuID;
 	
 	@Column(name= "Name")
-	//@NotBlank
+	@NotBlank
 	private String menuItem;
 	
 	@Column(name= "Price")
