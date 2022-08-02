@@ -1,39 +1,69 @@
-import React, {useState} from "react";
+import React, { useState, useRef, forwardRef } from "react";
 import { OrderState } from "../context/OrderContext";
-import { TicketState } from "../context/OrderContext";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 
 export const AddForm = () => {
-  const { menu } = OrderState();
-
+  const { menu, ticket, updateValues, setUpdateValues } = OrderState();
+  const navigate = useNavigate();
   const [ticketNew, setTicketNew] = useState(true);
-  const { ticket, setTicket } = TicketState();
+  const menuID = useRef();
+  const ticketID = useRef();
+  const ticketName = useRef();
+  const notes = useRef();
 
   const ticketChange = (event) => {
-    console.log("please");
     event.target.value === "new" ? setTicketNew(true) : setTicketNew(false);
-    console.log(ticketNew);
   }
-  //
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    let menuIDValue = menuID.current.value;
+    let ticketIDValue = ticketID.current.value;
+    let notesValue = notes.current.value;
+    
+
+
+    if (ticketIDValue === 'new') {
+      // await axios.post("http://10.0.0.50:8080/ticket/", {
+      await axios.post("http://localhost:8080/ticket/", {
+        ticketName: ticketName.current.value
+      })
+        .then(res => ticketIDValue = res.data.ticketID)
+    }
+
+    // await axios.post("http://10.0.0.50:8080/order/", {
+    await axios.post("http://localhost:8080/order/", {
+      menu: { menuID: menuIDValue },
+      ticket: { ticketID: ticketIDValue },
+      status: { statusID: 1 },
+      notes: notesValue,
+    })
+    setUpdateValues(!updateValues)
+    navigate("../current");
+
+  }
 
   return (
     <main className="container col-9 col-lg-10 p-3">
       <h1>Add Order</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="row row-cols-1">
           <div className="row row-cols-2">
             <div className="form-group col-5">
               <label htmlFor="item">Menu Item</label>
-              <select className="form-select" id="item">
-              <option defaultValue="">&nbsp;</option>
-              {menu.map((item) => (
-                <option value={item.menuItem} key={item.menuID}>{item.menuItem}</option>
-              ))}
-            </select> 
+              <select className="form-select" ref={menuID}>
+                <option defaultValue="">&nbsp;</option>
+                {menu.map((item) => (
+                  <option value={item.menuID} key={item.menuID}>{item.menuItem}</option>
+                ))}
+              </select>
             </div>
             <div className="col-1"></div>
             <div className="form-group col-5">
               <label htmlFor="item">Tickets</label>
-              <select className="form-select" id="item" onChange={ticketChange} >
+              <select className="form-select" ref={ticketID} onChange={ticketChange} >
                 <option value="new" >(Add ticket)</option>
                 {ticket.map((ticket) => {
                   return (
@@ -43,7 +73,7 @@ export const AddForm = () => {
               </select>
             </div>
           </div>
-          {ticketNew ? <TicketName /> : <></> }
+          {ticketNew ? <TicketName ref={ticketName} /> : <></>}
           <div className="form-group col-11">
             <label htmlFor="notes">Notes</label>
             <textarea
@@ -52,6 +82,7 @@ export const AddForm = () => {
               id="notes"
               cols="10"
               rows="5"
+              ref={notes}
             ></textarea>
           </div>
         </div>
@@ -77,11 +108,12 @@ export const AddForm = () => {
   );
 };
 
-const TicketName = () => (
+const TicketName = forwardRef((props, ref) => (
   <div className="row">
     <div className="form-group col-11">
       <label htmlFor="notes">Ticket Name</label>
-      <input className="form-control"></input>
+      <input className="form-control" ref={ref} {...props}></input>
     </div>
   </div>
-)
+));
+

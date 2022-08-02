@@ -25,8 +25,8 @@ export const OrdersTable = () => {
               {order.map((order) => {
                 if (order.status.statusID === 1) {
                   return <OrderItems order={order} key={order.orderID}/>;
-                }
-              })}
+                } else return ""
+              })} 
             </tbody>
           </table>
         </div>
@@ -45,7 +45,7 @@ export const OrdersTable = () => {
               {order.map((order) => {
                 if (order.status.statusID === 2) {
                   return <OrderItems order={order} key={order.orderID}/>;
-                }
+                } else return ""
               })}
             </tbody>
           </table>
@@ -65,7 +65,7 @@ export const OrdersTable = () => {
               {order.map((order) => {
                 if (order.status.statusID === 3) {
                   return <OrderItems order={order} key={order.orderID}/>;
-                }
+                } else return ""
               })}
             </tbody>
           </table>
