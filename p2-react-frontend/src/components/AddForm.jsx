@@ -21,19 +21,21 @@ export const AddForm = () => {
     event.preventDefault();
 
     if (ticketID.current.value === 'new') {
-        // await axios.post("http://10.0.0.50:8080/order/", {
-         console.log(ticketName.current.value);
-        await axios.post("http://localhost:8080/ticket/", {
-          ticketName: ticketName.current.value
-        })
-        .then (axios.post("http://localhost:8080/order/", {
+      // await axios.post("http://10.0.0.50:8080/ticket/", {
+      await axios.post("http://localhost:8080/ticket/", {
+        ticketName: ticketName.current.value
+      })
+        // .then (axios.post("http://10.0.0.50:8080/order/", {
+        .then((res) => {
+          axios.post("http://localhost:8080/order/", {
             menu: { menuID: menuID.current.value },
-            // ticket: { ticketID: ticketID.current.value },
-            ticket: { ticketID: 1 },
+            ticket: { ticketID: res.data.ticketID },
             status: { statusID: 1 },
             notes: notes.current.value,
-          }))
+          })
+        })
     } else {
+      // await axios.post("http://10.0.0.50:8080/order/", {
       await axios.post("http://localhost:8080/order/", {
         menu: { menuID: menuID.current.value },
         ticket: { ticketID: ticketID.current.value },
