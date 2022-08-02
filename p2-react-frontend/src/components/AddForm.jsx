@@ -19,30 +19,27 @@ export const AddForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    let menuIDValue = menuID.current.value;
+    let ticketIDValue = ticketID.current.value;
+    let notesValue = notes.current.value;
+    let ticketNameValue = ticketName.current.value;
 
-    if (ticketID.current.value === 'new') {
+    
+    if (ticketIDValue === 'new') {
       // await axios.post("http://10.0.0.50:8080/ticket/", {
       await axios.post("http://localhost:8080/ticket/", {
-        ticketName: ticketName.current.value
+        ticketName: ticketNameValue
       })
-        // .then (axios.post("http://10.0.0.50:8080/order/", {
-        .then((res) => {
-          axios.post("http://localhost:8080/order/", {
-            menu: { menuID: menuID.current.value },
-            ticket: { ticketID: res.data.ticketID },
-            status: { statusID: 1 },
-            notes: notes.current.value,
-          })
-        })
-    } else {
-      // await axios.post("http://10.0.0.50:8080/order/", {
-      await axios.post("http://localhost:8080/order/", {
-        menu: { menuID: menuID.current.value },
-        ticket: { ticketID: ticketID.current.value },
-        status: { statusID: 1 },
-        notes: notes.current.value,
-      })
+        .then(res => ticketIDValue = res.data.ticketID)
     }
+
+    // await axios.post("http://10.0.0.50:8080/order/", {
+    await axios.post("http://localhost:8080/order/", {
+      menu: { menuID: menuIDValue },
+      ticket: { ticketID: ticketIDValue },
+      status: { statusID: 1 },
+      notes: notesValue,
+    })
     setUpdateValues(!updateValues)
     navigate("../current");
 
