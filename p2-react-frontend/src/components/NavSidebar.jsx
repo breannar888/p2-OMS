@@ -1,6 +1,10 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
-export const NavSidebar = ({ children }, location) => {
+export const NavSidebar = ({ children }) => {
+
+    const {pathname} = useLocation();
+  if (pathname !== "/"){
   return (
     <aside className="col-3 col-lg-2">
       <div className="header">
@@ -12,5 +16,7 @@ export const NavSidebar = ({ children }, location) => {
         ))}
       </ul>
     </aside>
-  );
+  );} else {
+    <></>
+  }
 };

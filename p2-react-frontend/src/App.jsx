@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import "./App.css";
 import {
+  Login,
   AddForm,
   NavSidebar,
   OrdersLog,
@@ -10,6 +11,7 @@ import {
 import OrderProvider from "./context/OrderContext";
 
 function App() {
+
   return (
     <div className="row">
       <OrderProvider>
@@ -20,8 +22,10 @@ function App() {
             <NavLink to="/menu" className="nav-link link-dark"> Manage Menu</NavLink>
             <NavLink to="/log" className="nav-link link-dark"> Orders Log</NavLink>
           </NavSidebar>
+
+
           <Routes>
-            <Route path="/" element={<AddForm />}></Route>
+            <Route path="/" element={<Login />}></Route>
             <Route path="/add" element={<AddForm />}></Route>
             <Route path="/current" element={<OrdersTable />}></Route>
             <Route path="/menu" element={<Menu />}></Route>
