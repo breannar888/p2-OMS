@@ -3,12 +3,15 @@ package com.oms.controllers;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.oms.beans.Menu;
-import com.oms.data.MenuRepository;
+import com.oms.services.MenuService;
+import com.oms.services.OrderService;
 
 @RestController
 @RequestMapping("/menu")
@@ -24,33 +28,38 @@ import com.oms.data.MenuRepository;
 public class MenuController {
 
 	@Autowired
-	private MenuRepository repo;
+	private MenuService service;
 
+	//get all
 	@GetMapping
 	@ResponseBody
-	public Object findAll(@RequestParam(required = false) String menuItem) {
-		// find by name
-		if (menuItem != null) {
-			return repo.findByMenuItemLike("%" + menuItem + "%");
-		} else {
-			return repo.findAll();
-		}
+	public Object findAll(@RequestParam(required = false) String menuItem, @RequestParam(defaultValue = "0") int page) {
+		return service.findAllByPaged(page, menuItem);
 	}
 
+	//create
 	@PostMapping
-	public ResponseEntity<Menu> create(@Valid @RequestBody Menu menu) {
-		return new ResponseEntity<>(repo.save(menu), HttpStatus.CREATED);
+	public Menu create(@Valid @RequestBody Menu menu) {
+		return service.save(menu);
 	}
 
 	// findById
 	@GetMapping("/{id}")
-	public ResponseEntity<Menu> findById(@PathVariable int id) {
-		return ResponseEntity.ok(repo.findById(id).orElse(new Menu()));
+	public Menu findById(@PathVariable int id) {
+		return service.findById(id);
 	}
 
-	// Pagination
-	
-	//Update
-	
-	//Delete
+	// Update
+	@PutMapping("/{id}")
+	public Menu update(@RequestBody Menu menu, @PathVariable int id) {
+		return service.updateByID(id, menu);
+	}
+
+	/*
+	// Delete
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> delete(@PathVariable int id) {
+		return service.delete(id);
+	}*/
+
 }

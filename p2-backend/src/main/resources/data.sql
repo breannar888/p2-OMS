@@ -14,7 +14,7 @@ INSERT INTO Ticket (Ticket_ID, Ticket_Name) VALUES ('3','Owls');
 INSERT INTO Ticket (Ticket_ID, Ticket_Name) VALUES ('4','Squirrels');
 INSERT INTO Ticket (Ticket_ID, Ticket_Name) VALUES ('5','Lains');
 INSERT INTO Orders (Order_ID, Menu_ID, Status_ID, Ticket_ID, Notes) VALUES ('1','1','1','1','Well Done');
-INSERT INTO Orders (Order_ID, Menu_ID, Status_ID, Ticket_ID, Notes) VALUES ('2','2','2','1','test');
+/*INSERT INTO Orders (Order_ID, Menu_ID, Status_ID, Ticket_ID, Notes) VALUES ('2','2','2','1','test');
 INSERT INTO Orders (Order_ID, Menu_ID, Status_ID, Ticket_ID, Notes) VALUES ('3','6','1','1','');
 INSERT INTO Orders (Order_ID, Menu_ID, Status_ID, Ticket_ID, Notes) VALUES ('4','5','1','2','');
 INSERT INTO Orders (Order_ID, Menu_ID, Status_ID, Ticket_ID, Notes) VALUES ('5','4','2','2','test');
@@ -23,4 +23,4 @@ INSERT INTO Orders (Order_ID, Menu_ID, Status_ID, Ticket_ID, Notes) VALUES ('7',
 INSERT INTO Orders (Order_ID, Menu_ID, Status_ID, Ticket_ID, Notes) VALUES ('8','2','1','5','cook it pls');
 INSERT INTO Orders (Order_ID, Menu_ID, Status_ID, Ticket_ID, Notes) VALUES ('9','3','1','5','Hot!');
 INSERT INTO Orders (Order_ID, Menu_ID, Status_ID, Ticket_ID, Notes) VALUES ('10','3','1','5','');
-INSERT INTO Orders (Order_ID, Menu_ID, Status_ID, Ticket_ID, Notes) VALUES ('11','5','3','5','Hot!');
+INSERT INTO Orders (Order_ID, Menu_ID, Status_ID, Ticket_ID, Notes) VALUES ('11','5','3','5','Hot!');*/

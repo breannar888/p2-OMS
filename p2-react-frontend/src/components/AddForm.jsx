@@ -22,7 +22,6 @@ export const AddForm = () => {
     let menuIDValue = menuID.current.value;
     let ticketIDValue = ticketID.current.value;
     let notesValue = notes.current.value;
-    
 
 
     if (ticketIDValue === 'new') {

@@ -136,3 +136,11 @@ table{
     font-variation-settings: 'FILL' 1;
     color: var(--yellow);
 }
+.done:hover {
+    font-variation-settings: 'FILL' 1;
+    color: var(--yellow);
+}
+.cancel:hover {
+    font-variation-settings: 'FILL' 1;
+    color: var(--orange);
+}
