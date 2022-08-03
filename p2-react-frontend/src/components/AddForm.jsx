@@ -63,11 +63,9 @@ export const AddForm = () => {
               <label htmlFor="item">Tickets</label>
               <select className="form-select" ref={ticketID} onChange={ticketChange} >
                 <option value="new" >(Add ticket)</option>
-                {ticket.map((ticket) => {
-                  return (
+                {ticket.map((ticket) => (
                     <option key={ticket.ticketID} value={ticket.ticketID}>{ticket.ticketName}</option>
-                  )
-                })}
+                  ))}
               </select>
             </div>
           </div>
