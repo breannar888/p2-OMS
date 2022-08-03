@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { OrderState } from "../context/OrderContext";
 import axios from "axios";
 
 export const OrderItems = ({ order }) => {
   const { updateValues, setUpdateValues, menu } = OrderState();
   const [toggle, setToggle] = useState(false);
+
+  const menuItemRef = useRef();
+  const notesRef = useRef();
 
   const updateStatus = async () => {
     try {
@@ -40,7 +43,27 @@ export const OrderItems = ({ order }) => {
   };
 
   const handleUpdate = async () => {
-    setToggle(!toggle);
+    console.log(order.orderID);
+    try {
+      axios
+        .put(`http://localhost:8080/order/${order.orderID}`, {
+          menu: {
+            menuID: menuItemRef.current.value,
+          },
+          notes: notesRef.current.value,
+          status: order.status,
+          ticket: order.ticket,
+        })
+        .then((res) => {
+          if (res.status === 200) {
+            setUpdateValues(!updateValues);
+            setToggle(false);
+            console.log(menu);
+          }
+        });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -49,10 +72,19 @@ export const OrderItems = ({ order }) => {
       {toggle ? (
         <td>
           {
-            <select name="cars" id="cars">
-              <option value={order.menu.menuItem}>{order.menu.menuItem}</option>
+            <select
+              name="menuItem"
+              id="menuItem"
+              className="form-select"
+              ref={menuItemRef}
+            >
+              <option value={order.menu.menuID}>{order.menu.menuItem}</option>
               {menu.map((item) => {
-                return <option value={item.menuItem} key={item.menuID}>{item.menuItem}</option>;
+                return (
+                  <option value={item.menuID} key={item.menuID}>
+                    {item.menuItem}
+                  </option>
+                );
               })}
             </select>
           }
@@ -62,22 +94,49 @@ export const OrderItems = ({ order }) => {
       )}
       {toggle ? (
         <td>
-          <input name="notes" />
+          <input name="notes" ref={notesRef} />
         </td>
       ) : (
         <td>{order.notes}</td>
       )}
       <td>
-        <i onClick={handleDelete} className="material-symbols-outlined trash">
-          delete_forever
-        </i>
-        <i
-          onClick={handleUpdate}
-          className="material-symbols-outlined edit"
-          title="Edit order"
-        >
-          edit
-        </i>
+        {toggle ? (
+          <>
+            <i
+              onClick={() => {
+                setToggle(!toggle);
+              }}
+              className="material-symbols-outlined cancel"
+            >
+              cancel
+            </i>
+            <i
+              onClick={handleUpdate}
+              className="material-symbols-outlined done"
+            >
+              done
+            </i>
+          </>
+        ) : (
+          <>
+            <i
+              onClick={handleDelete}
+              className="material-symbols-outlined trash"
+            >
+              delete_forever
+            </i>
+            <i
+              onClick={() => {
+                setToggle(!toggle);
+              }}
+              className="material-symbols-outlined edit"
+              title="Edit order"
+            >
+              edit
+            </i>
+          </>
+        )}
+
         <i onClick={updateStatus} className="material-symbols-outlined next">
           east
         </i>
