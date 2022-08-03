@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import { OrderState } from "../context/OrderContext";
 import axios from "axios";
-import { useForm } from "react-hook-form";
 
 export const OrderItems = ({ order }) => {
   const { updateValues, setUpdateValues, menu } = OrderState();
