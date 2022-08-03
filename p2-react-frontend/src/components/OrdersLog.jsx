@@ -1,11 +1,43 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { OrderState } from "../context/OrderContext";
 export const OrdersLog = () => {
   const { order } = OrderState();
+  const [results, setResults] = useState(order);
+
+  const searchBox = useRef();
+  const filterBox = useRef();
+
+  const placeholder = (event) => {
+    let filter = event.target.value;
+    searchBox.current.placeholder = `Search ${filter}`;
+  }
+
+  const searchResult = (event) => {
+    let searchQuery = event.target.value
+    console.log(searchQuery);
+    // let filter = filterBox.current.value
+    // console.log(filter);
+    if (searchQuery !== "") {
+      setResults(results.filter((oneOrder) => oneOrder.ticket.ticketID === searchQuery));
+      console.log(results);
+    } else {setResults(order); }//console.log(results);}
+  }
 
   return (
     <main className="container col-9 p-3">
       <h1>Orders Log</h1>
+      <form className="row m-3">
+        <div className="col-8">
+          <input className="form-control " placeholder='Search ticket ID' ref={searchBox} onChange={searchResult} />
+        </div>
+        <div className="col-4">
+          <select className="form-select col-5" ref={filterBox} onChange={placeholder}>
+            <option value="ticketID" >Ticket ID</option>
+            <option value="item" >Item</option>
+            <option value="status" >Status</option>
+          </select>
+        </div>
+      </form>
       <table className="table">
         <thead>
           <tr>
