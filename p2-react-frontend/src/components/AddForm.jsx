@@ -23,7 +23,6 @@ export const AddForm = () => {
     let ticketIDValue = ticketID.current.value;
     let notesValue = notes.current.value;
 
-
     if (ticketIDValue === 'new') {
       // await axios.post("http://10.0.0.50:8080/ticket/", {
       await axios.post("http://localhost:8080/ticket/", {
