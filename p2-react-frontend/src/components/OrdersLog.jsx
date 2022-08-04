@@ -3,7 +3,7 @@ import { OrderState } from "../context/OrderContext";
 export const OrdersLog = () => {
   const { order, menu, ticket } = OrderState();
   const [results, setResults] = useState(order);
-  console.log(results);
+  // console.log(results);
   const [filter, setFilter] = useState("ticketID");
   let searchQuery = "";
 
