@@ -17,6 +17,7 @@ html{
 
 body {
     font-family: var(--sansStack);
+
 }
 
 h1 {
@@ -48,6 +49,7 @@ ul {
 aside {
     font-family: var(--sansStack);
     font-weight: 300;
+    min-height: 100vh ;
 
 }
 

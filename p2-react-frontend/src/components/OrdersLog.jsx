@@ -95,7 +95,7 @@ export const OrdersLog = () => {
 
 const TicketInput = (props => (
   <>
-    <option value="" className="placeholder">Search ticket </option>
+    <option value="" className="placeholder"></option>
     {props.data.map((item) => (
       <option value={item.ticketID} key={item.ticketID}>{item.ticketID}: {item.ticketName}</option>
     ))}
@@ -104,7 +104,7 @@ const TicketInput = (props => (
 );
 const ItemInput = (props => (
   <>
-    <option value="" className="placeholder">Search item</option>
+    <option value="" className="placeholder"></option>
     {props.data.map((item) => (
       <option value={item.menuID} key={item.menuID}>{item.menuItem}</option>
     ))}
@@ -113,7 +113,7 @@ const ItemInput = (props => (
 
 const StatusInput = () => (
     <>
-      <option value="" className="placeholder">Search status</option>
+      <option value="" className="placeholder"></option>
       <option value="1" >New Orders</option>
       <option value="2" >Cooking</option>
       <option value="3" >Ready</option>
