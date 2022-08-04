@@ -1,15 +1,16 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, forwardRef } from "react";
 import { OrderState } from "../context/OrderContext";
 export const OrdersLog = () => {
   const { order } = OrderState();
   const [results, setResults] = useState(order);
+  const [filter, setFilter] = useState("ticketID");
 
   const searchBox = useRef();
   const filterBox = useRef();
 
   const placeholder = (event) => {
-    let filter = event.target.value;
-    searchBox.current.placeholder = `Search ${filter}`;
+    setFilter(event.target.value);
+
   }
 
   const searchResult = (event) => {
@@ -32,7 +33,14 @@ export const OrdersLog = () => {
       <h1>Orders Log</h1>
       <form className="row m-3">
         <div className="col-8">
-          <input className="form-control " placeholder='Search ticket ID' ref={searchBox} onChange={searchResult} />
+          {
+            {
+              "ticketID": < TicketIDInput ref={searchBox} onChange={searchResult} />,
+              "item": <ItemInput ref={searchBox} onChange={searchResult}/>,
+              "status": <StatusInput ref={searchBox} onChange={searchResult}/>
+            }[filter]
+            
+          }
         </div>
         <div className="col-4">
           <select className="form-select col-5" ref={filterBox} onChange={placeholder}>
@@ -75,3 +83,25 @@ export const OrdersLog = () => {
     </main>
   );
 };
+
+const TicketIDInput = forwardRef((props, ref) => {
+  return (
+    <input className="form-control" type="number" placeholder='Search ticket ID' ref={ref} {...props} min="1" />
+  )
+});
+const ItemInput = forwardRef((props, ref) => {
+  return (
+    <input className="form-control" type="text" placeholder='Search item' ref={ref} {...props} />
+  )
+});
+const StatusInput = forwardRef((props, ref) => {
+  return (
+    <select className="form-select" ref={ref} {...props}>
+      <option value="" className="placeholder">Search status</option>
+      <option value="1" >New Orders</option>
+      <option value="2" >Cooking</option>
+      <option value="3" >Ready</option>
+      <option value="4" >Served</option>
+    </select>
+  )
+});
