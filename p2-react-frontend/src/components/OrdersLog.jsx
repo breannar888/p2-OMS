@@ -14,13 +14,17 @@ export const OrdersLog = () => {
 
   const searchResult = (event) => {
     let searchQuery = event.target.value
-    console.log(searchQuery);
     // let filter = filterBox.current.value
     // console.log(filter);
-    if (searchQuery !== "") {
-      setResults(results.filter((oneOrder) => oneOrder.ticket.ticketID === searchQuery));
-      console.log(results);
-    } else {setResults(order); }//console.log(results);}
+    const currentResults = order.filter((oneOrder) => {
+      if (searchQuery === "") {
+        return oneOrder;
+      } else {
+        const searchValue = oneOrder.ticket.ticketID;
+        return searchValue.toString().includes(searchQuery)
+      }
+    })
+    setResults(currentResults)
   }
 
   return (
@@ -51,7 +55,7 @@ export const OrdersLog = () => {
           </tr>
         </thead>
         <tbody>
-          {order.map((order) => (
+          {results.map((order) => (
             <tr key={order.orderID}>
               <td>{order.ticket.ticketID}</td>
               <td>{order.ticket.ticketName}</td>
