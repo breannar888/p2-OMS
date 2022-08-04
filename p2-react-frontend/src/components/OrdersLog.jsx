@@ -1,28 +1,33 @@
-import React, { useRef, useState, forwardRef } from "react";
+import React, { useRef, useState } from "react";
 import { OrderState } from "../context/OrderContext";
 export const OrdersLog = () => {
-  const { order } = OrderState();
+  const { order, menu, ticket } = OrderState();
   const [results, setResults] = useState(order);
+  console.log(results);
   const [filter, setFilter] = useState("ticketID");
+  let searchQuery = "";
+
 
   const searchBox = useRef();
   const filterBox = useRef();
 
-  const placeholder = (event) => {
-    setFilter(event.target.value);
-
-  }
+  const placeholder = (event) => {setFilter(event.target.value); setResults(order)}
 
   const searchResult = (event) => {
-    let searchQuery = event.target.value
-    // let filter = filterBox.current.value
-    // console.log(filter);
+    searchQuery = event.target.value
+    let filter = filterBox.current.value
+    let searchValue;
     const currentResults = order.filter((oneOrder) => {
       if (searchQuery === "") {
         return oneOrder;
       } else {
-        const searchValue = oneOrder.ticket.ticketID;
-        return searchValue.toString().includes(searchQuery)
+        switch (filter) {
+          case "ticketID": searchValue = oneOrder.ticket.ticketID; break;
+          case "item": searchValue = oneOrder.menu.menuID; break;
+          case "status": searchValue = oneOrder.status.statusID; break;
+          default: break;
+        }
+        return searchValue.toString().toLowerCase().includes(searchQuery)
       }
     })
     setResults(currentResults)
@@ -32,19 +37,23 @@ export const OrdersLog = () => {
     <main className="container col-9 p-3">
       <h1>Orders Log</h1>
       <form className="row m-3">
-        <div className="col-8">
-          {
+        <div className="col-1 align-self-center" id="searchLabel">Search</div>
+        <div className="col-7">
+          <select className="form-select" ref={searchBox} onChange={searchResult}  >
+
             {
-              "ticketID": < TicketIDInput ref={searchBox} onChange={searchResult} />,
-              "item": <ItemInput ref={searchBox} onChange={searchResult}/>,
-              "status": <StatusInput ref={searchBox} onChange={searchResult}/>
-            }[filter]
-            
-          }
+              {
+                "ticketID": <TicketInput data={ticket}/>,
+                "item": <ItemInput data={menu} />,
+                "status": <StatusInput />
+              }[filter]
+
+            }
+          </select>
         </div>
         <div className="col-4">
           <select className="form-select col-5" ref={filterBox} onChange={placeholder}>
-            <option value="ticketID" >Ticket ID</option>
+            <option value="ticketID" >Ticket</option>
             <option value="item" >Item</option>
             <option value="status" >Status</option>
           </select>
@@ -69,7 +78,7 @@ export const OrdersLog = () => {
               <td>{order.ticket.ticketName}</td>
               <td>{order.menu.menuItem}</td>
               <td>{order.notes}</td>
-              <td>{order.status.statusCode}</td>
+              <td>{order.status.stausCode}</td>
               <td>{order.menu.price}</td>
               <td>
                 <i className="material-symbols-outlined trash">
@@ -84,24 +93,31 @@ export const OrdersLog = () => {
   );
 };
 
-const TicketIDInput = forwardRef((props, ref) => {
-  return (
-    <input className="form-control" type="number" placeholder='Search ticket ID' ref={ref} {...props} min="1" />
-  )
-});
-const ItemInput = forwardRef((props, ref) => {
-  return (
-    <input className="form-control" type="text" placeholder='Search item' ref={ref} {...props} />
-  )
-});
-const StatusInput = forwardRef((props, ref) => {
-  return (
-    <select className="form-select" ref={ref} {...props}>
+const TicketInput = (props => (
+  <>
+    <option value="" className="placeholder">Search ticket </option>
+    {props.data.map((item) => (
+      <option value={item.ticketID} key={item.ticketID}>{item.ticketID}: {item.ticketName}</option>
+    ))}
+  </>
+)
+);
+const ItemInput = (props => (
+  <>
+    <option value="" className="placeholder">Search item</option>
+    {props.data.map((item) => (
+      <option value={item.menuID} key={item.menuID}>{item.menuItem}</option>
+    ))}
+  </>
+));
+
+const StatusInput = () => (
+    <>
       <option value="" className="placeholder">Search status</option>
       <option value="1" >New Orders</option>
       <option value="2" >Cooking</option>
       <option value="3" >Ready</option>
       <option value="4" >Served</option>
-    </select>
-  )
-});
+    </>
+  );
+
