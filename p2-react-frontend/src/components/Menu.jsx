@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useRef } from 'react';
 import { OrderState } from "../context/OrderContext";
 
 export const Menu = () => {
+  
 
   const { menu } = OrderState();
-  console.log(menu);
+  // console.log(menu);
   return (
     <main className="container col-9 col-lg-10 p-3">
       <div className="container">
@@ -18,36 +20,59 @@ export const Menu = () => {
       </div>
       <div className="row row-cols-4" >
         {menu.map((item) => (
-          <>
-            <div class="col m-2">
-              <div class="card">
-                <img src={`../images/${item.imagePath}.jpg`} class="card-img-top" alt={item.menuItem} />
-                  <div class="card-body">
-                    <h5 class="card-title">{item.menuItem}</h5>
-                    <p class="card-text">${item.price}</p>
-                    <button class="btn btn-sm manage-edit">Edit</button>
-                  </div>
+            <div className="col m-2" key={item.menuID} >
+              <div className="card">
+                <img src={`../images/${item.imagePath}.jpg`} className="card-img-top" alt={item.menuItem} />
+                <div className="card-body">
+                  <CardInfo item={item} />
+                </div>
               </div>
             </div>
-          </>
-        ))}
-      </div>
 
-    </main>
+        ))}
+      </div >
+
+    </main >
   )
 }
+
 /* 
-<div class="col m-2">
-  <div class="card">
-    <img src="../images/${images[i]}.jpg" class="card-img-top" alt="${items[i]}">
-    <div class="card-body">
-      <h5 class="card-title">${items[i]}</h5>
-      <p class="card-text">${prices[i]}</p>
-      <button class="btn btn-sm manage-edit">Edit</button>
-    </div>
-  </div>
-</div>
-
-
-{menuID: 1, menuItem: "Asiago Chicken Pasta", price: 12.99, imagePath: "/chicken_pasta"}
+const TicketInput = (props => (
+  <>
+    <option value="" className="placeholder"></option>
+    {props.data.map((item) => (
+      <option value={item.ticketID} key={item.ticketID}>{item.ticketID}: {item.ticketName}</option>
+    ))}
+  </>
+)
+);
 */
+
+const CardInfo = (item => {
+
+  const [toggle, setToggle] = useState(false);
+  const itemRef = useRef();
+  const priceRef = useRef();
+
+  toggle ? (
+    <>
+      <input placeholder={item.menuItem} ref={itemRef} className="form-control" />
+      <br />
+      <input placeholder={item.price} ref={priceRef} className="form-control" />
+      <i  onClick={() => setToggle(!toggle)}
+          className="material-symbols-outlined"
+          title="Save order"> done 
+      </i>
+    </>
+  ) : (
+    <>
+      <h5 className="card-title">{item.menuItem}</h5>
+      <p className="card-text">${item.price}</p>
+      <i  onClick={() => setToggle(!toggle)}
+          className="material-symbols-outlined"
+          title="Edit order"> edit 
+      </i>
+    </>
+  )
+  
+} )
