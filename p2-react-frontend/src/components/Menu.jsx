@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useRef } from 'react';
 import { OrderState } from "../context/OrderContext";
+import axios from "axios";
+
 
 export const Menu = () => {
   
@@ -48,26 +50,53 @@ const TicketInput = (props => (
 );
 */
 
-const CardInfo = (item => {
+const CardInfo = (data => {
 
   const [toggle, setToggle] = useState(false);
+  const { updateValues, setUpdateValues } = OrderState();
   const itemRef = useRef();
   const priceRef = useRef();
+  // console.log(data.item); 
+  // console.log(toggle);
 
-  toggle ? (
-    <>
-      <input placeholder={item.menuItem} ref={itemRef} className="form-control" />
-      <br />
-      <input placeholder={item.price} ref={priceRef} className="form-control" />
-      <i  onClick={() => setToggle(!toggle)}
+  const updateMenuItem = async () => {
+    const menuItemInput = itemRef.current.value === "" ? data.item.menuItem: itemRef.current.value
+    const priceInput = priceRef.current.value === "" ? data.item.price: priceRef.current.value
+    try {
+      axios
+        .put(`http://localhost:8080/menu/${data.item.menuID}`, {
+          menuItem: menuItemInput,
+          price: priceInput,
+          imagePath: data.item.imagePath,
+          
+        })
+        .then((res) => {
+          if (res.status === 200) {
+            setUpdateValues(!updateValues);
+            setToggle(!toggle)
+          }
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  /* "menuItem": "Asiago Chicken Pasta",
+        "price": 12.99, */
+
+  return toggle ? (
+    <> 
+      <input placeholder={data.item.menuItem} ref={itemRef} className="form-control" />
+      <div className="m-2" />
+      <input placeholder={data.item.price} ref={priceRef} className="form-control" />
+      <i  onClick={updateMenuItem}
           className="material-symbols-outlined"
           title="Save order"> done 
       </i>
     </>
   ) : (
-    <>
-      <h5 className="card-title">{item.menuItem}</h5>
-      <p className="card-text">${item.price}</p>
+    <> 
+      <h5 className="card-title">{data.item.menuItem}</h5>
+      <p className="card-text">${data.item.price}</p>
       <i  onClick={() => setToggle(!toggle)}
           className="material-symbols-outlined"
           title="Edit order"> edit 

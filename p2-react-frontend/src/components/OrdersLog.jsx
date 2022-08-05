@@ -1,9 +1,11 @@
 import React, { useRef, useState } from "react";
 import { OrderState } from "../context/OrderContext";
+
 export const OrdersLog = () => {
   const { order, menu, ticket } = OrderState();
   const [results, setResults] = useState(order);
-  // console.log(results);
+  // console.log(`Order: ${order}`);
+  // console.log(`Results: ${results}`);
   const [filter, setFilter] = useState("ticketID");
   let searchQuery = "";
 
@@ -11,7 +13,7 @@ export const OrdersLog = () => {
   const searchBox = useRef();
   const filterBox = useRef();
 
-  const placeholder = (event) => {setFilter(event.target.value); setResults(order)}
+  const placeholder = (event) => { setFilter(event.target.value); setResults(order) }
 
   const searchResult = (event) => {
     searchQuery = event.target.value
@@ -43,7 +45,7 @@ export const OrdersLog = () => {
 
             {
               {
-                "ticketID": <TicketInput data={ticket}/>,
+                "ticketID": <TicketInput data={ticket} />,
                 "item": <ItemInput data={menu} />,
                 "status": <StatusInput />
               }[filter]
@@ -112,12 +114,12 @@ const ItemInput = (props => (
 ));
 
 const StatusInput = () => (
-    <>
-      <option value="" className="placeholder"></option>
-      <option value="1" >New Orders</option>
-      <option value="2" >Cooking</option>
-      <option value="3" >Ready</option>
-      <option value="4" >Served</option>
-    </>
-  );
+  <>
+    <option value="" className="placeholder"></option>
+    <option value="1" >New Orders</option>
+    <option value="2" >Cooking</option>
+    <option value="3" >Ready</option>
+    <option value="4" >Served</option>
+  </>
+);
 
