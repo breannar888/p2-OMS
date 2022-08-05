@@ -140,3 +140,9 @@ table {
   font-variation-settings: "FILL" 1;
   color: var(--orange);
 }
+.error-msg {
+  color: red;
+}
+.page-link {
+  color: #fb8500;
+}
