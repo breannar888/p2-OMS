@@ -54,10 +54,9 @@ public class MenuService {
 	//in the orders table
 	
 	// delete
-	/*
 	public ResponseEntity<Void> delete(int id) {
 		repo.deleteById(id);
 		return ResponseEntity.status(204).build();
-	}*/
+	}
 
 }

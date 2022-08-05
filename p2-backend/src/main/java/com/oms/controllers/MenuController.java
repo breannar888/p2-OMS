@@ -55,11 +55,11 @@ public class MenuController {
 		return service.updateByID(id, menu);
 	}
 
-	/*
+	
 	// Delete
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> delete(@PathVariable int id) {
 		return service.delete(id);
-	}*/
+	}
 
 }

@@ -59,7 +59,7 @@ const CardInfo = (data => {
   // console.log(data.item); 
   // console.log(toggle);
 
-  const updateMenuItem = async () => {
+  const handleUpdate = async () => {
     const menuItemInput = itemRef.current.value === "" ? data.item.menuItem: itemRef.current.value
     const priceInput = priceRef.current.value === "" ? data.item.price: priceRef.current.value
     try {
@@ -80,6 +80,22 @@ const CardInfo = (data => {
       console.log(err);
     }
   };
+
+  const handleDelete = async () => {
+
+    try {
+      axios
+        .delete(`http://localhost:8080/menu/${data.item.menuID}`)
+        .then((res) => {
+          if (res.status === 200) {
+            setUpdateValues(!updateValues);
+            setToggle(!toggle)
+          }
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
   /* "menuItem": "Asiago Chicken Pasta",
         "price": 12.99, */
 
@@ -88,9 +104,13 @@ const CardInfo = (data => {
       <input placeholder={data.item.menuItem} ref={itemRef} className="form-control" />
       <div className="m-2" />
       <input placeholder={data.item.price} ref={priceRef} className="form-control" />
-      <i  onClick={updateMenuItem}
-          className="material-symbols-outlined"
-          title="Save order"> done 
+      <i  onClick={handleUpdate}
+          className="material-symbols-outlined next"
+          title="Save item"> done 
+      </i>
+      <i  //onClick={}
+          className="material-symbols-outlined trash"
+          title="Delete item"> delete 
       </i>
     </>
   ) : (
@@ -98,8 +118,8 @@ const CardInfo = (data => {
       <h5 className="card-title">{data.item.menuItem}</h5>
       <p className="card-text">${data.item.price}</p>
       <i  onClick={() => setToggle(!toggle)}
-          className="material-symbols-outlined"
-          title="Edit order"> edit 
+          className="material-symbols-outlined edit"
+          title="Edit item"> edit 
       </i>
     </>
   )
