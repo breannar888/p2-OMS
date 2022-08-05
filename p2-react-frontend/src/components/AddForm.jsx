@@ -134,7 +134,7 @@ export const AddForm = () => {
           </div>
           <div className="col-4"></div>
           <button type="submit" className="btn col-2 p-0" id="submit">
-            Submit
+            Submits
           </button>
         </div>
       </form>
