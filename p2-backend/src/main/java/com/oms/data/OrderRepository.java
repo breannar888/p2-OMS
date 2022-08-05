@@ -12,9 +12,7 @@ public interface OrderRepository extends JpaRepository<Orders, Integer> {
 
 	public Page<Orders> findAll(Pageable pageable);
 	
-	@Modifying
-	@Query("DELETE FROM Orders WHERE Menu_ID = :id")
-	public void deleteByMenuid(int id);
+
 
 }
 

@@ -40,16 +40,17 @@ public class OrderService {
 		}
 	}
 	
+	@Transactional
 	public ResponseEntity<Void> delete(int id) {
 		repo.deleteById(id);
 		return ResponseEntity.status(204).build();
 	}
 	
-	@Transactional
-	public ResponseEntity<Void> deleteByMenuID(int id) {
-		repo.deleteByMenuid(id);
-		return ResponseEntity.status(204).build();
-	}
+//	@Transactional
+//	public ResponseEntity<Void> deleteByMenuID(int id) {
+//		repo.deleteByMenuid(id);
+//		return ResponseEntity.status(204).build();
+//	}
 	
 	//get by id
 	public Object findByID(int id) {

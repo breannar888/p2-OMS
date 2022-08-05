@@ -1,5 +1,6 @@
 package com.oms.controllers;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,7 @@ public class MenuController {
 
 	
 	// Delete
+	@Transactional
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> delete(@PathVariable int id) {
 		return service.delete(id);

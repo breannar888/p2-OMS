@@ -85,8 +85,7 @@ const CardInfo = (data => {
 
     try {
       axios
-        .delete(`http://localhost:8080/order/menu/${data.item.menuID}`)
-        // .delete(`http://localhost:8080/menu/${data.item.menuID}`)
+        .delete(`http://localhost:8080/menu/${data.item.menuID}`)
         .then((res) => {
           if (res.status === 204) {
             setUpdateValues(!updateValues);

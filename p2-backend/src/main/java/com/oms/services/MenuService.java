@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.oms.beans.Menu;
-import com.oms.beans.Orders;
 import com.oms.data.MenuRepository;
 
 @Service
@@ -55,6 +54,7 @@ public class MenuService {
 	
 	// delete
 	public ResponseEntity<Void> delete(int id) {
+		repo.deleteOrderByMenuID(id);
 		repo.deleteById(id);
 		return ResponseEntity.status(204).build();
 	}
