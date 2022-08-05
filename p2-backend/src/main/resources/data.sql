@@ -8,11 +8,11 @@ INSERT INTO Menu (Name, Price, Image_Path) VALUES ('All-American Burgers','11.99
 INSERT INTO Menu (Name, Price, Image_Path) VALUES ('Shrimp Scampi','16.99','/shrimp_scampi');
 INSERT INTO Menu (Name, Price, Image_Path) VALUES ('Chicken Fajitas','14.99','/chicken_fajita');
 INSERT INTO Menu (Name, Price, Image_Path) VALUES ('Grilled Salmon','13.99','/grilled_salmon');
-INSERT INTO Ticket (Ticket_ID, Ticket_Name) VALUES ('1','Garcias');
-INSERT INTO Ticket (Ticket_ID, Ticket_Name) VALUES ('2','Ransoms');
-INSERT INTO Ticket (Ticket_ID, Ticket_Name) VALUES ('3','Owls');
-INSERT INTO Ticket (Ticket_ID, Ticket_Name) VALUES ('4','Squirrels');
-INSERT INTO Ticket (Ticket_ID, Ticket_Name) VALUES ('5','Lains');
+INSERT INTO Ticket (Ticket_Name) VALUES ('Garcias');
+INSERT INTO Ticket (Ticket_Name) VALUES ('Ransoms');
+INSERT INTO Ticket (Ticket_Name) VALUES ('Owls');
+INSERT INTO Ticket (Ticket_Name) VALUES ('Squirrels');
+INSERT INTO Ticket (Ticket_Name) VALUES ('Lains');
 INSERT INTO Orders (Menu_ID, Status_ID, Ticket_ID, Notes) VALUES ('1','1','1','Well Done');
 INSERT INTO Orders (Menu_ID, Status_ID, Ticket_ID, Notes) VALUES ('2','2','1','test');
 INSERT INTO Orders (Menu_ID, Status_ID, Ticket_ID, Notes) VALUES ('6','1','1','');
