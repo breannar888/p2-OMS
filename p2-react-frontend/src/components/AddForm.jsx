@@ -1,77 +1,112 @@
-import React, { useState, useRef, forwardRef } from "react";
+import React, { useState, forwardRef } from "react";
 import { OrderState } from "../context/OrderContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { useForm } from "react-hook-form";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { ErrorMessage } from "./ErrorMessage";
 
 export const AddForm = () => {
   const { menu, ticket, updateValues, setUpdateValues } = OrderState();
   const navigate = useNavigate();
   const [ticketNew, setTicketNew] = useState(true);
-  const menuID = useRef();
-  const ticketID = useRef();
-  const ticketName = useRef();
-  const notes = useRef();
+
+  const addOrderSchema = Yup.object().shape({
+    menuID: Yup.number().typeError('Menu Item is required').required(),
+    ticketName: Yup.string().max(
+      35,
+      "Too long! Must be shorter than 35 characters"
+    ),
+    notes: Yup.string().max(65, "Too long! Must be shorter than 65 characters"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(addOrderSchema),
+  });
 
   const ticketChange = (event) => {
     event.target.value === "new" ? setTicketNew(true) : setTicketNew(false);
-  }
+  };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    let menuIDValue = menuID.current.value;
-    let ticketIDValue = ticketID.current.value;
-    let notesValue = notes.current.value;
+  const onSubmit = async (data) => {
+    let menuIDValue = data.menuID;
+    let ticketIDValue = data.ticketID;
+    let notesValue = data.notes;
 
-    if (ticketIDValue === 'new') {
+    if (ticketIDValue === "new") {
       // await axios.post("http://10.0.0.50:8080/ticket/", {
-      await axios.post("http://localhost:8080/ticket/", {
-        ticketName: ticketName.current.value
-      })
-        .then(res => ticketIDValue = res.data.ticketID)
+      await axios
+        .post("http://localhost:8080/ticket/", {
+          ticketName: data.ticketName,
+        })
+        .then((res) => (ticketIDValue = res.data.ticketID));
     }
 
     // await axios.post("http://10.0.0.50:8080/order/", {
-    await axios.post("http://localhost:8080/order/", {
-      menu: { menuID: menuIDValue },
-      ticket: { ticketID: ticketIDValue },
-      status: { statusID: 1 },
-      notes: notesValue,
-    })
-    setUpdateValues(!updateValues)
+    await axios
+      .post("http://localhost:8080/order/", {
+        menu: { menuID: menuIDValue },
+        ticket: { ticketID: ticketIDValue },
+        status: { statusID: 1 },
+        notes: notesValue,
+      })
+      .then((res) => console.log(res.data));
+    setUpdateValues(!updateValues);
     navigate("../current");
-
-  }
+  };
 
   return (
     <main className="container col-9 col-lg-10 p-3">
       <h1>Add Order</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="row row-cols-1">
           <div className="row row-cols-2">
             <div className="form-group col-5">
               <label htmlFor="item">Menu Item</label>
-              <select className="form-select" ref={menuID}>
+              <select className="form-select" {...register("menuID")}>
                 <option defaultValue="">&nbsp;</option>
                 {menu.map((item) => (
-                  <option value={item.menuID} key={item.menuID}>{item.menuItem}</option>
+                  <option value={item.menuID} key={item.menuID}>
+                    {item.menuItem}
+                  </option>
                 ))}
               </select>
+              <ErrorMessage>{errors.menuID?.message}</ErrorMessage>
             </div>
             <div className="col-1"></div>
             <div className="form-group col-5">
               <label htmlFor="item">Tickets</label>
-              <select className="form-select" ref={ticketID} onChange={ticketChange} >
-                <option value="new" >(Add ticket)</option>
+              <select
+                className="form-select"
+                {...register("ticketID")}
+                onChange={ticketChange}
+              >
+                <option value="new">(Add ticket)</option>
                 {ticket.map((ticket) => {
                   return (
-                    <option key={ticket.ticketID} value={ticket.ticketID}>{ticket.ticketName}</option>
-                  )
+                    <>
+                      <option key={ticket.ticketID} value={ticket.ticketID}>
+                        {ticket.ticketName}
+                      </option>
+                    </>
+                  );
                 })}
               </select>
             </div>
           </div>
-          {ticketNew ? <TicketName ref={ticketName} /> : <></>}
+          {ticketNew ? (
+            <div>
+              <TicketName {...register("ticketName")} />
+              <ErrorMessage>{errors.ticketName?.message}</ErrorMessage>
+            </div>
+          ) : (
+            <></>
+          )}
           <div className="form-group col-11">
             <label htmlFor="notes">Notes</label>
             <textarea
@@ -80,8 +115,9 @@ export const AddForm = () => {
               id="notes"
               cols="10"
               rows="5"
-              ref={notes}
+              {...register("notes")}
             ></textarea>
+            <ErrorMessage>{errors.notes?.message}</ErrorMessage>
           </div>
         </div>
         <div className="row">
@@ -114,4 +150,3 @@ const TicketName = forwardRef((props, ref) => (
     </div>
   </div>
 ));
-
