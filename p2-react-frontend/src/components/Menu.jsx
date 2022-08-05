@@ -85,9 +85,10 @@ const CardInfo = (data => {
 
     try {
       axios
-        .delete(`http://localhost:8080/menu/${data.item.menuID}`)
+        .delete(`http://localhost:8080/order/menu/${data.item.menuID}`)
+        // .delete(`http://localhost:8080/menu/${data.item.menuID}`)
         .then((res) => {
-          if (res.status === 200) {
+          if (res.status === 204) {
             setUpdateValues(!updateValues);
             setToggle(!toggle)
           }
@@ -108,7 +109,7 @@ const CardInfo = (data => {
           className="material-symbols-outlined next"
           title="Save item"> done 
       </i>
-      <i  //onClick={}
+      <i  onClick={handleDelete}
           className="material-symbols-outlined trash"
           title="Delete item"> delete 
       </i>

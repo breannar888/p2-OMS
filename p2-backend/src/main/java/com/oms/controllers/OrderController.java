@@ -58,10 +58,16 @@ public class OrderController {
 		return service.updateByID(id, order);
 	}
 
-	// Delete
+	// Delete by Order_ID
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> delete(@PathVariable int id) {
 		return service.delete(id);
+	}
+	
+	// Delete by Menu_ID
+	@DeleteMapping("/menu/{id}")
+	public ResponseEntity<Void> deleteByMenuID(@PathVariable int id) {
+		return service.deleteByMenuID(id);
 	}
 
 	// find by menuName
