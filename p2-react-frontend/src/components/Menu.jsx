@@ -2,11 +2,14 @@ import React, { useState } from 'react'
 import { useRef } from 'react';
 import { OrderState } from "../context/OrderContext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 
 export const Menu = () => {
   
-
+  
+  const navigate = useNavigate();
   const { menu } = OrderState();
   // console.log(menu);
   return (
@@ -15,7 +18,7 @@ export const Menu = () => {
         <h1>Manage Menu</h1>
       </div>
       <div className="row">
-        <button className="btn manage-add col-3">Add New Item</button>
+        <button className="btn manage-add col-3" onClick={() => navigate("../menu/add")}>Add New Item</button>
         <form className="col-8">
           <input className="form-control" placeholder='Search Items' />
         </form>

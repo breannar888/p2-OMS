@@ -1,4 +1,5 @@
 export * from "./AddForm";
+export * from "./AddMenuItem";
 export * from "./Menu";
 export * from "./NavSidebar";
 export * from "./OrdersLog";

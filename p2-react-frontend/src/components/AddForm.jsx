@@ -6,15 +6,25 @@ import axios from "axios";
 
 export const AddForm = () => {
   const { menu, ticket, updateValues, setUpdateValues } = OrderState();
+  // console.log(menu);
+  // console.log(ticket);
   const navigate = useNavigate();
   const [ticketNew, setTicketNew] = useState(true);
   const menuID = useRef();
   const ticketID = useRef();
   const ticketName = useRef();
   const notes = useRef();
+  const price = useRef();
 
   const ticketChange = (event) => {
     event.target.value === "new" ? setTicketNew(true) : setTicketNew(false);
+  }
+
+  const itemChange = (event) => {
+    const menuID = (event.target.value * 1) 
+    const menuItem = menu.find(x => x.menuID === menuID)?.price ?? 0.00;
+    price.current.value = menuItem.toFixed(2);
+
   }
 
   const handleSubmit = async (event) => {
@@ -51,7 +61,7 @@ export const AddForm = () => {
           <div className="row row-cols-2">
             <div className="form-group col-5">
               <label htmlFor="item">Menu Item</label>
-              <select className="form-select" ref={menuID}>
+              <select className="form-select" ref={menuID} onChange={itemChange}>
                 <option defaultValue="">&nbsp;</option>
                 {menu.map((item) => (
                   <option value={item.menuID} key={item.menuID}>{item.menuItem}</option>
@@ -88,8 +98,8 @@ export const AddForm = () => {
               <span className="input-group-text">Total $</span>
               <input
                 className="form-control"
-                type="text"
                 placeholder="0.00"
+                ref={price}
                 disabled
               />
             </div>
