@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 
-import com.oms.beans.Sum;
 import com.oms.beans.Tickets;
 
 public interface TicketRepository extends JpaRepositoryImplementation<Tickets, Integer> {
