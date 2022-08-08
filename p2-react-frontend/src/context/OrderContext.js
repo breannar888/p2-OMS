@@ -9,6 +9,7 @@ const OrderProvider = (props) => {
   const [order, setOrder] = useState([]);
   const [menu, setMenu] = useState([]);
   const [ticket, setTicket] = useState([]);
+  const [ticketSum, setTicketSum] = useState([]);
   const [updateValues, setUpdateValues] = useState(false);
 
   useEffect(() => {
@@ -21,12 +22,14 @@ const OrderProvider = (props) => {
         axios.get("http://localhost:8080/order"),
         axios.get("http://localhost:8080/menu"),
         axios.get("http://localhost:8080/ticket"),
+        axios.get("http://localhost:8080/ticket/sum"),
       ])
       .then(
-        axios.spread((orderResp, menuResp, ticketResp) => {
+        axios.spread((orderResp, menuResp, ticketResp, sumResp) => {
           setOrder(orderResp.data);
           setMenu(menuResp.data);
           setTicket(ticketResp.data);
+          setTicketSum(sumResp.data);
           // console.log("order: ", orderResp.data, "menu: ",  menuResp.data);
         })
       )
@@ -42,6 +45,8 @@ const OrderProvider = (props) => {
     setTicket,
     updateValues,
     setUpdateValues,
+    ticketSum,
+    setTicketSum,
   };
 
   return (

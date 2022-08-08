@@ -1,15 +1,18 @@
-import React, { useState, useRef, forwardRef } from "react";
+import React, { useState, useRef, forwardRef, useEffect } from "react";
 import { OrderState } from "../context/OrderContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 
 export const AddForm = () => {
-  const { menu, ticket, updateValues, setUpdateValues } = OrderState();
+  const { menu, ticket, updateValues, setUpdateValues, ticketSum } = OrderState();
   // console.log(menu);
   // console.log(ticket);
+  // console.log(ticketSum);
   const navigate = useNavigate();
   const [ticketNew, setTicketNew] = useState(true);
+  const [itemPrice, setItemPrice] = useState(0);
+  const [ticketPrice, setTicketPrice] = useState(0);
   const menuID = useRef();
   const ticketID = useRef();
   const ticketName = useRef();
@@ -17,15 +20,28 @@ export const AddForm = () => {
   const price = useRef();
 
   const ticketChange = (event) => {
-    event.target.value === "new" ? setTicketNew(true) : setTicketNew(false);
+    if (event.target.value === "new") {
+      setTicketNew(true); setTicketPrice(0)
+    } else {
+      setTicketNew(false); setTicketPrice(ticketSum[event.target.value - 1]);
+    };
+
+
   }
 
   const itemChange = (event) => {
-    const menuID = (event.target.value * 1) 
+    const menuID = (event.target.value * 1)
     const menuItem = menu.find(x => x.menuID === menuID)?.price ?? 0.00;
-    price.current.value = menuItem.toFixed(2);
+    setItemPrice(menuItem)
+    // console.log(itemPrice);
 
   }
+
+  useEffect(() => {
+    let totalPrice = itemPrice + ticketPrice
+    price.current.value = totalPrice.toFixed(2);
+  }, [itemPrice, ticketPrice])
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -74,8 +90,8 @@ export const AddForm = () => {
               <select className="form-select" ref={ticketID} onChange={ticketChange} >
                 <option value="new" >(Add ticket)</option>
                 {ticket.map((ticket) => (
-                    <option key={ticket.ticketID} value={ticket.ticketID}>{ticket.ticketName}</option>
-                  ))}
+                  <option key={ticket.ticketID} value={ticket.ticketID}>{ticket.ticketName}</option>
+                ))}
               </select>
             </div>
           </div>
