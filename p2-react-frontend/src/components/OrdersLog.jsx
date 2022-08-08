@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { OrderState } from "../context/OrderContext";
 
 export const OrdersLog = () => {
@@ -6,14 +6,24 @@ export const OrdersLog = () => {
   const [results, setResults] = useState(order);
   // console.log(`Order: ${order}`);
   // console.log(`Results: ${results}`);
-  const [filter, setFilter] = useState("ticketID");
+  const [filterType, setFilterType] = useState("ticketID");
   let searchQuery = "";
 
 
   const searchBox = useRef();
   const filterBox = useRef();
 
-  const placeholder = (event) => { setFilter(event.target.value); setResults(order) }
+  useEffect(() => {
+    const renderResults = async () => {
+      await (order !== [])
+      .then (setResults(order))
+    }
+    renderResults()
+    
+  }, [order])
+  
+
+  const placeholder = (event) => { setFilterType(event.target.value); setResults(order) }
 
   const searchResult = (event) => {
     searchQuery = event.target.value
@@ -48,7 +58,7 @@ export const OrdersLog = () => {
                 "ticketID": <TicketInput data={ticket} />,
                 "item": <ItemInput data={menu} />,
                 "status": <StatusInput />
-              }[filter]
+              }[filterType]
 
             }
           </select>
