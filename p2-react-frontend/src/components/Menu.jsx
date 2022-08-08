@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { OrderState } from "../context/OrderContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +10,31 @@ export const Menu = () => {
   
   const navigate = useNavigate();
   const { menu } = OrderState();
+  const [results, setResults] = useState(menu);
+  let searchQuery = "";
+
+
+  useEffect(() => {
+    const renderResults = async () => {
+      await (menu !== [])
+      .then (setResults(menu))
+    }
+    renderResults()
+    
+  }, [menu])
+
+  const searchResult = (event) => {
+    searchQuery = event.target.value
+    const currentResults = menu.filter((oneOrder) => {
+      if (searchQuery === "") {
+        return oneOrder;
+      } else {
+        return oneOrder.menuItem.toString().toLowerCase().includes(searchQuery)
+      }
+    })
+    setResults(currentResults)
+  }
+
   // console.log(menu);
   return (
     <main className="container col-9 col-lg-10 p-3">
@@ -20,11 +44,11 @@ export const Menu = () => {
       <div className="row">
         <button className="btn manage-add col-3" onClick={() => navigate("../menu/add")}>Add New Item</button>
         <form className="col-8">
-          <input className="form-control" placeholder='Search Items' />
+        <input className="form-control " placeholder='Search Items' onChange={searchResult} />
         </form>
       </div>
       <div className="row row-cols-4" >
-        {menu.map((item) => (
+        {results.map((item) => (
             <div className="col m-2" key={item.menuID} >
               <div className="card">
                 <img src={`../images/${item.imagePath}.jpg`} className="card-img-top" alt={item.menuItem} />
