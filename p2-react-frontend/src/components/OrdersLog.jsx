@@ -14,12 +14,7 @@ export const OrdersLog = () => {
   const filterBox = useRef();
 
   useEffect(() => {
-    const renderResults = async () => {
-      await (order !== [])
-      .then (setResults(order))
-    }
-    renderResults()
-    
+    setResults(order)
   }, [order])
   
 

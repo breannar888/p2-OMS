@@ -15,12 +15,7 @@ export const Menu = () => {
 
 
   useEffect(() => {
-    const renderResults = async () => {
-      await (menu !== [])
-      .then (setResults(menu))
-    }
-    renderResults()
-    
+    setResults(menu)
   }, [menu])
 
   const searchResult = (event) => {

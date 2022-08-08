@@ -16,7 +16,6 @@ export const AddMenuItem = () => {
 
     // await axios.post("http://10.0.0.50:8080/order/", {
     await axios.post("http://localhost:8080/menu/", {
-      menuID: 8,
       menuItem: itemName.current.value,
       price: itemPrice.current.value,
       imagePath: "placeholder",
