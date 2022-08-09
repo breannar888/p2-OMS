@@ -9,15 +9,9 @@ export const OrdersLog = () => {
 
   const [currPage, setCurrPage] = useState(0);
 
-  useEffect(() => {
-    console.log(pagedOrder);
-  });
-
   const updatePage = (page) => {
-    console.log("out of bounds: ", page);
     setCurrPage(page);
     axios.get(`http://localhost:8080/order/log?page=${page}`).then((resp) => {
-      console.log("paged data: ", page, resp.data);
       setPagedOrder(resp.data);
     });
   };
@@ -58,10 +52,10 @@ export const OrdersLog = () => {
         </tbody>
       </table>
       <nav aria-label="Page navigation">
-        <ul class="pagination">
-          <li class="page-item">
+        <ul className="pagination">
+          <li className="page-item">
             <a
-              class={currPage <= 0 ? "page-link disabled" : "page-link"}
+              className={currPage <= 0 ? "page-link disabled" : "page-link"}
               onClick={() => {
                 updatePage(currPage - 1);
               }}
@@ -71,9 +65,9 @@ export const OrdersLog = () => {
           </li>
           {[...Array(5)].map((x, i) => {
             return (
-              <li class="page-item" key={i}>
+              <li className="page-item" key={i}>
                 <a
-                  class={i == currPage ? "page-link active" : "page-link"}
+                  className={i == currPage ? "page-link active" : "page-link"}
                   onClick={() => {
                     updatePage(i);
                   }}
@@ -83,9 +77,9 @@ export const OrdersLog = () => {
               </li>
             );
           })}
-          <li class="page-item">
+          <li className="page-item">
             <a
-              class={currPage >= 4 ? "page-link disabled" : "page-link"}
+              className={currPage >= 4 ? "page-link disabled" : "page-link"}
               onClick={() => {
                 updatePage(currPage + 1);
               }}
