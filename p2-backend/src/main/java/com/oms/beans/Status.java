@@ -22,7 +22,7 @@ public class Status {
 	private int statusID;
 	
 	@Column(name = "Status_Code")
-	private String stausCode;
+	private String statusCode;
 	
 	@OneToMany(mappedBy = "status")
 	@JsonIgnore
@@ -32,10 +32,10 @@ public class Status {
 		super();
 	}
 	
-	public Status(int statusID, String stausCode, Set<Orders> orders) {
+	public Status(int statusID, String statusCode, Set<Orders> orders) {
 		super();
 		this.statusID = statusID;
-		this.stausCode = stausCode;
+		this.statusCode = statusCode;
 		this.orders = orders;
 	}
 
@@ -55,12 +55,12 @@ public class Status {
 		this.statusID = statusID;
 	}
 	
-	public String getStausCode() {
-		return stausCode;
+	public String getStatusCode() {
+		return statusCode;
 	}
 	
-	public void setStausCode(String stausCode) {
-		this.stausCode = stausCode;
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
 	}
 	
 }

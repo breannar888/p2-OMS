@@ -15,14 +15,18 @@ import com.oms.data.OrderRepository;
 @Service
 public class OrderService {
 
-	private static final int DEFAULT_PAGE_SIZE = 20;
+	private static final int DEFAULT_PAGE_SIZE = 10;
 	
 	@Autowired
 	OrderRepository repo;
 	
 	//get
-	public List<Orders> findAllByPaged(int page) {
-		return repo.findAll(PageRequest.of(page, DEFAULT_PAGE_SIZE)).toList();
+	public List<Orders> findAllOrdersPaged(int page) {
+		return repo.findAllOrdersPaged(PageRequest.of(page, DEFAULT_PAGE_SIZE)).toList();
+	}
+	
+	public List<Orders> findAll() {
+		return repo.findAll();
 	}
 	
 	//create

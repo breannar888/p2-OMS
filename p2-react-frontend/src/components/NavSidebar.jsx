@@ -1,7 +1,23 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { OrderState } from "../context/OrderContext";
 
 export const NavSidebar = ({ children }) => {
+  const navigate = useNavigate();
+  const { cookies, setCookie, removeCookie } = OrderState();
+
+  const logout = async () => {
+    await fetch("http://localhost:8080/logout", {
+      mode: "no-cors",
+    }).then(() => {
+      setCookie("JSESSIONID", undefined);
+      removeCookie("JSESSION");
+      removeCookie("[object Object]");
+      navigate("/");
+    });
+  };
 
   const { pathname } = useLocation();
   if (pathname !== "/") {
@@ -14,10 +30,11 @@ export const NavSidebar = ({ children }) => {
           {React.Children.map(children, (child) => (
             <li className="nav-item">{child}</li>
           ))}
+          <button onClick={logout}>Logout</button>
         </ul>
       </aside>
     );
   } else {
-    <></>
+    <></>;
   }
 };

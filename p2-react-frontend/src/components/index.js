@@ -5,3 +5,4 @@ export * from "./NavSidebar";
 export * from "./OrdersLog";
 export * from "./OrdersTable";
 export * from "./Login";
+export * from "./ErrorPage";
