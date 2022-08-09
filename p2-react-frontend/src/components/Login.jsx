@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useRef } from "react";
 import { OrderState } from "../context/OrderContext";
+import { useCookies } from "react-cookie";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ export const Login = () => {
       .then((resp) => {
         console.log(resp.data);
         if (resp.status === 200) {
-          setCookie(resp.data);
+          setCookie("JSESSIONID", resp.data.sessionID);
           navigate("../add");
         }
       })
