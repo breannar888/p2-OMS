@@ -1,5 +1,6 @@
 package com.oms.controllers;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -35,12 +36,18 @@ public class OrderController {
 	@Autowired
 	private OrderService service;
 
-	@GetMapping
+	@GetMapping("/log")
 	@ResponseBody
-	public Object findAllPaged(@RequestParam(defaultValue = "0") int page) {
-		return service.findAllByPaged(page);
+	public List<Orders> findAll(@RequestParam(defaultValue = "0") int page) {
+		return service.findAllOrdersPaged(page);
 	}
 
+	@GetMapping
+	@ResponseBody
+	public Object findAll() {
+		return service.findAll();
+	}
+	
 	@PostMapping
 	public Orders create(@Valid @RequestBody Orders order) {
 		return service.save(order);
