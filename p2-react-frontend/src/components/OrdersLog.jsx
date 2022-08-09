@@ -13,9 +13,9 @@ export const OrdersLog = () => {
   const filterBox = useRef();
 
   useEffect(() => {
-    setResults(order)
-  }, [order])
-  
+    setResults(pagedOrder)
+  }, [pagedOrder])
+
 
   const placeholder = (event) => { setFilterType(event.target.value); setResults(order) }
 
