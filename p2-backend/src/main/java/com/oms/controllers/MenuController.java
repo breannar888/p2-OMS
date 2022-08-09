@@ -1,10 +1,9 @@
 package com.oms.controllers;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.oms.beans.Menu;
 import com.oms.services.MenuService;
-import com.oms.services.OrderService;
 
 @RestController
 @RequestMapping("/menu")
@@ -55,11 +53,12 @@ public class MenuController {
 		return service.updateByID(id, menu);
 	}
 
-	/*
+	
 	// Delete
+	@Transactional
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> delete(@PathVariable int id) {
 		return service.delete(id);
-	}*/
+	}
 
 }
