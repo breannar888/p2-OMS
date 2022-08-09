@@ -13,6 +13,7 @@ import {
   OrdersTable,
   Menu,
   ErrorPage,
+  AddMenuItem
 } from "./components/";
 import OrderProvider from "./context/OrderContext";
 import { CookiesProvider } from "react-cookie";
@@ -47,7 +48,8 @@ function App() {
               <Route path="/add" element={<AddForm />}></Route>
               <Route path="/current" element={<OrdersTable />}></Route>
               <Route path="/menu" element={<Menu />}></Route>
-              <Route path="/log" element={<OrdersLog />}></Route>
+              <Route path="/menu/add" element={<AddMenuItem />}></Route>
+            <Route path="/log" element={<OrdersLog />}></Route>
               <Route path="/*" element={<ErrorPage />}></Route>
             </Routes>
           </BrowserRouter>

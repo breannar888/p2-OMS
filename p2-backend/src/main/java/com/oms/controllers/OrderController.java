@@ -6,9 +6,6 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,10 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.oms.beans.Menu;
 import com.oms.beans.Orders;
-import com.oms.data.MenuRepository;
-import com.oms.data.OrderRepository;
 import com.oms.services.OrderService;
 
 @RestController
@@ -65,11 +59,18 @@ public class OrderController {
 		return service.updateByID(id, order);
 	}
 
-	// Delete
+	// Delete by Order_ID
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> delete(@PathVariable int id) {
 		return service.delete(id);
 	}
+	
+	
+//	// Delete by Menu_ID
+//	@DeleteMapping("/menu/{id}")
+//	public ResponseEntity<Void> deleteByMenuID(@PathVariable int id) {
+//		return service.deleteByMenuid(id);
+//	}
 
 	// find by menuName
 }

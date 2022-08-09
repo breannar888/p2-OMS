@@ -1,7 +1,8 @@
 package com.oms.services;
 
 import java.util.List;
-import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -43,10 +44,12 @@ public class OrderService {
 		}
 	}
 	
+	@Transactional
 	public ResponseEntity<Void> delete(int id) {
 		repo.deleteById(id);
 		return ResponseEntity.status(204).build();
 	}
+	
 	
 	//get by id
 	public Object findByID(int id) {

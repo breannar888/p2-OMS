@@ -30,6 +30,12 @@ public class TicketController {
 	public Object findAll() {
 			return repo.findAll();
 	}
+	
+	@GetMapping("/sum")
+	@ResponseBody
+	public Object sumTicketTotal() {
+		return repo.sumTicketTotal();
+	}
 
 	@PostMapping
 	public ResponseEntity<Tickets> create(@Valid @RequestBody Tickets ticket) {
