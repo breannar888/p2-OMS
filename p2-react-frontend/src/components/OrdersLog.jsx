@@ -3,12 +3,12 @@ import { OrderState } from "../context/OrderContext";
 import axios from "axios";
 
 export const OrdersLog = () => {
-  const { order, menu, ticket } = OrderState();
-  const [results, setResults] = useState(order);
+  const { order, menu, ticket, pagedOrder, setPagedOrder } = OrderState();
+  const [results, setResults] = useState(pagedOrder);
   const [filterType, setFilterType] = useState("ticketID");
   let searchQuery = "";
 
-
+  const [currPage, setCurrPage] = useState(0);
   const searchBox = useRef();
   const filterBox = useRef();
 
@@ -39,6 +39,13 @@ export const OrdersLog = () => {
     setResults(currentResults)
   }
 
+  const updatePage = (page) => {
+    setCurrPage(page);
+    axios.get(`http://localhost:8080/order/log?page=${page}`).then((resp) => {
+      setPagedOrder(resp.data);
+    });
+  };
+  
   return (
     <main className="container col-9 p-3">
       <h1>Orders Log</h1>
@@ -80,12 +87,12 @@ export const OrdersLog = () => {
         <tbody>
           {results.map((order) => (
             <tr key={order.orderID}>
-              <td>{order.ticket.ticketID}</td>
-              <td>{order.ticket.ticketName}</td>
-              <td>{order.menu.menuItem}</td>
-              <td>{order.notes}</td>
-              <td>{order.status.stausCode}</td>
-              <td>{order.menu.price}</td>
+              <td>{order[0].ticket.ticketID}</td>
+                <td>{order[0].ticket.ticketName}</td>
+                <td>{order[0].menu.menuItem}</td>
+                <td>{order[0].notes}</td>
+                <td>{order[0].status.statusCode}</td>
+                <td>{order[0].menu.price}</td>
               <td>
                 <i className="material-symbols-outlined trash">
                   delete_forever
@@ -96,10 +103,10 @@ export const OrdersLog = () => {
         </tbody>
       </table>
       <nav aria-label="Page navigation">
-        <ul class="pagination">
-          <li class="page-item">
+        <ul className="pagination">
+          <li className="page-item">
             <a
-              class={currPage <= 0 ? "page-link disabled" : "page-link"}
+              className={currPage <= 0 ? "page-link disabled" : "page-link"}
               onClick={() => {
                 updatePage(currPage - 1);
               }}
@@ -109,9 +116,9 @@ export const OrdersLog = () => {
           </li>
           {[...Array(5)].map((x, i) => {
             return (
-              <li class="page-item" key={i}>
+              <li className="page-item" key={i}>
                 <a
-                  class={i == currPage ? "page-link active" : "page-link"}
+                  className={i == currPage ? "page-link active" : "page-link"}
                   onClick={() => {
                     updatePage(i);
                   }}
@@ -121,9 +128,9 @@ export const OrdersLog = () => {
               </li>
             );
           })}
-          <li class="page-item">
+          <li className="page-item">
             <a
-              class={currPage >= 4 ? "page-link disabled" : "page-link"}
+              className={currPage >= 4 ? "page-link disabled" : "page-link"}
               onClick={() => {
                 updatePage(currPage + 1);
               }}

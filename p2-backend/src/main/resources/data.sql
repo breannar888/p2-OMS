@@ -24,3 +24,8 @@ INSERT INTO Orders (Menu_ID, Status_ID, Ticket_ID, Notes) VALUES ('2','1','5','c
 INSERT INTO Orders (Menu_ID, Status_ID, Ticket_ID, Notes) VALUES ('3','1','5','Hot!');
 INSERT INTO Orders (Menu_ID, Status_ID, Ticket_ID, Notes) VALUES ('3','1','5','');
 INSERT INTO Orders (Menu_ID, Status_ID, Ticket_ID, Notes) VALUES ('5','3','5','Hot!');
+insert into users values('owl', '$2a$10$UvgEl405iZrOYfK75L8.OeQij5iE59TR2gEkwqIQqRrHhmFDmbFgq', true); 
+insert into users values('admin', '$2a$10$KdjpT0QfqVF22MLqaATHQ./FmIzsFmO6oiE/M1cBfo/cfMGsYgJBW', true); 
+
+insert into authorities values('owl', 'ROLE_USER');
+insert into authorities values('admin', 'ROLE_MANAGER');
