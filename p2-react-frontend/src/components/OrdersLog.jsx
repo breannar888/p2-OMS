@@ -1,12 +1,14 @@
 import React, { useRef, useState, useEffect } from "react";
 import { OrderState } from "../context/OrderContext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const OrdersLog = () => {
-  const { order, menu, ticket, pagedOrder, setPagedOrder } = OrderState();
-  const [results, setResults] = useState(pagedOrder);
+  const { order, menu, ticket, pagedOrder, setPagedOrder, isAuth } = OrderState();
+  const [results, setResults] = useState(order);
   const [filterType, setFilterType] = useState("ticketID");
   let searchQuery = "";
+  const navigate = useNavigate()
 
   const [currPage, setCurrPage] = useState(0);
   const searchBox = useRef();
@@ -14,7 +16,8 @@ export const OrdersLog = () => {
 
   useEffect(() => {
     setResults(order)
-  }, [order])
+    if (!isAuth) {navigate("../")}
+  }, [order, isAuth, navigate])
   
 
   const placeholder = (event) => { setFilterType(event.target.value); setResults(order) }
@@ -87,12 +90,12 @@ export const OrdersLog = () => {
         <tbody>
           {results.map((order) => (
             <tr key={order.orderID}>
-              <td>{order[0].ticket.ticketID}</td>
-                <td>{order[0].ticket.ticketName}</td>
-                <td>{order[0].menu.menuItem}</td>
-                <td>{order[0].notes}</td>
-                <td>{order[0].status.statusCode}</td>
-                <td>{order[0].menu.price}</td>
+                <td>{order.ticket.ticketID}</td>
+                <td>{order.ticket.ticketName}</td>
+                <td>{order.menu.menuItem}</td>
+                <td>{order.notes}</td>
+                <td>{order.status.statusCode}</td>
+                <td>{order.menu.price}</td>
               <td>
                 <i className="material-symbols-outlined trash">
                   delete_forever

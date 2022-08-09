@@ -13,16 +13,18 @@ import {
   OrdersTable,
   Menu,
   ErrorPage,
-  AddMenuItem
+  AddMenuItem,
 } from "./components/";
 import OrderProvider from "./context/OrderContext";
 import { CookiesProvider } from "react-cookie";
+
+
 
 function App() {
 
   //add in permissions based on authorities 
   //only manager can view Manage Menu link
-  
+
   return (
     <div className="row">
       <CookiesProvider>
@@ -43,15 +45,18 @@ function App() {
               </NavLink>
             </NavSidebar>
 
-            <Routes>
-              <Route path="/" element={<Login />}></Route>
-              <Route path="/add" element={<AddForm />}></Route>
-              <Route path="/current" element={<OrdersTable />}></Route>
-              <Route path="/menu" element={<Menu />}></Route>
-              <Route path="/menu/add" element={<AddMenuItem />}></Route>
-            <Route path="/log" element={<OrdersLog />}></Route>
-              <Route path="/*" element={<ErrorPage />}></Route>
-            </Routes>
+ 
+              <Routes>
+                <Route path="/" element={<Login />} />
+                <Route path="/add" element={<AddForm />} />
+                <Route path="/current" element={<OrdersTable />} />
+                <Route path="/menu" element={<Menu />} />
+                <Route path="/menu/add" element={<AddMenuItem />} />
+                <Route path="/log" element={<OrdersLog />} />
+                <Route path="/*" element={<ErrorPage />} />
+              </Routes>
+
+
           </BrowserRouter>
         </OrderProvider>
       </CookiesProvider>

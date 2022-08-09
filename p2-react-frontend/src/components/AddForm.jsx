@@ -8,13 +8,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorMessage } from "./ErrorMessage";
 
 export const AddForm = () => {
-  const { menu, ticket, updateValues, setUpdateValues, ticketSum } = OrderState();
+  const { menu, ticket, updateValues, setUpdateValues, ticketSum, isAuth } = OrderState();
   // console.log(menu);
   // console.log(ticket);
   // console.log(ticketSum);
   const navigate = useNavigate();
-  const [ticketNew, setTicketNew] = useState(true);
-
+  const [ticketNew, setTicketNew] = useState(true)
   const [itemPrice, setItemPrice] = useState(0);
   const [ticketPrice, setTicketPrice] = useState(0);
   const addOrderSchema = Yup.object().shape({
@@ -54,9 +53,11 @@ export const AddForm = () => {
   }
 
   useEffect(() => {
+
     let totalPrice = itemPrice + ticketPrice
     price.current.value = totalPrice.toFixed(2);
-  }, [itemPrice, ticketPrice])
+    // if (!isAuth) {navigate("../")}
+  }, [itemPrice, ticketPrice, isAuth, navigate])
 
 
   const onSubmit = async (data) => {

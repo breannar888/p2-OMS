@@ -16,11 +16,14 @@ const OrderProvider = (props) => {
   const [pagedOrder, setPagedOrder] = useState([]);
   const [ticketSum, setTicketSum] = useState([]);
   const [updateValues, setUpdateValues] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
   const [cookies, setCookie, removeCookie] = useCookies();
 
   useEffect(() => {
     console.log(cookies);
-    if (cookies["JSESSIONID"] !== undefined) {
+    setIsAuth(cookies["JSESSIONID"] !== "undefined")
+    console.log(isAuth);
+    if (isAuth) {
       console.log("cookies read: ", cookies);
       axios
         .all([
@@ -31,8 +34,8 @@ const OrderProvider = (props) => {
           axios.get("http://localhost:8080/order"),
           axios.get("http://localhost:8080/menu"),
           axios.get("http://localhost:8080/ticket"),
-          //axios.get("http://localhost:8080/ticket/sum"),
           axios.get("http://localhost:8080/order/log"),
+          axios.get("http://localhost:8080/ticket/sum"),
         ])
         .then(
           axios.spread(
@@ -42,13 +45,13 @@ const OrderProvider = (props) => {
               setTicket(ticketResp.data);
               setPagedOrder(pagedOrderResp.data);
               setTicketSum(sumResp.data);
-              console.log("order: ", orderResp.data, "menu: ", menuResp.data);
+              // console.log("order: ", orderResp.data, "menu: ", menuResp.data);
             }
           )
         )
         .catch((error) => console.log(error));
-    }
-  }, [updateValues]);
+    } 
+  }, [updateValues, cookies, isAuth]);
 
   const value = {
     order,
@@ -66,6 +69,7 @@ const OrderProvider = (props) => {
     ticketSum,
     setTicketSum,
     removeCookie,
+    isAuth
   };
 
   return (

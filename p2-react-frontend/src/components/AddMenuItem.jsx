@@ -2,17 +2,22 @@ import React, { useRef } from "react";
 import { OrderState } from "../context/OrderContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useEffect } from "react";
 
 
 export const AddMenuItem = () => {
-  const { updateValues, setUpdateValues } = OrderState();
+  const { updateValues, setUpdateValues, isAuth} = OrderState();
   const navigate = useNavigate();
   const itemName = useRef();
   const itemPrice = useRef();
 
+  useEffect(() => {
+    if (!isAuth) {navigate("../")}
+  }
+  )
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-
 
     // await axios.post("http://10.0.0.50:8080/order/", {
     await axios.post("http://localhost:8080/menu/", {
@@ -20,12 +25,7 @@ export const AddMenuItem = () => {
       price: itemPrice.current.value,
       imagePath: "placeholder",
 
-/* {
-    "menuID": 7,
-    "menuItem": "Something delicious",
-    "price": 12.34,
-    "imagePath": "/chicken_pasta"
-} */
+
 
     })
     setUpdateValues(!updateValues)

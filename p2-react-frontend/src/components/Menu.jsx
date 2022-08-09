@@ -9,14 +9,15 @@ export const Menu = () => {
   
   
   const navigate = useNavigate();
-  const { menu } = OrderState();
+  const { menu, isAuth } = OrderState();
   const [results, setResults] = useState(menu);
   let searchQuery = "";
 
 
   useEffect(() => {
     setResults(menu)
-  }, [menu])
+    if (!isAuth) {navigate("../")}
+  }, [menu, isAuth, navigate])
 
   const searchResult = (event) => {
     searchQuery = event.target.value
