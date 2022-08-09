@@ -2,5 +2,6 @@
     "cSpell.words": [
         "STIX"
     ],
-    "livePreview.autoRefreshPreview": "On Changes to Saved Files"
+    "livePreview.autoRefreshPreview": "On Changes to Saved Files",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
