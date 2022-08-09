@@ -7,7 +7,7 @@ CREATE TABLE `Orders` (
   PRIMARY KEY (`Order_ID`));
 CREATE TABLE `Menu` (
   `Menu_ID` INT NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(100) NOT NULL,
+  `Menu_Name` VARCHAR(100) NOT NULL,
   `Price` DECIMAL(5,2) NOT NULL,
   `Image_Path` VARCHAR(45) NULL,
   PRIMARY KEY (`Menu_ID`));

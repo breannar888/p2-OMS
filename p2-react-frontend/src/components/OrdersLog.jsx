@@ -111,7 +111,11 @@ export const OrdersLog = () => {
             return (
               <li class="page-item" key={i}>
                 <a
+<<<<<<< Updated upstream
                   class={i == currPage ? "page-link active" : "page-link"}
+=======
+                  className={i === currPage ? "page-link active" : "page-link"}
+>>>>>>> Stashed changes
                   onClick={() => {
                     updatePage(i);
                   }}
