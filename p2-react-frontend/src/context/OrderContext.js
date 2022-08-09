@@ -9,6 +9,7 @@ const OrderProvider = (props) => {
   const [order, setOrder] = useState([]);
   const [menu, setMenu] = useState([]);
   const [ticket, setTicket] = useState([]);
+  const [pagedOrder, setPagedOrder] = useState([]);
   const [ticketSum, setTicketSum] = useState([]);
   const [updateValues, setUpdateValues] = useState(false);
 
@@ -23,15 +24,19 @@ const OrderProvider = (props) => {
         axios.get("http://localhost:8080/menu"),
         axios.get("http://localhost:8080/ticket"),
         axios.get("http://localhost:8080/ticket/sum"),
+        axios.get("http://localhost:8080/order/log"),
       ])
       .then(
-        axios.spread((orderResp, menuResp, ticketResp, sumResp) => {
-          setOrder(orderResp.data);
-          setMenu(menuResp.data);
-          setTicket(ticketResp.data);
-          setTicketSum(sumResp.data);
+        axios
+          .spread((orderResp, menuResp, ticketResp, pagedOrderResp, sumResp) => {
+            setOrder(orderResp.data);
+            setMenu(menuResp.data);
+            setTicket(ticketResp.data);
+            setPagedOrder(pagedOrderResp.data);
+            setTicketSum(sumResp.data);
           // console.log("order: ", orderResp.data, "menu: ",  menuResp.data);
-        })
+          })
+
       )
       .catch((error) => console.log(error));
   }, [updateValues]);
@@ -45,6 +50,8 @@ const OrderProvider = (props) => {
     setTicket,
     updateValues,
     setUpdateValues,
+    pagedOrder,
+    setPagedOrder,
     ticketSum,
     setTicketSum,
   };
@@ -61,6 +68,3 @@ export default OrderProvider;
 export const OrderState = () => {
   return useContext(OrderContext);
 };
-
-
-

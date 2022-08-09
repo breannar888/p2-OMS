@@ -1,11 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
 import { OrderState } from "../context/OrderContext";
+import axios from "axios";
 
 export const OrdersLog = () => {
   const { order, menu, ticket } = OrderState();
   const [results, setResults] = useState(order);
-  // console.log(`Order: ${order}`);
-  // console.log(`Results: ${results}`);
   const [filterType, setFilterType] = useState("ticketID");
   let searchQuery = "";
 
@@ -96,6 +95,44 @@ export const OrdersLog = () => {
           ))}
         </tbody>
       </table>
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          <li class="page-item">
+            <a
+              class={currPage <= 0 ? "page-link disabled" : "page-link"}
+              onClick={() => {
+                updatePage(currPage - 1);
+              }}
+            >
+              Previous
+            </a>
+          </li>
+          {[...Array(5)].map((x, i) => {
+            return (
+              <li class="page-item" key={i}>
+                <a
+                  class={i == currPage ? "page-link active" : "page-link"}
+                  onClick={() => {
+                    updatePage(i);
+                  }}
+                >
+                  {i + 1}
+                </a>
+              </li>
+            );
+          })}
+          <li class="page-item">
+            <a
+              class={currPage >= 4 ? "page-link disabled" : "page-link"}
+              onClick={() => {
+                updatePage(currPage + 1);
+              }}
+            >
+              Next
+            </a>
+          </li>
+        </ul>
+      </nav>
     </main>
   );
 };
