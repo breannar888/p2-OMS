@@ -45,8 +45,10 @@ ul {
 }
 
 aside {
-  font-family: var(--sansStack);
-  font-weight: 300;
+    font-family: var(--sansStack);
+    font-weight: 300;
+    min-height: 100vh ;
+
 }
 
 h1 {
@@ -145,4 +147,7 @@ table {
 }
 .page-link {
   color: #fb8500;
+}
+#searchLabel {
+    font-weight: 600;
 }

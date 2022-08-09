@@ -24,7 +24,7 @@ public class Menu {
 	@Column(name= "Menu_Id")
 	private int menuID;
 	
-	@Column(name= "Name")
+	@Column(name= "Menu_Name")
 	@NotBlank
 	private String menuItem;
 	

@@ -1,4 +1,4 @@
-import React, { useState, forwardRef } from "react";
+import React, { useState, useRef, forwardRef, useEffect } from "react";
 import { OrderState } from "../context/OrderContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -8,10 +8,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorMessage } from "./ErrorMessage";
 
 export const AddForm = () => {
-  const { menu, ticket, updateValues, setUpdateValues } = OrderState();
+  const { menu, ticket, updateValues, setUpdateValues, ticketSum } = OrderState();
+  // console.log(menu);
+  // console.log(ticket);
+  // console.log(ticketSum);
   const navigate = useNavigate();
   const [ticketNew, setTicketNew] = useState(true);
 
+  const [itemPrice, setItemPrice] = useState(0);
+  const [ticketPrice, setTicketPrice] = useState(0);
   const addOrderSchema = Yup.object().shape({
     menuID: Yup.number().typeError('Menu Item is required').required(),
     ticketName: Yup.string().max(
@@ -28,10 +33,31 @@ export const AddForm = () => {
   } = useForm({
     resolver: yupResolver(addOrderSchema),
   });
+  const price = useRef();
 
   const ticketChange = (event) => {
-    event.target.value === "new" ? setTicketNew(true) : setTicketNew(false);
-  };
+    if (event.target.value === "new") {
+      setTicketNew(true); setTicketPrice(0)
+    } else {
+      setTicketNew(false); setTicketPrice(ticketSum[event.target.value - 1]);
+    };
+
+
+  }
+
+  const itemChange = (event) => {
+    const menuID = (event.target.value * 1)
+    const menuItem = menu.find(x => x.menuID === menuID)?.price ?? 0.00;
+    setItemPrice(menuItem)
+    // console.log(itemPrice);
+
+  }
+
+  useEffect(() => {
+    let totalPrice = itemPrice + ticketPrice
+    price.current.value = totalPrice.toFixed(2);
+  }, [itemPrice, ticketPrice])
+
 
   const onSubmit = async (data) => {
     let menuIDValue = data.menuID;
@@ -68,7 +94,7 @@ export const AddForm = () => {
           <div className="row row-cols-2">
             <div className="form-group col-5">
               <label htmlFor="item">Menu Item</label>
-              <select className="form-select" {...register("menuID")}>
+              <select className="form-select" {...register("menuID")} onChange={itemChange}>
                 <option defaultValue="">&nbsp;</option>
                 {menu.map((item) => (
                   <option value={item.menuID} key={item.menuID}>
@@ -126,8 +152,8 @@ export const AddForm = () => {
               <span className="input-group-text">Total $</span>
               <input
                 className="form-control"
-                type="text"
                 placeholder="0.00"
+                ref={price}
                 disabled
               />
             </div>
