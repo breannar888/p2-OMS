@@ -13,8 +13,7 @@ export const NavSidebar = ({ children }) => {
       mode: "no-cors",
     }).then(() => {
       setCookie("JSESSIONID", undefined);
-      removeCookie("JSESSION");
-      removeCookie("[object Object]");
+      removeCookie("Authorities");
       navigate("/");
     });
   };
