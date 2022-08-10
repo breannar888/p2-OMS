@@ -19,7 +19,7 @@ const OrderProvider = (props) => {
   const [cookies, setCookie, removeCookie] = useCookies();
 
   useEffect(() => {
-    console.log(cookies);
+    console.log("cookies: ",cookies);
     if (cookies["JSESSIONID"] !== undefined) {
       console.log("cookies read: ", cookies);
       axios
@@ -48,7 +48,7 @@ const OrderProvider = (props) => {
         )
         .catch((error) => console.log(error));
     }
-  }, [updateValues]);
+  }, [updateValues, cookies]);
 
   const value = {
     order,

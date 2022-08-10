@@ -13,31 +13,42 @@ export const OrdersLog = () => {
   const filterBox = useRef();
 
   useEffect(() => {
-    setResults(pagedOrder)
-  }, [pagedOrder])
+    setResults(pagedOrder);
+    console.log(pagedOrder);
+  }, [pagedOrder]);
 
-
-  const placeholder = (event) => { setFilterType(event.target.value); setResults(order) }
+  const placeholder = (event) => {
+    setFilterType(event.target.value);
+    setResults(pagedOrder);
+  };
 
   const searchResult = (event) => {
-    searchQuery = event.target.value
-    let filter = filterBox.current.value
+    searchQuery = event.target.value;
+    let filter = filterBox.current.value;
     let searchValue;
-    const currentResults = order.filter((oneOrder) => {
+    const currentResults = pagedOrder.filter((oneOrder) => {
       if (searchQuery === "") {
         return oneOrder;
       } else {
         switch (filter) {
-          case "ticketID": searchValue = oneOrder.ticket.ticketID; break;
-          case "item": searchValue = oneOrder.menu.menuID; break;
-          case "status": searchValue = oneOrder.status.statusID; break;
-          default: break;
+          case "ticketID":
+            searchValue = oneOrder[0].ticket.ticketID;
+            break;
+          case "item":
+            searchValue = oneOrder[0].menu.menuID;
+            break;
+          case "status":
+            searchValue = oneOrder[0].status.statusID;
+            break;
+          default:
+            searchValue = "";
+            break;
         }
-        return searchValue.toString().toLowerCase().includes(searchQuery)
+        return searchValue.toString().toLowerCase().includes(searchQuery);
       }
-    })
-    setResults(currentResults)
-  }
+    });
+    setResults(currentResults);
+  };
 
   const updatePage = (page) => {
     setCurrPage(page);
@@ -45,30 +56,38 @@ export const OrdersLog = () => {
       setPagedOrder(resp.data);
     });
   };
-  
+
   return (
     <main className="container col-9 p-3">
       <h1>Orders Log</h1>
       <form className="row m-3">
-        <div className="col-1 align-self-center" id="searchLabel">Search</div>
+        <div className="col-1 align-self-center" id="searchLabel">
+          Search
+        </div>
         <div className="col-7">
-          <select className="form-select" ref={searchBox} onChange={searchResult}  >
-
+          <select
+            className="form-select"
+            ref={searchBox}
+            onChange={searchResult}
+          >
             {
               {
-                "ticketID": <TicketInput data={ticket} />,
-                "item": <ItemInput data={menu} />,
-                "status": <StatusInput />
+                ticketID: <TicketInput data={ticket} />,
+                item: <ItemInput data={menu} />,
+                status: <StatusInput />,
               }[filterType]
-
             }
           </select>
         </div>
         <div className="col-4">
-          <select className="form-select col-5" ref={filterBox} onChange={placeholder}>
-            <option value="ticketID" >Ticket</option>
-            <option value="item" >Item</option>
-            <option value="status" >Status</option>
+          <select
+            className="form-select col-5"
+            ref={filterBox}
+            onChange={placeholder}
+          >
+            <option value="ticketID">Ticket</option>
+            <option value="item">Item</option>
+            <option value="status">Status</option>
           </select>
         </div>
       </form>
@@ -85,14 +104,14 @@ export const OrdersLog = () => {
           </tr>
         </thead>
         <tbody>
-          {results.map((order) => (
-            <tr key={order.orderID}>
+          {results.map((order, i) => (
+            <tr key={i}>
               <td>{order[0].ticket.ticketID}</td>
-                <td>{order[0].ticket.ticketName}</td>
-                <td>{order[0].menu.menuItem}</td>
-                <td>{order[0].notes}</td>
-                <td>{order[0].status.statusCode}</td>
-                <td>{order[0].menu.price}</td>
+              <td>{order[0].ticket.ticketName}</td>
+              <td>{order[0].menu.menuItem}</td>
+              <td>{order[0].notes}</td>
+              <td>{order[0].status.statusCode}</td>
+              <td>{order[0].menu.price}</td>
               <td>
                 <i className="material-symbols-outlined trash">
                   delete_forever
@@ -144,31 +163,33 @@ export const OrdersLog = () => {
   );
 };
 
-const TicketInput = (props => (
+const TicketInput = (props) => (
   <>
     <option value="" className="placeholder"></option>
     {props.data.map((item) => (
-      <option value={item.ticketID} key={item.ticketID}>{item.ticketID}: {item.ticketName}</option>
+      <option value={item.ticketID} key={item.ticketID}>
+        {item.ticketID}: {item.ticketName}
+      </option>
     ))}
   </>
-)
 );
-const ItemInput = (props => (
+const ItemInput = (props) => (
   <>
     <option value="" className="placeholder"></option>
     {props.data.map((item) => (
-      <option value={item.menuID} key={item.menuID}>{item.menuItem}</option>
+      <option value={item.menuID} key={item.menuID}>
+        {item.menuItem}
+      </option>
     ))}
   </>
-));
+);
 
 const StatusInput = () => (
   <>
     <option value="" className="placeholder"></option>
-    <option value="1" >New Orders</option>
-    <option value="2" >Cooking</option>
-    <option value="3" >Ready</option>
-    <option value="4" >Served</option>
+    <option value="1">New Orders</option>
+    <option value="2">Cooking</option>
+    <option value="3">Ready</option>
+    <option value="4">Served</option>
   </>
 );
-
