@@ -19,9 +19,8 @@ const OrderProvider = (props) => {
   const [cookies, setCookie, removeCookie] = useCookies();
 
   useEffect(() => {
-    console.log("cookies: ",cookies);
     if (cookies["JSESSIONID"] !== undefined) {
-      console.log("cookies read: ", cookies);
+      console.log("cookies: ", cookies);
       axios
         .all([
           // these GET requests are for when I look at the page on my iPad
@@ -31,18 +30,18 @@ const OrderProvider = (props) => {
           axios.get("http://localhost:8080/order"),
           axios.get("http://localhost:8080/menu"),
           axios.get("http://localhost:8080/ticket"),
-          //axios.get("http://localhost:8080/ticket/sum"),
+          axios.get("http://localhost:8080/ticket/sum"),
           axios.get("http://localhost:8080/order/log"),
         ])
         .then(
           axios.spread(
-            (orderResp, menuResp, ticketResp, pagedOrderResp, sumResp) => {
+            (orderResp, menuResp, ticketResp, sumResp, pagedOrderResp) => {
               setOrder(orderResp.data);
               setMenu(menuResp.data);
               setTicket(ticketResp.data);
               setPagedOrder(pagedOrderResp.data);
               setTicketSum(sumResp.data);
-              console.log("order: ", orderResp.data, "menu: ", menuResp.data);
+              //console.log("order: ", orderResp.data, "menu: ", menuResp.data);
             }
           )
         )
