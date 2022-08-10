@@ -22,7 +22,7 @@ public class OrderService {
 	
 	//get
 	public List<Orders> findAllOrdersPaged(int page) {
-		return repo.findAllOrdersPaged(PageRequest.of(page, DEFAULT_PAGE_SIZE)).toList();
+		return repo.findAll(PageRequest.of(page, DEFAULT_PAGE_SIZE)).toList();
 	}
 	
 	public List<Orders> findAll() {
