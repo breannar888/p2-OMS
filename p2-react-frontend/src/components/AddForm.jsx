@@ -8,14 +8,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorMessage } from "./ErrorMessage";
 
 export const AddForm = () => {
-  const { menu, ticket, updateValues, setUpdateValues, ticketSum } =
-    OrderState();
-  // console.log(menu);
-  // console.log(ticket);
-  // console.log(ticketSum);
+  const { menu, ticket, updateValues, setUpdateValues, ticketSum } = OrderState();
   const navigate = useNavigate();
-  const [ticketNew, setTicketNew] = useState(true);
-
+  const [ticketNew, setTicketNew] = useState(true)
   const [itemPrice, setItemPrice] = useState(0);
   const [ticketPrice, setTicketPrice] = useState(0);
   const addOrderSchema = Yup.object().shape({
@@ -72,7 +67,6 @@ export const AddForm = () => {
         .then((res) => (ticketIDValue = res.data.ticketID));
     }
 
-    // await axios.post("http://10.0.0.50:8080/order/", {
     await axios
       .post("http://localhost:8080/order/", {
         menu: { menuID: menuIDValue },
@@ -116,13 +110,11 @@ export const AddForm = () => {
                 onChange={ticketChange}
               >
                 <option value="new">(Add ticket)</option>
-                {ticket.map((ticket) => {
-                  return (
-                    <option key={ticket.ticketID} value={ticket.ticketID}>
-                      {ticket.ticketName}
-                    </option>
-                  );
-                })}
+                {ticket.map((ticket) => (
+                  <option key={ticket.ticketID} value={ticket.ticketID}>
+                    {ticket.ticketName}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
@@ -161,7 +153,7 @@ export const AddForm = () => {
           </div>
           <div className="col-4"></div>
           <button type="submit" className="btn col-2 p-0" id="submit">
-            Submits
+            Submit
           </button>
         </div>
       </form>

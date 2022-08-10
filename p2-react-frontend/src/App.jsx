@@ -1,5 +1,10 @@
-import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
-import "./App.css";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  NavLink,
+} from "react-router-dom";
+import "./index.css";
 import {
   Login,
   AddForm,
@@ -14,6 +19,10 @@ import OrderProvider from "./context/OrderContext";
 import { CookiesProvider } from "react-cookie";
 import PrivateRoutes from "./components/PrivateRoutes";
 
+
+
+
+
 function App() {
   return (
     <div className="row">
@@ -26,7 +35,7 @@ function App() {
             <NavLink to="/current" className="nav-link link-dark">
               Current Orders
             </NavLink>
-            <NavLink to="/menu" className="nav-link link-dark">
+            <NavLink to="/menu" className="nav-link link-dark" auth="ROLE_MANAGER">
               Manage Menu
             </NavLink>
             <NavLink to="/log" className="nav-link link-dark">

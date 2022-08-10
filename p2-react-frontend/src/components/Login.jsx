@@ -40,7 +40,7 @@ export const Login = () => {
         console.log(resp.data);
         if (resp.status === 200) {
           setCookie("JSESSIONID", resp.data.sessionID);
-          //setCookie("Authorities", resp.data.authorities);
+          setCookie("authorities", resp.data.authorities);
           navigate("../add");
         }
       })

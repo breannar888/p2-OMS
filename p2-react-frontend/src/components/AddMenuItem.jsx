@@ -5,27 +5,21 @@ import axios from "axios";
 
 
 export const AddMenuItem = () => {
-  const { updateValues, setUpdateValues } = OrderState();
+  const { updateValues, setUpdateValues} = OrderState();
   const navigate = useNavigate();
   const itemName = useRef();
   const itemPrice = useRef();
 
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-
-    // await axios.post("http://10.0.0.50:8080/order/", {
     await axios.post("http://localhost:8080/menu/", {
       menuItem: itemName.current.value,
       price: itemPrice.current.value,
       imagePath: "placeholder",
 
-/* {
-    "menuID": 7,
-    "menuItem": "Something delicious",
-    "price": 12.34,
-    "imagePath": "/chicken_pasta"
-} */
+
 
     })
     setUpdateValues(!updateValues)
