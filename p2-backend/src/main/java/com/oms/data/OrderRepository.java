@@ -11,9 +11,6 @@ import org.springframework.data.jpa.repository.Query;
 import com.oms.beans.Orders;
 
 public interface OrderRepository extends JpaRepository<Orders, Integer> {
-
-	@Query("from Orders o inner join o.menu")
-	public Page<Orders> findAllOrdersPaged(Pageable request);
 	
 	public List<Orders> findAll();
 

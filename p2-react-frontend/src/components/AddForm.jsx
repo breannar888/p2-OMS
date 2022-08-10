@@ -14,7 +14,7 @@ export const AddForm = () => {
   const [itemPrice, setItemPrice] = useState(0);
   const [ticketPrice, setTicketPrice] = useState(0);
   const addOrderSchema = Yup.object().shape({
-    menuID: Yup.number().typeError('Menu Item is required').required(),
+    menuID: Yup.number().typeError("Menu Item is required").required(),
     ticketName: Yup.string().max(
       35,
       "Too long! Must be shorter than 35 characters"
@@ -33,28 +33,25 @@ export const AddForm = () => {
 
   const ticketChange = (event) => {
     if (event.target.value === "new") {
-      setTicketNew(true); setTicketPrice(0)
+      setTicketNew(true);
+      setTicketPrice(0);
     } else {
-      setTicketNew(false); setTicketPrice(ticketSum[event.target.value - 1]);
-    };
-
-
-  }
+      setTicketNew(false);
+      setTicketPrice(ticketSum[event.target.value - 1]);
+    }
+  };
 
   const itemChange = (event) => {
-    const menuID = (event.target.value * 1)
-    const menuItem = menu.find(x => x.menuID === menuID)?.price ?? 0.00;
-    setItemPrice(menuItem)
+    const menuID = event.target.value * 1;
+    const menuItem = menu.find((x) => x.menuID === menuID)?.price ?? 0.0;
+    setItemPrice(menuItem);
     // console.log(itemPrice);
-
-  }
+  };
 
   useEffect(() => {
-
-    let totalPrice = itemPrice + ticketPrice
+    let totalPrice = itemPrice + ticketPrice;
     price.current.value = totalPrice.toFixed(2);
-  }, [itemPrice, ticketPrice])
-
+  }, [itemPrice, ticketPrice]);
 
   const onSubmit = async (data) => {
     let menuIDValue = data.menuID;
@@ -90,7 +87,11 @@ export const AddForm = () => {
           <div className="row row-cols-2">
             <div className="form-group col-5">
               <label htmlFor="item">Menu Item</label>
-              <select className="form-select" {...register("menuID")} onChange={itemChange}>
+              <select
+                className="form-select"
+                {...register("menuID")}
+                onChange={itemChange}
+              >
                 <option defaultValue="">&nbsp;</option>
                 {menu.map((item) => (
                   <option value={item.menuID} key={item.menuID}>
