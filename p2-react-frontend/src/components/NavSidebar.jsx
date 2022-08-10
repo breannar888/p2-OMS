@@ -12,7 +12,7 @@ export const NavSidebar = ({ children }) => {
     await fetch("http://localhost:8080/logout", {
       mode: "no-cors",
     }).then(() => {
-      setCookie("JSESSIONID", undefined);
+      removeCookie("JSESSIONID", undefined);
       removeCookie("Authorities");
       navigate("/");
     });
