@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import React from "react";
 import { useCookies } from "react-cookie";
+// import {useNavigate} from "react-router-dom"
 
 export const OrderContext = createContext();
 
@@ -17,11 +18,13 @@ const OrderProvider = (props) => {
   const [ticketSum, setTicketSum] = useState([]);
   const [updateValues, setUpdateValues] = useState(false);
   const [cookies, setCookie, removeCookie] = useCookies();
+  // const navigate = useNavigate();
+
 
   useEffect(() => {
-    console.log(cookies);
-    if (cookies["JSESSIONID"] !== undefined) {
-      console.log("cookies read: ", cookies);
+    // console.log(cookies);
+    if ((cookies["JSESSIONID"] !== "undefined") && (cookies.hasOwnProperty('JSESSIONID'))) {
+      // console.log("cookies read: ", cookies);
       axios
         .all([
           // these GET requests are for when I look at the page on my iPad
@@ -31,8 +34,8 @@ const OrderProvider = (props) => {
           axios.get("http://localhost:8080/order"),
           axios.get("http://localhost:8080/menu"),
           axios.get("http://localhost:8080/ticket"),
-          //axios.get("http://localhost:8080/ticket/sum"),
           axios.get("http://localhost:8080/order/log"),
+          axios.get("http://localhost:8080/ticket/sum"),
         ])
         .then(
           axios.spread(
@@ -42,13 +45,14 @@ const OrderProvider = (props) => {
               setTicket(ticketResp.data);
               setPagedOrder(pagedOrderResp.data);
               setTicketSum(sumResp.data);
-              console.log("order: ", orderResp.data, "menu: ", menuResp.data);
+              // console.log("order: ", orderResp.data, "menu: ", menuResp.data);
             }
           )
         )
         .catch((error) => console.log(error));
-    }
-  }, [updateValues]);
+    } 
+  }, [updateValues, cookies]);
+
 
   const value = {
     order,
