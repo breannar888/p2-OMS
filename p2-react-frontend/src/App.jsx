@@ -20,7 +20,11 @@ import { CookiesProvider } from "react-cookie";
 
 
 
+
+
 function App() {
+
+
 
   //add in permissions based on authorities 
   //only manager can view Manage Menu link
@@ -37,7 +41,7 @@ function App() {
               <NavLink to="/current" className="nav-link link-dark">
                 Current Orders
               </NavLink>
-              <NavLink to="/menu" className="nav-link link-dark">
+              <NavLink to="/menu" className="nav-link link-dark" auth="ROLE_MANAGER">
                 Manage Menu
               </NavLink>
               <NavLink to="/log" className="nav-link link-dark">

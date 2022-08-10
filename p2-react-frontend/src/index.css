@@ -90,7 +90,7 @@ thead {
   background-color: var(--yellow);
 }
 
-i {
+i, .nav-link {
   cursor: pointer;
 }
 

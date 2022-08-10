@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Children} from "react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
@@ -19,6 +19,10 @@ export const NavSidebar = ({ children }) => {
     });
   };
 
+
+// ROLE_USER
+// ROLE_MANAGER 
+
   const { pathname } = useLocation();
   if (pathname !== "/") {
     return (
@@ -27,10 +31,11 @@ export const NavSidebar = ({ children }) => {
           Order <br /> Management <br /> System
         </div>
         <ul className="nav d-block h-100">
-          {React.Children.map(children, (child) => (
-            <li className="nav-item">{child}</li>
-          ))}
-          <button onClick={logout}>Logout</button>
+          {Children.map(children, (child) => {
+            if (child.props?.auth === "ROLE_MANAGER" && cookies.authorities !== child.props.auth ) {return <></>}
+            else {return ( <li className="nav-item">{child}</li> )}
+          })}
+          <li className="nav-link link-dark nav-item" onClick={logout}>Logout</li>
         </ul>
       </aside>
     );
