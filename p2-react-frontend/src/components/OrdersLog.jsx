@@ -14,7 +14,6 @@ export const OrdersLog = () => {
 
   useEffect(() => {
     setResults(pagedOrder);
-    console.log(pagedOrder);
   }, [pagedOrder]);
 
   const placeholder = (event) => {
@@ -32,13 +31,13 @@ export const OrdersLog = () => {
       } else {
         switch (filter) {
           case "ticketID":
-            searchValue = oneOrder[0].ticket.ticketID;
+            searchValue = oneOrder.ticket.ticketID;
             break;
           case "item":
-            searchValue = oneOrder[0].menu.menuID;
+            searchValue = oneOrder.menu.menuID;
             break;
           case "status":
-            searchValue = oneOrder[0].status.statusID;
+            searchValue = oneOrder.status.statusID;
             break;
           default:
             searchValue = "";
@@ -106,12 +105,12 @@ export const OrdersLog = () => {
         <tbody>
           {results.map((order, i) => (
             <tr key={i}>
-              <td>{order[0].ticket.ticketID}</td>
-              <td>{order[0].ticket.ticketName}</td>
-              <td>{order[0].menu.menuItem}</td>
-              <td>{order[0].notes}</td>
-              <td>{order[0].status.statusCode}</td>
-              <td>{order[0].menu.price}</td>
+              <td>{order.ticket.ticketID}</td>
+              <td>{order.ticket.ticketName}</td>
+              <td>{order.menu.menuItem}</td>
+              <td>{order.notes}</td>
+              <td>{order.status.statusCode}</td>
+              <td>{order.menu.price}</td>
               <td>
                 <i className="material-symbols-outlined trash">
                   delete_forever
