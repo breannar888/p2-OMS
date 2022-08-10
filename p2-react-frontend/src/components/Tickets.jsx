@@ -5,50 +5,47 @@ import { useNavigate } from "react-router-dom";
 
 
 
-export const Menu = () => {
+export const Tickets = () => {
   
   
   const navigate = useNavigate();
-  const { menu } = OrderState();
-  const [results, setResults] = useState(menu);
+  const { ticket } = OrderState();
+  const [results, setResults] = useState(ticket);
   let searchQuery = "";
 
 
   useEffect(() => {
-    setResults(menu)
-  }, [menu])
+    setResults(ticket)
+  }, [ticket])
 
   const searchResult = (event) => {
     searchQuery = event.target.value
-    const currentResults = menu.filter((oneOrder) => {
+    const currentResults = ticket.filter((oneTicket) => {
       if (searchQuery === "") {
-        return oneOrder;
+        return oneTicket;
       } else {
-        return oneOrder.menuItem.toString().toLowerCase().includes(searchQuery)
+        return oneTicket.ticketItem.toString().toLowerCase().includes(searchQuery)
       }
     })
     setResults(currentResults)
   }
 
-  // console.log(menu);
   return (
     <main className="container col-9 col-lg-10 p-3">
       <div className="container">
-        <h1>Manage Menu</h1>
+        <h1>Manage Tickets</h1>
       </div>
       <div className="row">
-        <button className="btn manage-add col-3" onClick={() => navigate("../menu/add")}>Add New Item</button>
         <form className="col-8">
         <input className="form-control " placeholder='Search Items' onChange={searchResult} />
         </form>
       </div>
       <div className="row row-cols-4" >
-        {results.map((item) => (
-            <div className="col m-2" key={item.menuID} >
+        {results.map((ticket) => (
+            <div className="col m-2" key={ticket.ticketID} >
               <div className="card">
-                <img src={`../images/${item.imagePath}.jpg`} className="card-img-top" alt={item.menuItem} />
                 <div className="card-body">
-                  <CardInfo item={item} />
+                  <CardInfo ticket={ticket} />
                 </div>
               </div>
             </div>
@@ -60,17 +57,7 @@ export const Menu = () => {
   )
 }
 
-/* 
-const TicketInput = (props => (
-  <>
-    <option value="" className="placeholder"></option>
-    {props.data.map((item) => (
-      <option value={item.ticketID} key={item.ticketID}>{item.ticketID}: {item.ticketName}</option>
-    ))}
-  </>
-)
-);
-*/
+
 
 const CardInfo = (data => {
 
@@ -78,8 +65,7 @@ const CardInfo = (data => {
   const { updateValues, setUpdateValues } = OrderState();
   const itemRef = useRef();
   const priceRef = useRef();
-  // console.log(data.item); 
-  // console.log(toggle);
+
 
   const handleUpdate = async () => {
     const menuItemInput = itemRef.current.value === "" ? data.item.menuItem: itemRef.current.value
@@ -118,8 +104,6 @@ const CardInfo = (data => {
       console.log(err);
     }
   };
-  /* "menuItem": "Asiago Chicken Pasta",
-        "price": 12.99, */
 
   return toggle ? (
     <> 

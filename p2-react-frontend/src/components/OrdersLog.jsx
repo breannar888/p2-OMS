@@ -1,14 +1,12 @@
 import React, { useRef, useState, useEffect } from "react";
 import { OrderState } from "../context/OrderContext";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 export const OrdersLog = () => {
-  const { order, menu, ticket, pagedOrder, setPagedOrder, isAuth } = OrderState();
+  const { order, menu, ticket, pagedOrder, setPagedOrder } = OrderState();
   const [results, setResults] = useState(order);
   const [filterType, setFilterType] = useState("ticketID");
   let searchQuery = "";
-  const navigate = useNavigate()
 
   const [currPage, setCurrPage] = useState(0);
   const searchBox = useRef();
@@ -16,8 +14,7 @@ export const OrdersLog = () => {
 
   useEffect(() => {
     setResults(order)
-    if (!isAuth) {navigate("../")}
-  }, [order, isAuth, navigate])
+  }, [order])
   
 
   const placeholder = (event) => { setFilterType(event.target.value); setResults(order) }
@@ -108,40 +105,38 @@ export const OrdersLog = () => {
       <nav aria-label="Page navigation">
         <ul className="pagination">
           <li className="page-item">
-            <a
+            <button
               className={currPage <= 0 ? "page-link disabled" : "page-link"}
               onClick={() => {
                 updatePage(currPage - 1);
               }}
             >
               Previous
-            </a>
+            </button>
           </li>
           {[...Array(5)].map((x, i) => {
             return (
               <li className="page-item" key={i}>
-                <a
-
+                <button
                   className={i === currPage ? "page-link active" : "page-link"}
-
                   onClick={() => {
                     updatePage(i);
                   }}
                 >
                   {i + 1}
-                </a>
+                </button>
               </li>
             );
           })}
           <li className="page-item">
-            <a
+            <button
               className={currPage >= 4 ? "page-link disabled" : "page-link"}
               onClick={() => {
                 updatePage(currPage + 1);
               }}
             >
               Next
-            </a>
+            </button>
           </li>
         </ul>
       </nav>

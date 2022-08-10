@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import React from "react";
 import { useCookies } from "react-cookie";
+// import {useNavigate} from "react-router-dom"
 
 export const OrderContext = createContext();
 
@@ -16,15 +17,14 @@ const OrderProvider = (props) => {
   const [pagedOrder, setPagedOrder] = useState([]);
   const [ticketSum, setTicketSum] = useState([]);
   const [updateValues, setUpdateValues] = useState(false);
-  const [isAuth, setIsAuth] = useState(false);
   const [cookies, setCookie, removeCookie] = useCookies();
+  // const navigate = useNavigate();
+
 
   useEffect(() => {
-    console.log(cookies);
-    setIsAuth(cookies["JSESSIONID"] !== "undefined")
-    console.log(isAuth);
-    if (isAuth) {
-      console.log("cookies read: ", cookies);
+    // console.log(cookies);
+    if ((cookies["JSESSIONID"] !== "undefined") && (cookies.hasOwnProperty('JSESSIONID'))) {
+      // console.log("cookies read: ", cookies);
       axios
         .all([
           // these GET requests are for when I look at the page on my iPad
@@ -51,7 +51,8 @@ const OrderProvider = (props) => {
         )
         .catch((error) => console.log(error));
     } 
-  }, [updateValues, cookies, isAuth]);
+  }, [updateValues, cookies]);
+
 
   const value = {
     order,
@@ -69,7 +70,6 @@ const OrderProvider = (props) => {
     ticketSum,
     setTicketSum,
     removeCookie,
-    isAuth
   };
 
   return (

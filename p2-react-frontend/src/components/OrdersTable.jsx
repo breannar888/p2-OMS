@@ -1,18 +1,13 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { OrderItems } from "./OrderItems";
 import { OrderState } from "../context/OrderContext";
-import { useNavigate } from "react-router-dom";
 
 export const OrdersTable = () => {
 
-  const {order, isAuth} = OrderState();
+  const {order} = OrderState();
 
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    // if (!isAuth) {navigate("../")}
-  }
-  )
+
 
   return (
     <main className="container col-9">

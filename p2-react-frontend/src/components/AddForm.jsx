@@ -8,10 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorMessage } from "./ErrorMessage";
 
 export const AddForm = () => {
-  const { menu, ticket, updateValues, setUpdateValues, ticketSum, isAuth } = OrderState();
-  // console.log(menu);
-  // console.log(ticket);
-  // console.log(ticketSum);
+  const { menu, ticket, updateValues, setUpdateValues, ticketSum } = OrderState();
   const navigate = useNavigate();
   const [ticketNew, setTicketNew] = useState(true)
   const [itemPrice, setItemPrice] = useState(0);
@@ -56,8 +53,7 @@ export const AddForm = () => {
 
     let totalPrice = itemPrice + ticketPrice
     price.current.value = totalPrice.toFixed(2);
-    // if (!isAuth) {navigate("../")}
-  }, [itemPrice, ticketPrice, isAuth, navigate])
+  }, [itemPrice, ticketPrice])
 
 
   const onSubmit = async (data) => {
@@ -74,7 +70,6 @@ export const AddForm = () => {
         .then((res) => (ticketIDValue = res.data.ticketID));
     }
 
-    // await axios.post("http://10.0.0.50:8080/order/", {
     await axios
       .post("http://localhost:8080/order/", {
         menu: { menuID: menuIDValue },
@@ -114,15 +109,11 @@ export const AddForm = () => {
                 onChange={ticketChange}
               >
                 <option value="new">(Add ticket)</option>
-                {ticket.map((ticket) => {
-                  return (
-                    <>
-                      <option key={ticket.ticketID} value={ticket.ticketID}>
-                        {ticket.ticketName}
-                      </option>
-                    </>
-                  );
-                })}
+                {ticket.map((ticket) => (
+                  <option key={ticket.ticketID} value={ticket.ticketID}>
+                    {ticket.ticketName}
+                  </option>
+                ))}
               </select>
             </div>
           </div>

@@ -1,20 +1,16 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { OrderState } from "../context/OrderContext";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export const OrderItems = ({ order }) => {
-  const { updateValues, setUpdateValues, menu, isAuth } = OrderState();
+  const { updateValues, setUpdateValues, menu } = OrderState();
   const [toggle, setToggle] = useState(false);
-  const navigate = useNavigate();
 
   const menuItemRef = useRef();
   const notesRef = useRef();
 
-  useEffect(() => {
-    if (!isAuth) {navigate("../")}
-  }
-  )
+ 
+  
   const updateStatus = async () => {
     try {
       axios
