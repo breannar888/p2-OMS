@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { OrderState } from "../context/OrderContext";
@@ -9,7 +9,8 @@ import { ErrorMessage } from "./ErrorMessage";
 
 export const Login = () => {
   const navigate = useNavigate();
-  const { setCookie } = OrderState();
+  const { setCookie, removeCookie } = OrderState();
+  const [loginError, setloginError] = useState();
 
   const loginSchema = Yup.object().shape({
     username: Yup.string()
@@ -39,11 +40,14 @@ export const Login = () => {
         console.log(resp.data);
         if (resp.status === 200) {
           setCookie("JSESSIONID", resp.data.sessionID);
-          setCookie("Authorities", resp.data.authorities);
+          //setCookie("Authorities", resp.data.authorities);
           navigate("../add");
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setloginError(true);
+        console.log(err);
+      });
   };
 
   return (
@@ -72,6 +76,11 @@ export const Login = () => {
             />
             <ErrorMessage>{errors.password?.message}</ErrorMessage>
           </div>
+          {loginError ? (
+            <ErrorMessage>Invalid username or password. Try again</ErrorMessage>
+          ) : (
+            <></>
+          )}
           <div className="form-group p-2">
             <button type="submit" className="btn" id="submit">
               Submit
