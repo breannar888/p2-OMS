@@ -1,22 +1,38 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useRef } from "react";
 import { OrderState } from "../context/OrderContext";
-import { useCookies } from "react-cookie";
+import { useForm } from "react-hook-form";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { ErrorMessage } from "./ErrorMessage";
 
 export const Login = () => {
   const navigate = useNavigate();
-  const { cookies, setCookie } = OrderState();
+  const { setCookie } = OrderState();
 
-  const userRef = useRef();
-  const passRef = useRef();
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const loginSchema = Yup.object().shape({
+    username: Yup.string()
+      .max(35, "Too long! Must be shorter than 35 characters")
+      .required("Username required"),
+    password: Yup.string()
+      .max(65, "Too long! Must be shorter than 65 characters")
+      .required("Password required"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(loginSchema),
+  });
+
+  const onSubmit = (data) => {
     axios
       .post("http://localhost:8080/login", {
-        username: userRef.current.value,
-        password: passRef.current.value,
+        username: data.username,
+        password: data.password,
         enabled: true,
       })
       .then((resp) => {
@@ -34,25 +50,27 @@ export const Login = () => {
     <div className="row">
       <div className="col-7 login container p-5 rounded-2">
         <h2>Login</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group p-2">
             <input
               name="username"
-              ref={userRef}
+              {...register("username")}
               className="form-control"
               placeholder="Username"
               id="username"
             />
+            <ErrorMessage>{errors.username?.message}</ErrorMessage>
           </div>
           <div className="form-group p-2">
             <input
               type="password"
-              ref={passRef}
+              {...register("password")}
               name="password"
               className="form-control"
               placeholder="Password"
               id="password"
             />
+            <ErrorMessage>{errors.password?.message}</ErrorMessage>
           </div>
           <div className="form-group p-2">
             <button type="submit" className="btn" id="submit">
