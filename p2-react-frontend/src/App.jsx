@@ -1,5 +1,11 @@
-import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
-import "./index.css";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  NavLink,
+} from "react-router-dom";
+import "./styles.css";
+import "./dark.css";
 import {
   Login,
   AddForm,
@@ -11,16 +17,21 @@ import {
   AddMenuItem,
 } from "./components/";
 import OrderProvider from "./context/OrderContext";
-import { CookiesProvider } from "react-cookie";
+// import { CookiesProvider } from "react-cookie";
+// import useDarkMode from 'use-dark-mode';
 import PrivateRoutes from "./components/PrivateRoutes";
 import AdminRoutes from "./components/AdminRoutes";
 
 function App() {
+  // const darkMode = useDarkMode(false);
+
   return (
     <div className="row">
       <OrderProvider>
         <BrowserRouter>
           <NavSidebar>
+            {/* <button type="button" onClick={darkMode.disable}>☀</button>
+            <button type="button" onClick={darkMode.enable}>☾</button> */}
             <NavLink to="/add" className="nav-link link-dark">
               Add Orders
             </NavLink>

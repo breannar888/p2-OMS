@@ -52,7 +52,7 @@ export const Login = () => {
 
   return (
     <div className="row">
-      <div className="col-7 login container p-5 rounded-2">
+      <div className="col-7 container p-5 rounded-2" id="login">
         <h2>Login</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group p-2">
