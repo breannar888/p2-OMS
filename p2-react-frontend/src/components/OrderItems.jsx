@@ -96,7 +96,7 @@ export const OrderItems = ({ order }) => {
       )}
       {toggle ? (
         <td>
-          <input name="notes" ref={notesRef} />
+          <input name="notes" ref={notesRef} className="form-control" />
         </td>
       ) : (
         <td>{order.notes}</td>
