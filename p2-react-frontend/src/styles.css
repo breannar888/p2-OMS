@@ -78,6 +78,13 @@ h1 {
   padding: 7%;
 }
 
+.loginToggle {
+  display: inline-block;
+  padding: 18px !important;
+  width: auto;
+  margin-left: 50px;
+}
+
 #colorToggle i {
   font-size: 2vw;
   vertical-align: middle;

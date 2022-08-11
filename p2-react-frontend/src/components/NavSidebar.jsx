@@ -49,6 +49,16 @@ export const NavSidebar = ({ children }) => {
       </aside>
     );
   } else {
-    <></>;
+    return (
+        <span id="colorToggle" className="loginToggle">
+          {console.log("logged out")}
+          <span onClick={darkMode.toggle}>
+            {darkMode.value ?
+              (<>Set light mode <i className="material-symbols-outlined">light_mode</i></>) :
+              (<>Set dark mode <i className="material-symbols-outlined">dark_mode</i></>)
+            }
+          </span>
+        </span>
+    )
   }
 };
