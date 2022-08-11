@@ -1,0 +1,136 @@
+ /* creates css variables */
+ html {
+   --dmLightBlue: #476573;
+   --dmMediumBlue: #114f5e;
+   --dmDarkBlue: #011824;
+   --dmYellow: #805c01;
+   --dmOrange: #7d4300;
+   --dmBackground: #313131;
+   --dmDarkGray: #464646;
+ }
+
+ /* transition to light mode */
+ .light-mode {
+   transition: all 0.3s ease;
+ }
+
+ /* sets bkgd/text color of page, and transitions to dark mode */
+ .dark-mode {
+   background-color: var(--dmBackground);
+   color: whitesmoke;
+   transition: all 0.3s ease;
+ }
+
+ /* set bkgd/text color of input elements */
+ .dark-mode input,
+ .dark-mode select,
+ .dark-mode textarea,
+ .dark-mode input:enabled,
+ .dark-mode textarea:enabled {
+   background-color: var(--dmBackground);
+   color: whitesmoke;
+ }
+
+ /* changes color of dropdown arrow */
+ .dark-mode select {
+   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23f5f5f5' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3E%3C/svg%3E");
+ }
+
+ /* sets bkgd/text color of "Total $" box  */
+ .dark-mode .input-group-text {
+   background-color: var(--dmYellow);
+   color: whitesmoke;
+ }
+
+ /* sets bkgd/text color of submit buttons */
+ .dark-mode #submit {
+   background-color: var(--dmYellow) !important;
+   color: whitesmoke;
+ }
+
+ /* sets bkgd color of disabled input box */
+ .dark-mode input:disabled {
+   background-color: var(--dmDarkGray);
+ }
+
+ /* sets bkgd color of table header */
+ .dark-mode thead {
+   background-color: var(--dmYellow);
+ }
+
+ /* sets text color of table */
+ .dark-mode table {
+   color: whitesmoke;
+ }
+
+ /* sets bkgd/text color of menu item cards */
+ .dark-mode .card-body {
+   background-color: var(--dmBackground);
+   border-radius: 0px 0px 5px 5px;
+ }
+
+ /* sets bkgd/text color of "Add New Item" button */
+ .dark-mode #manage-add {
+   background-color: var(--dmYellow);
+   color: whitesmoke;
+ }
+
+ /* sets bkgd/text color of pagination buttons */
+ .dark-mode .page-link {
+   background-color: var(--dmBackground);
+   color: whitesmoke;
+ }
+
+ .dark-mode .page-link:hover {
+   background-color: var(--dmDarkGray);
+ }
+
+ .dark-mode .page-link.active {
+   background-color: var(--dmLightBlue);
+   border: #DFE2E6 1px solid;
+ }
+
+ .dark-mode .page-link.disabled {
+   color: gray;
+ }
+
+ /* sets bkgd/text color of login form */
+ .dark-mode #login {
+   background-color: var(--dmLightBlue);
+   box-shadow: 0px 0px 10px var(--dmMediumBlue);
+ }
+
+ /* sets text color of login error message */
+ .dark-mode .error-msg {
+   color: lightsalmon;
+ }
+
+ /* sets bkgd color of "Order Management System" header */
+ .dark-mode #header {
+   background-color: var(--dmDarkBlue);
+ }
+
+ /* sets bkgd color of navigation sidebar */
+ .dark-mode #nav {
+   background-color: var(--dmLightBlue) !important;
+ }
+
+ .dark-mode #colorToggle {
+  background-color: var(--dmMediumBlue);
+}
+
+ /* sets text color of navigation links */
+ .dark-mode .nav-link,
+ .dark-mode #colorToggle i {
+   color: whitesmoke !important;
+ }
+
+ .dark-mode .nav-item:hover,
+ .dark-mode #colorToggle span:hover {
+   color: #DFE2E6 !important;
+   text-shadow: 0px 4px 4px #00000080;
+ }
+
+ .dark-mode .nav .active:hover {
+   color: #DFE2E6 !important;
+ }
