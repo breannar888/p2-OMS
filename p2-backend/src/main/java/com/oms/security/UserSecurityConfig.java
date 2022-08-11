@@ -45,6 +45,6 @@ public class UserSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().mvcMatchers("/**").permitAll().and().formLogin().disable();
 
 		// logout
-		http.logout().deleteCookies("JSESSIONID").invalidateHttpSession(true).clearAuthentication(true).deleteCookies("JSESSIONID");
+		http.logout().deleteCookies("JSESSIONID").invalidateHttpSession(true).clearAuthentication(true);
 	}
 }
