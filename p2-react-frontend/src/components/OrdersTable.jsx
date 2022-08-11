@@ -2,12 +2,10 @@ import React from "react";
 import { OrderItems } from "./OrderItems";
 import { OrderState } from "../context/OrderContext";
 
+
 export const OrdersTable = () => {
 
   const {order} = OrderState();
-
-
-
 
   return (
     <main className="container col-9">

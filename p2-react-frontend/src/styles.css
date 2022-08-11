@@ -10,9 +10,11 @@ html {
   --darkBlue: #023047;
   --yellow: #ffb703;
   --orange: #fb8500;
+
   --serifStack: "Roboto Serif", serif;
   --sansStack: "Roboto Flex", sans-serif;
 }
+
 
 body {
   font-family: var(--sansStack);
@@ -161,3 +163,6 @@ table {
 #searchLabel {
     font-weight: 600;
 }
+
+
+

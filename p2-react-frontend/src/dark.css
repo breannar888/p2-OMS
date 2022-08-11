@@ -1,0 +1,44 @@
+html {
+  --dmLightBlue: #476573;
+  --dmMediumBlue: #114f5e;
+  --dmDarkBlue: #011824;
+  --dmYellow: #805c01;
+  --dmOrange: #7d4300;
+}
+
+.light-mode {
+  transition: all 0.3s ease;
+}
+
+.dark-mode {
+  background-color: rgb(49, 49, 49);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.dark-mode input, .dark-mode select, .dark-mode textarea {
+  background-color: rgb(49, 49, 49);
+  color: white;
+}
+
+.dark-mode .input-group-text {
+  background-color: var(--dmYellow);
+  color: white;
+}
+
+.dark-mode button[type="submit"] {
+  background-color: var(--dmYellow) !important;
+  color: white;
+}
+
+.dark-mode input:disabled {
+  background-color: rgb(70, 70, 70);
+}
+
+.dark-mode thead {
+  background-color: var(--dmYellow);
+}
+
+.dark-mode table {
+  color: white;
+}
