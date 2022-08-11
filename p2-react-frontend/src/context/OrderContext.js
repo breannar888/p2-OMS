@@ -20,7 +20,6 @@ const OrderProvider = (props) => {
   const [cookies, setCookie, removeCookie] = useCookies();
 
   useEffect(() => {
-    console.log("cookies read: ", cookies);
     if ((cookies["JSESSION"] !== "undefined") && (cookies.hasOwnProperty('JSESSION'))) {
       console.log("cookies read: ", cookies);
       axios
