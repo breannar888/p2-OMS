@@ -1,19 +1,24 @@
+/* imports fonts and symbols */
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0..1,0");
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@100..900&display=swap");
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@100..800&display=swap");
 
+/* creates css variables */
 html {
   --lightBlue: #8ecae6;
   --mediumBlue: #219ebc;
   --darkBlue: #023047;
   --yellow: #ffb703;
   --orange: #fb8500;
+
   --serifStack: "Roboto Serif", serif;
   --sansStack: "Roboto Flex", sans-serif;
+
 }
 
+/* sets font-family, weight, and alignment of various elements*/
 body {
   font-family: var(--sansStack);
 }
@@ -28,12 +33,36 @@ h2 {
   font-weight: 400;
 }
 
-ul.nav {
+aside {
+  font-family: var(--sansStack);
+  font-weight: 300;
+  min-height: 100vh;
+}
+
+table {
+  font-family: var(--sansStack);
+}
+
+.btn {
+  font-family: var(--sansStack);
+}
+
+h1 {
+  text-align: center;
+}
+
+#searchLabel {
+  font-weight: 600;
+}
+
+/* sets bkgd color of navigation sidebar */
+#nav {
   background-color: var(--lightBlue) !important;
   font-size: 1.75vw;
 }
 
-.header {
+/* sets bkgd color of "Order Management System" header */
+#header {
   background-color: var(--darkBlue);
   padding: 15px;
   text-shadow: 0px 4px 4px black;
@@ -43,56 +72,78 @@ ul.nav {
   font-family: var(--serifStack);
 }
 
-aside {
-    font-family: var(--sansStack);
-    font-weight: 300;
-    min-height: 100vh ;
-
+#colorToggle {
+  background-color: var(--mediumBlue);
+  font-size: 1.5vw;
+  padding: 7%;
 }
 
-h1 {
-  text-align: center;
+.loginToggle {
+  display: inline-block;
+  padding: 18px !important;
+  width: auto;
+  margin-left: 50px;
 }
 
-.nav-item:hover {
-  color: var(--darkBlue) !important;
+#colorToggle i {
+  font-size: 2vw;
+  vertical-align: middle;
+}
+
+/* sets text color of navigation links */
+.nav-item:hover,
+#colorToggle span:hover {
+  color: var(--darkBlue) ;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-variation-settings: "FILL" 1;
+  transition: all 0.3s ease;
+
 }
 
 .nav .active {
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   color: var(--darkBlue) !important;
   font-weight: 700;
+  transition: all 0.3s ease;
 }
 
 .nav .active:hover {
   color: var(--darkBlue) !important;
 }
 
+/* adds margin for main portion of page */
 main {
   margin-top: 20px;
 }
 
+/* sets bkgd color of submit buttons */
 #submit {
   background-color: var(--yellow);
 }
 
+/* adds margin for form groups (label and input box together) */
 .form-group {
   margin-bottom: 15px;
 }
 
+/* sets bkgd/text color of "Total $" box  */
 .input-group-text {
   background-color: var(--yellow);
 }
 
+/* sets bkgd color of table header */
 thead {
   background-color: var(--yellow);
 }
 
-i, .nav-link {
+/* makes user's cursor appear as a selection hand */
+i,
+.nav-link,
+#colorToggle span {
   cursor: pointer;
 }
 
+/* changes color of icons when hovering over them */
 .trash:hover {
   font-variation-settings: "FILL" 1;
   color: var(--orange);
@@ -107,46 +158,43 @@ i, .nav-link {
   color: var(--yellow);
 }
 
-table {
-  font-family: var(--sansStack);
-}
-
-.btn {
-  font-family: var(--sansStack);
-}
-
-.manage-edit {
-  background-color: var(--orange);
-}
-.manage-add {
-  background-color: var(--yellow);
-}
-
-.card {
-  font-family: var(--sansStack);
-}
-.edit:hover {
-  font-variation-settings: "FILL" 1;
-  color: var(--yellow);
-}
-.login {
-  background-color: var(--lightBlue);
-  margin-top: 30px;
-}
 .done:hover {
   font-variation-settings: "FILL" 1;
   color: var(--yellow);
 }
+
 .cancel:hover {
   font-variation-settings: "FILL" 1;
   color: var(--orange);
 }
+
+/* sets bkgd/text color of "Add New Item" button */
+#manage-add {
+  background-color: var(--yellow);
+}
+
+/* sets bkgd/text color of menu item cards */
+.card {
+  font-family: var(--sansStack);
+}
+
+/* sets bkgd/text color of login form */
+#login {
+  background-color: var(--lightBlue);
+  margin-top: 30px;
+  box-shadow: 0px 0px 10px var(--mediumBlue);
+}
+
+/* sets text color of login error message */
 .error-msg {
   color: red;
 }
+
+/* sets bkgd/text color of pagination buttons */
 .page-link {
   color: var(--darkBlue);
 }
+
 .page-link:hover {
   color: var(--mediumBlue);
 }
@@ -154,10 +202,7 @@ table {
 .page-link.active {
   background-color: var(--lightBlue);
   border: var(--lightBlue) 1px solid;
-  color: var(--darkBlue); 
+  color: var(--darkBlue);
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-weight: 700;
-}
-#searchLabel {
-    font-weight: 600;
 }

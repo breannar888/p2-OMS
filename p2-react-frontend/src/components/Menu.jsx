@@ -37,7 +37,7 @@ export const Menu = () => {
         <h1>Manage Menu</h1>
       </div>
       <div className="row">
-        <button className="btn manage-add col-3" onClick={() => navigate("../menu/add")}>Add New Item</button>
+        <button className="btn col-3" id="manage-add" onClick={() => navigate("../menu/add")}>Add New Item</button>
         <form className="col-8">
         <input className="form-control " placeholder='Search Items' onChange={searchResult} />
         </form>
