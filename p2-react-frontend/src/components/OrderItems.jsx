@@ -9,8 +9,6 @@ export const OrderItems = ({ order }) => {
   const menuItemRef = useRef();
   const notesRef = useRef();
 
- 
-  
   const updateStatus = async () => {
     try {
       axios
