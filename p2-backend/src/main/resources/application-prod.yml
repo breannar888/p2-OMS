@@ -1,11 +1,11 @@
 spring:  
-  sql:
-    init:
-      platform: h2
-  # datasource:
-    # url: jdbc:mysql://localhost:3306/restaurant
-    # username: root
-    # password: 12345678
+  #sql:
+   # init:
+    #  platform: h2
+  datasource:
+    url: jdbc:mysql://localhost:3306/oms
+    username: root
+    password: newtable
   jpa:
     show-sql: true
     hibernate:

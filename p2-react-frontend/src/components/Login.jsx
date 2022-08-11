@@ -37,9 +37,9 @@ export const Login = () => {
         enabled: true,
       })
       .then((resp) => {
-        console.log(resp.data);
         if (resp.status === 200) {
-          setCookie("JSESSIONID", resp.data.sessionID);
+          console.log(resp.data);
+          setCookie("JSESSION", resp.data.sessionID);
           setCookie("authorities", resp.data.authorities);
           navigate("../add");
         }

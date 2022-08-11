@@ -18,19 +18,13 @@ const OrderProvider = (props) => {
   const [ticketSum, setTicketSum] = useState([]);
   const [updateValues, setUpdateValues] = useState(false);
   const [cookies, setCookie, removeCookie] = useCookies();
-  // const navigate = useNavigate();
-
 
   useEffect(() => {
-    // console.log(cookies);
-    if ((cookies["JSESSIONID"] !== "undefined") && (cookies.hasOwnProperty('JSESSIONID'))) {
-      // console.log("cookies read: ", cookies);
+    console.log("cookies read: ", cookies);
+    if ((cookies["JSESSION"] !== "undefined") && (cookies.hasOwnProperty('JSESSION'))) {
+      console.log("cookies read: ", cookies);
       axios
         .all([
-          // these GET requests are for when I look at the page on my iPad
-          // axios.get("http://10.0.0.50:8080/order"),
-          // axios.get("http://10.0.0.50:8080/menu"),
-          // axios.get("http://10.0.0.50:8080/ticket"),
           axios.get("http://localhost:8080/order"),
           axios.get("http://localhost:8080/menu"),
           axios.get("http://localhost:8080/ticket"),

@@ -25,10 +25,14 @@ export const OrdersLog = () => {
     searchQuery = event.target.value;
     let filter = filterBox.current.value;
     let searchValue;
-    const currentResults = pagedOrder.filter((oneOrder) => {
-      if (searchQuery === "") {
+
+    if (searchQuery === "") {
+      pagedOrder.map((oneOrder) => {
         return oneOrder;
-      } else {
+      });
+      setResults(pagedOrder);
+    } else {
+      const currentResults = order.filter((oneOrder) => {
         switch (filter) {
           case "ticketID":
             searchValue = oneOrder.ticket.ticketID;
@@ -44,9 +48,9 @@ export const OrdersLog = () => {
             break;
         }
         return searchValue.toString().toLowerCase().includes(searchQuery);
-      }
-    });
-    setResults(currentResults);
+      });
+      setResults(currentResults);
+    }
   };
 
   const updatePage = (page) => {

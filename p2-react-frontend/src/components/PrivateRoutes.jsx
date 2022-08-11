@@ -5,7 +5,7 @@ import { OrderState } from "../context/OrderContext";
 const PrivateRoutes = () => {
   const { cookies } = OrderState();
 
-  return cookies.JSESSIONID ? <Outlet /> : <Navigate to="/" />;
+  return cookies.JSESSION ? <Outlet /> : <Navigate to="/" />;
 };
 
 export default PrivateRoutes;
