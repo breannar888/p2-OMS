@@ -3,7 +3,15 @@ import { OrderState } from "../context/OrderContext";
 import axios from "axios";
 
 export const OrdersLog = () => {
-  const { order, menu, ticket, pagedOrder, setPagedOrder } = OrderState();
+  const {
+    order,
+    menu,
+    ticket,
+    pagedOrder,
+    setPagedOrder,
+    updateValues,
+    setUpdateValues,
+  } = OrderState();
   const [results, setResults] = useState(order);
   const [filterType, setFilterType] = useState("ticketID");
   let searchQuery = "";
@@ -58,6 +66,21 @@ export const OrdersLog = () => {
     axios.get(`http://localhost:8080/order/log?page=${page}`).then((resp) => {
       setPagedOrder(resp.data);
     });
+  };
+
+  const handleDelete = async (id) => {
+    console.log(id);
+    try {
+      axios
+        .delete(`http://localhost:8080/order/${id}`)
+        .then((res) => {
+          if (res.status === 204) {
+            setUpdateValues(!updateValues);
+          }
+        });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -116,7 +139,12 @@ export const OrdersLog = () => {
               <td>{order.status.statusCode}</td>
               <td>{order.menu.price}</td>
               <td>
-                <i className="material-symbols-outlined trash">
+                <i
+                  className="material-symbols-outlined trash"
+                  onClick={() => {
+                    handleDelete(order.orderID);
+                  }}
+                >
                   delete_forever
                 </i>
               </td>
