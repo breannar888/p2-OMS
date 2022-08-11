@@ -33,12 +33,10 @@ export const NavSidebar = ({ children }) => {
         <div id="colorToggle">
           {console.log(darkMode.value)}
           <span onClick={darkMode.toggle}>
-            Set light mode
-            <i className="material-symbols-outlined">light_mode</i>
-          </span>
-          <span onClick={darkMode.toggle}>
-            Set dark mode
-            <i className="material-symbols-outlined">dark_mode</i>
+            {darkMode.value ?
+              (<>Set light mode <i className="material-symbols-outlined">light_mode</i></>) :
+              (<>Set dark mode <i className="material-symbols-outlined">dark_mode</i></>)
+            }
           </span>
         </div>
         <ul className="nav d-block h-100" id="nav">
