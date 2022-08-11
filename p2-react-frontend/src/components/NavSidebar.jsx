@@ -1,7 +1,6 @@
 import React, {Children} from "react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
 import { OrderState } from "../context/OrderContext";
 
 export const NavSidebar = ({ children }) => {
@@ -12,12 +11,11 @@ export const NavSidebar = ({ children }) => {
     await fetch("http://localhost:8080/logout", {
       mode: "no-cors",
     }).then(() => {
-      removeCookie("JSESSIONID", undefined);
-      removeCookie("Authorities");
+      setCookie("JSESSION", undefined);
+      removeCookie("authorities");
       navigate("/");
     });
   };
-
 
 // ROLE_USER
 // ROLE_MANAGER 
