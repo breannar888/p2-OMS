@@ -10,7 +10,6 @@ export const NavSidebar = ({ children }) => {
   const navigate = useNavigate();
   const { cookies, setCookie, removeCookie } = OrderState();
   const [isOpen, setIsOpen] = useState(false);
-  const [close, setClose] = useState();
 
   const logout = async () => {
     await fetch("http://localhost:8080/logout", {
@@ -40,8 +39,8 @@ export const NavSidebar = ({ children }) => {
         <aside
           className={
             isOpen
-              ? "col-3 col-lg-2 col-sm-3 nav-menu"
-              : "col-3 col-lg-2 col-sm-3 openMobile"
+              ? "col-3 col-lg-2 col-sm-3 openMobile"
+              : "col-3 col-lg-2 col-sm-3 nav-menu"
           }
         >
           <div id="header">
