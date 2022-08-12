@@ -30,7 +30,6 @@ export const NavSidebar = ({ children }) => {
           Order <br /> Management <br /> System
         </div>
         <div id="colorToggle">
-          {console.log(darkMode.value)}
           <span onClick={darkMode.toggle}>
             {darkMode.value ?
               (<>Set light mode <i className="material-symbols-outlined">light_mode</i></>) :
@@ -50,7 +49,6 @@ export const NavSidebar = ({ children }) => {
   } else {
     return (
         <div id="colorToggle" className="loginToggle">
-          {console.log("logged out")}
           <span onClick={darkMode.toggle}>
             {darkMode.value ?
               (<>Set light mode <i className="material-symbols-outlined">light_mode</i></>) :

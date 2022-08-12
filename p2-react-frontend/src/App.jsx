@@ -17,21 +17,17 @@ import {
   AddMenuItem,
 } from "./components/";
 import OrderProvider from "./context/OrderContext";
-// import { CookiesProvider } from "react-cookie";
-// import useDarkMode from 'use-dark-mode';
+import { useTransition, animated } from 'react-spring'
 import PrivateRoutes from "./components/PrivateRoutes";
 import AdminRoutes from "./components/AdminRoutes";
 
 function App() {
-  // const darkMode = useDarkMode(false);
 
   return (
     <div className="row">
       <OrderProvider>
         <BrowserRouter>
           <NavSidebar>
-            {/* <button type="button" onClick={darkMode.disable}>☀</button>
-            <button type="button" onClick={darkMode.enable}>☾</button> */}
             <NavLink to="/add" className="nav-link link-dark">
               Add Orders
             </NavLink>
@@ -50,19 +46,21 @@ function App() {
             </NavLink>
           </NavSidebar>
 
-          <Routes>
-            <Route element={<PrivateRoutes />}>
-              <Route path="/add" element={<AddForm />}></Route>
-              <Route path="/current" element={<OrdersTable />}></Route>
-              <Route element={<AdminRoutes />}>
-                <Route path="/menu" element={<Menu />}></Route>
-                <Route path="/menu/add" element={<AddMenuItem />}></Route>
+          {/* <animated.div> */}
+            <Routes>
+              <Route element={<PrivateRoutes />}>
+                <Route path="/add" element={<AddForm />}></Route>
+                <Route path="/current" element={<OrdersTable />}></Route>
+                <Route element={<AdminRoutes />}>
+                  <Route path="/menu" element={<Menu />}></Route>
+                  <Route path="/menu/add" element={<AddMenuItem />}></Route>
+                </Route>
+                <Route path="/log" element={<OrdersLog />}></Route>
               </Route>
-              <Route path="/log" element={<OrdersLog />}></Route>
-            </Route>
-            <Route path="/" exact element={<Login />}></Route>
-            <Route path="/*" element={<ErrorPage />}></Route>
-          </Routes>
+              <Route path="/" exact element={<Login />}></Route>
+              <Route path="/*" element={<ErrorPage />}></Route>
+            </Routes>
+          {/* </animated.div> */}
         </BrowserRouter>
       </OrderProvider>
     </div>
