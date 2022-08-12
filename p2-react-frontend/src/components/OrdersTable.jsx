@@ -8,8 +8,7 @@ export const OrdersTable = () => {
   const {order} = OrderState();
 
   return (
-    <main className="container col-9">
-      <h1>Current Orders</h1>
+<>      <h1>Current Orders</h1>
       <div className="row container">
         <div className="col ">
           <h2>New Orders</h2>
@@ -72,6 +71,6 @@ export const OrdersTable = () => {
           </table>
         </div>
       </div>
-    </main>
+</>
   );
 };

@@ -84,7 +84,7 @@ export const OrdersLog = () => {
   };
 
   return (
-    <main className="container col-9 p-3">
+<>
       <h1>Orders Log</h1>
       <form className="row m-3">
         <div className="col-1 align-self-center" id="searchLabel">
@@ -190,7 +190,7 @@ export const OrdersLog = () => {
           </li>
         </ul>
       </nav>
-    </main>
+</>
   );
 };
 

@@ -3,6 +3,7 @@ import {
   Routes,
   Route,
   NavLink,
+  useLocation,
 } from "react-router-dom";
 import "./styles.css";
 import "./dark.css";
@@ -17,21 +18,17 @@ import {
   AddMenuItem,
 } from "./components/";
 import OrderProvider from "./context/OrderContext";
-// import { CookiesProvider } from "react-cookie";
-// import useDarkMode from 'use-dark-mode';
+import { useTransition, animated } from 'react-spring'
 import PrivateRoutes from "./components/PrivateRoutes";
 import AdminRoutes from "./components/AdminRoutes";
 
 function App() {
-  // const darkMode = useDarkMode(false);
 
   return (
-    <div className="row">
+    <div className="row overflow-hidden">
       <OrderProvider>
         <BrowserRouter>
           <NavSidebar>
-            {/* <button type="button" onClick={darkMode.disable}>☀</button>
-            <button type="button" onClick={darkMode.enable}>☾</button> */}
             <NavLink to="/add" className="nav-link link-dark">
               Add Orders
             </NavLink>
@@ -50,19 +47,8 @@ function App() {
             </NavLink>
           </NavSidebar>
 
-          <Routes>
-            <Route element={<PrivateRoutes />}>
-              <Route path="/add" element={<AddForm />}></Route>
-              <Route path="/current" element={<OrdersTable />}></Route>
-              <Route element={<AdminRoutes />}>
-                <Route path="/menu" element={<Menu />}></Route>
-                <Route path="/menu/add" element={<AddMenuItem />}></Route>
-              </Route>
-              <Route path="/log" element={<OrdersLog />}></Route>
-            </Route>
-            <Route path="/" exact element={<Login />}></Route>
-            <Route path="/*" element={<ErrorPage />}></Route>
-          </Routes>
+          <AnimatedRoutes />
+
         </BrowserRouter>
       </OrderProvider>
     </div>
@@ -70,3 +56,35 @@ function App() {
 }
 
 export default App;
+
+const AnimatedRoutes = () => {
+  const location = useLocation();
+  const transitions = useTransition(location, {
+    config: { duration: 250 },
+    from:  { opacity: 0, x: -20 },
+    enter: { opacity: 1, x: 0 },
+    leave: { opacity: 0, x: 20 },
+    exitBeforeEnter: true,
+    reverse: location,
+
+  })
+
+  return transitions((props, item) => (
+      <animated.div className="container col-9 p-2 col-lg-10" style={props} >
+        <Routes location={item} >
+          <Route element={<PrivateRoutes />}>
+            <Route path="/add" element={<AddForm />}></Route>
+            <Route path="/current" element={<OrdersTable />}></Route>
+            <Route element={<AdminRoutes />}>
+              <Route path="/menu" element={<Menu />}></Route>
+              <Route path="/menu/add" element={<AddMenuItem />}></Route>
+            </Route>
+            <Route path="/log" element={<OrdersLog />}></Route>
+          </Route>
+          <Route path="/" exact element={<Login />}></Route>
+          <Route path="/*" element={<ErrorPage />}></Route>
+        </Routes>
+      </animated.div>
+    // </main>
+  ))
+}

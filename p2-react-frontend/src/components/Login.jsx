@@ -51,7 +51,6 @@ export const Login = () => {
   };
 
   return (
-    <div className="row">
       <div className="col-7 container p-5 rounded-2" id="login">
         <h2>Login</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -88,6 +87,5 @@ export const Login = () => {
           </div>
         </form>
       </div>
-    </div>
   );
 };
