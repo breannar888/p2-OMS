@@ -43,7 +43,6 @@ export const OrderItems = ({ order }) => {
   };
 
   const handleUpdate = async () => {
-    console.log(order.orderID);
     try {
       axios
         .put(`http://localhost:8080/order/${order.orderID}`, {
@@ -58,7 +57,6 @@ export const OrderItems = ({ order }) => {
           if (res.status === 200) {
             setUpdateValues(!updateValues);
             setToggle(false);
-            console.log(menu);
           }
         });
     } catch (err) {

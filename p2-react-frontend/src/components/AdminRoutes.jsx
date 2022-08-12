@@ -4,7 +4,6 @@ import { OrderState } from "../context/OrderContext";
 
 const AdminRoutes = () => {
     const { cookies } = OrderState();
-    console.log(cookies.authorities);
     const auth = cookies.authorities;
 
     return auth === 'ROLE_MANAGER' ? <Outlet /> : <Navigate to="/add" />;

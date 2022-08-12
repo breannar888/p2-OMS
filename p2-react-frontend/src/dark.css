@@ -134,3 +134,7 @@
  .dark-mode .nav .active:hover {
    color: #DFE2E6 !important;
  }
+
+ .dark-mode .nav-btn {
+  background-color: var(--dmDarkBlue);
+ }

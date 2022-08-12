@@ -73,8 +73,6 @@ const CardInfo = (data) => {
   const { updateValues, setUpdateValues } = OrderState();
   const itemRef = useRef();
   const priceRef = useRef();
-  // console.log(data.item);
-  // console.log(toggle);
 
   const handleUpdate = async () => {
     const menuItemInput = itemRef.current.value === "" ? data.item.menuItem : itemRef.current.value

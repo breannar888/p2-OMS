@@ -8,9 +8,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorMessage } from "./ErrorMessage";
 
 export const AddForm = () => {
-  const { menu, ticket, updateValues, setUpdateValues, ticketSum } = OrderState();
+  const { menu, ticket, updateValues, setUpdateValues, ticketSum } =
+    OrderState();
   const navigate = useNavigate();
-  const [ticketNew, setTicketNew] = useState(true)
+  const [ticketNew, setTicketNew] = useState(true);
   const [itemPrice, setItemPrice] = useState(0);
   const [ticketPrice, setTicketPrice] = useState(0);
   const addOrderSchema = Yup.object().shape({
@@ -32,6 +33,7 @@ export const AddForm = () => {
   const price = useRef();
 
   const ticketChange = (event) => {
+    console.log("ticket sum values:", ticketSum);
     if (event.target.value === "new") {
       setTicketNew(true);
       setTicketPrice(0);
@@ -45,7 +47,6 @@ export const AddForm = () => {
     const menuID = event.target.value * 1;
     const menuItem = menu.find((x) => x.menuID === menuID)?.price ?? 0.0;
     setItemPrice(menuItem);
-    // console.log(itemPrice);
   };
 
   useEffect(() => {
@@ -158,7 +159,6 @@ export const AddForm = () => {
         </div>
       </form>
     </>
-
   );
 };
 

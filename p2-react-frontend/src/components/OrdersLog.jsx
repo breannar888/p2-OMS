@@ -69,7 +69,6 @@ export const OrdersLog = () => {
   };
 
   const handleDelete = async (id) => {
-    console.log(id);
     try {
       axios
         .delete(`http://localhost:8080/order/${id}`)
@@ -86,11 +85,11 @@ export const OrdersLog = () => {
   return (
 <>
       <h1>Orders Log</h1>
-      <form className="row m-3">
-        <div className="col-1 align-self-center" id="searchLabel">
+      <form className="row m-3 row-col-auto">
+        <div className="col-10 col-sm-1 align-self-center" id="searchLabel">
           Search
         </div>
-        <div className="col-7">
+        <div className="col-10 col-sm-7">
           <select
             className="form-select"
             ref={searchBox}
@@ -105,7 +104,7 @@ export const OrdersLog = () => {
             }
           </select>
         </div>
-        <div className="col-4">
+        <div className="col-10 col-sm-4">
           <select
             className="form-select col-5"
             ref={filterBox}
