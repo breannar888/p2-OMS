@@ -80,7 +80,7 @@ export const AddForm = () => {
   };
 
   return (
-    <main className="container col-9 col-lg-10 p-3">
+    <>
       <h1>Add Order</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="row row-cols-1">
@@ -157,7 +157,8 @@ export const AddForm = () => {
           </button>
         </div>
       </form>
-    </main>
+    </>
+
   );
 };
 

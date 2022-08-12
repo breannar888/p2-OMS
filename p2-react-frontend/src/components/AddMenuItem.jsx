@@ -28,7 +28,7 @@ export const AddMenuItem = () => {
   }
 
   return (
-    <main className="container col-9 col-lg-10 p-3">
+<>
       <h1>Add Menu Item</h1>
       <form onSubmit={handleSubmit}>
         <div className="row">
@@ -51,6 +51,6 @@ export const AddMenuItem = () => {
         </div>
 
       </form>
-    </main>
+</>
   );
 };
