@@ -25,7 +25,6 @@ export const Menu = () => {
     setResults(currentResults);
   };
 
-  // console.log(menu);
   return (
     <main className="container col-9 col-lg-10 p-3">
       <div className="container">
