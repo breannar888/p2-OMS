@@ -25,7 +25,7 @@ import AdminRoutes from "./components/AdminRoutes";
 function App() {
 
   return (
-    <div className="row">
+    <div className="row overflow-hidden">
       <OrderProvider>
         <BrowserRouter>
           <NavSidebar>
@@ -73,28 +73,31 @@ export default App;
 const AnimatedRoutes = () => {
   const location = useLocation();
   const transitions = useTransition(location, {
-    from: { position: 'absolute', opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
+    from: {  position: "inherit", opacity: 0 },
+    enter: { position: "inherit", opacity: 1 },
+    leave: { position: "inherit", opacity: 0 },
+    exitBeforeEnter: true,
     reverse: location,
 
   })
 
   return transitions((props, item) => (
-    <animated.div style={props} >
-      <Routes location={item} >
-        <Route element={<PrivateRoutes />}>
-          <Route path="/add" element={<AddForm />}></Route>
-          <Route path="/current" element={<OrdersTable />}></Route>
-          <Route element={<AdminRoutes />}>
-            <Route path="/menu" element={<Menu />}></Route>
-            <Route path="/menu/add" element={<AddMenuItem />}></Route>
+    // <main className=" col-9 col-lg-10 p-0">
+      <animated.div className="container col-9 col-lg-10" style={props} >
+        <Routes location={item} >
+          <Route element={<PrivateRoutes />}>
+            <Route path="/add" element={<AddForm />}></Route>
+            <Route path="/current" element={<OrdersTable />}></Route>
+            <Route element={<AdminRoutes />}>
+              <Route path="/menu" element={<Menu />}></Route>
+              <Route path="/menu/add" element={<AddMenuItem />}></Route>
+            </Route>
+            <Route path="/log" element={<OrdersLog />}></Route>
           </Route>
-          <Route path="/log" element={<OrdersLog />}></Route>
-        </Route>
-        <Route path="/" exact element={<Login />}></Route>
-        <Route path="/*" element={<ErrorPage />}></Route>
-      </Routes>
-    </animated.div>
+          <Route path="/" exact element={<Login />}></Route>
+          <Route path="/*" element={<ErrorPage />}></Route>
+        </Routes>
+      </animated.div>
+    // </main>
   ))
 }
