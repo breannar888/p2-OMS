@@ -47,12 +47,6 @@ public class OrderController {
 		return service.save(order);
 	}
 
-	// findById
-	@GetMapping("/{id}")
-	public Object findById(@PathVariable int id, @RequestParam int page) {
-		return service.findByID(id);
-	}
-
 	// Update
 	@PutMapping("/{id}")
 	public Orders update(@RequestBody Orders order, @PathVariable int id) {
@@ -65,12 +59,4 @@ public class OrderController {
 		return service.delete(id);
 	}
 	
-	
-//	// Delete by Menu_ID
-//	@DeleteMapping("/menu/{id}")
-//	public ResponseEntity<Void> deleteByMenuID(@PathVariable int id) {
-//		return service.deleteByMenuid(id);
-//	}
-
-	// find by menuName
 }

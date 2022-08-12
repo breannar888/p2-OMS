@@ -50,9 +50,4 @@ public class OrderService {
 		return ResponseEntity.status(204).build();
 	}
 	
-	
-	//get by id
-	public Object findByID(int id) {
-		return repo.findById(id);
-	}
 }

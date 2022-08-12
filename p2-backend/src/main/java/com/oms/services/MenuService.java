@@ -13,7 +13,7 @@ import com.oms.data.MenuRepository;
 @Service
 public class MenuService {
 
-	private static final int DEFAULT_PAGE_SIZE = 10;
+	private static final int DEFAULT_PAGE_SIZE = 20;
 
 	@Autowired
 	MenuRepository repo;
@@ -47,10 +47,6 @@ public class MenuService {
 			throw new IllegalArgumentException("ID doesn't exist");
 		}
 	}
-
-	
-	//foreign key error - cannot delete menu item while being referenced
-	//in the orders table
 	
 	// delete
 	public ResponseEntity<Void> delete(int id) {
