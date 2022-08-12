@@ -3,6 +3,7 @@ import {
   Routes,
   Route,
   NavLink,
+  useLocation,
 } from "react-router-dom";
 import "./styles.css";
 import "./dark.css";
@@ -45,9 +46,9 @@ function App() {
               Orders Log
             </NavLink>
           </NavSidebar>
-
+          <AnimatedRoutes />
           {/* <animated.div> */}
-            <Routes>
+          {/* <Routes>
               <Route element={<PrivateRoutes />}>
                 <Route path="/add" element={<AddForm />}></Route>
                 <Route path="/current" element={<OrdersTable />}></Route>
@@ -59,7 +60,7 @@ function App() {
               </Route>
               <Route path="/" exact element={<Login />}></Route>
               <Route path="/*" element={<ErrorPage />}></Route>
-            </Routes>
+            </Routes> */}
           {/* </animated.div> */}
         </BrowserRouter>
       </OrderProvider>
@@ -68,3 +69,32 @@ function App() {
 }
 
 export default App;
+
+const AnimatedRoutes = () => {
+  const location = useLocation();
+  const transitions = useTransition(location, {
+    from: { position: 'absolute', opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+    reverse: location,
+
+  })
+
+  return transitions((props, item) => (
+    <animated.div style={props} >
+      <Routes location={item} >
+        <Route element={<PrivateRoutes />}>
+          <Route path="/add" element={<AddForm />}></Route>
+          <Route path="/current" element={<OrdersTable />}></Route>
+          <Route element={<AdminRoutes />}>
+            <Route path="/menu" element={<Menu />}></Route>
+            <Route path="/menu/add" element={<AddMenuItem />}></Route>
+          </Route>
+          <Route path="/log" element={<OrdersLog />}></Route>
+        </Route>
+        <Route path="/" exact element={<Login />}></Route>
+        <Route path="/*" element={<ErrorPage />}></Route>
+      </Routes>
+    </animated.div>
+  ))
+}
