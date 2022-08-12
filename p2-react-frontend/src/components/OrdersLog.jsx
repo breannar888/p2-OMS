@@ -204,6 +204,7 @@ const TicketInput = (props) => (
     ))}
   </>
 );
+
 const ItemInput = (props) => (
   <>
     <option value="" className="placeholder"></option>

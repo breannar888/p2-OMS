@@ -15,7 +15,6 @@ html {
 
   --serifStack: "Roboto Serif", serif;
   --sansStack: "Roboto Flex", sans-serif;
-
 }
 
 /* sets font-family, weight, and alignment of various elements*/
@@ -70,6 +69,7 @@ h1 {
   font-weight: 700;
   font-size: 1.75vw;
   font-family: var(--serifStack);
+  padding-top: 35px;
 }
 
 #colorToggle {
@@ -93,11 +93,10 @@ h1 {
 /* sets text color of navigation links */
 .nav-item:hover,
 #colorToggle span:hover {
-  color: var(--darkBlue) ;
+  color: var(--darkBlue);
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-variation-settings: "FILL" 1;
   transition: all 0.3s ease;
-
 }
 
 .nav .active {
@@ -205,4 +204,38 @@ i,
   color: var(--darkBlue);
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   font-weight: 700;
+}
+.nav-btn{
+  position: absolute;
+  width: fit-content;
+  left: 0;
+  color: white;
+  border: none;
+  background-color: var(--darkBlue);
+  display: none;
+  padding-top: 6px;
+}
+.nav-Menu{
+  transition: 0ms;
+}
+
+@media screen and (max-width: 998px) {
+  .nav-menu {
+    position: absolute;
+    left: -75%;
+    transition:700ms ease;
+    height: 100vh;
+  }
+  .nav-btn{
+    display: unset;
+    z-index: 1111;
+    font-size: large
+  }
+  .openMobile {
+    transition: 850ms ease;
+    left: -12px;
+    position: absolute;
+    height: 100vh;
+    z-index: 1000;
+  }
 }
