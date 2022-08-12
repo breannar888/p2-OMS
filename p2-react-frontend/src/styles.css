@@ -57,7 +57,7 @@ h1 {
 /* sets bkgd color of navigation sidebar */
 #nav {
   background-color: var(--lightBlue) !important;
-  font-size: 1.75vw;
+  font-size: 2vw;
 }
 
 /* sets bkgd color of "Order Management System" header */
@@ -83,6 +83,7 @@ h1 {
   padding: 18px !important;
   width: auto;
   margin-left: 50px;
+  height: fit-content;
 }
 
 #colorToggle i {
@@ -237,5 +238,8 @@ i,
     position: absolute;
     height: 100vh;
     z-index: 1000;
+  }
+  #nav, #header, #colorToggle, #colorToggle i {
+    font-size: 105%;
   }
 }

@@ -39,15 +39,14 @@ export const NavSidebar = ({ children }) => {
         <aside
           className={
             isOpen
-              ? "col-3 col-lg-2 col-sm-3 openMobile"
-              : "col-3 col-lg-2 col-sm-3 nav-menu"
+              ? "col-6 col-lg-2 col-sm-4 col-md-3 openMobile"
+              : "col-6 col-lg-2 col-sm-4 col-md-3 nav-menu"
           }
         >
           <div id="header">
             Order <br /> Management <br /> System
           </div>
           <div id="colorToggle">
-            {console.log(darkMode.value)}
             <span onClick={darkMode.toggle}>
               {darkMode.value ? (
                 <>
@@ -91,12 +90,12 @@ export const NavSidebar = ({ children }) => {
         <span onClick={darkMode.toggle}>
           {darkMode.value ? (
             <>
-              Set light mode{" "}
+              Set light mode
               <i className="material-symbols-outlined">light_mode</i>
             </>
           ) : (
             <>
-              Set dark mode{" "}
+              Set dark mode
               <i className="material-symbols-outlined">dark_mode</i>
             </>
           )}

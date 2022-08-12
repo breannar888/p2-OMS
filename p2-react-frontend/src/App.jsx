@@ -25,7 +25,7 @@ import AdminRoutes from "./components/AdminRoutes";
 function App() {
 
   return (
-    <div className="row overflow-hidden">
+    <div className="row">
       <OrderProvider>
         <BrowserRouter>
           <NavSidebar>
@@ -70,7 +70,7 @@ const AnimatedRoutes = () => {
   })
 
   return transitions((props, item) => (
-      <animated.div className="container col-9 p-2 col-lg-10" style={props} >
+      <animated.div className="container col-9 p-2 col-lg-9" style={props} >
         <Routes location={item} >
           <Route element={<PrivateRoutes />}>
             <Route path="/add" element={<AddForm />}></Route>
