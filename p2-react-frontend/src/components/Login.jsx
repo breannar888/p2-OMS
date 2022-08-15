@@ -9,7 +9,7 @@ import { ErrorMessage } from "./ErrorMessage";
 
 export const Login = () => {
   const navigate = useNavigate();
-  const { setCookie, removeCookie } = OrderState();
+  const { setCookie, removeCookie, setUpdateValues, updateValues } = OrderState();
   const [loginError, setloginError] = useState();
 
   const loginSchema = Yup.object().shape({
@@ -41,6 +41,7 @@ export const Login = () => {
           console.log(resp.data);
           setCookie("JSESSION", resp.data.sessionID);
           setCookie("authorities", resp.data.authorities);
+          setUpdateValues(!updateValues);
           navigate("../add");
         }
       })

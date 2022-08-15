@@ -10,7 +10,6 @@ export const AddMenuItem = () => {
   const itemName = useRef();
   const itemPrice = useRef();
 
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -18,13 +17,9 @@ export const AddMenuItem = () => {
       menuItem: itemName.current.value,
       price: itemPrice.current.value,
       imagePath: "placeholder",
-
-
-
     })
     setUpdateValues(!updateValues)
     navigate("../menu");
-
   }
 
   return (
