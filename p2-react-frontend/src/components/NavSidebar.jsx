@@ -2,7 +2,6 @@ import React, { Children, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { OrderState } from "../context/OrderContext";
-
 import useDarkMode from "use-dark-mode";
 
 export const NavSidebar = ({ children }) => {
@@ -14,8 +13,9 @@ export const NavSidebar = ({ children }) => {
   const logout = async () => {
     await fetch("http://localhost:8080/logout", {
       mode: "no-cors",
-    }).then(() => {
-      setCookie("JSESSION", undefined);
+    }).then((resp) => {
+      removeCookie("JSESSION");
+      removeCookie("JSESSIONID");
       removeCookie("authorities");
       navigate("/");
     });
@@ -86,7 +86,7 @@ export const NavSidebar = ({ children }) => {
   } else {
     return (
       <div id="colorToggle" className="loginToggle">
-        {console.log("logged out")}
+        {console.log("logged out", cookies)}
         <span onClick={darkMode.toggle}>
           {darkMode.value ? (
             <>

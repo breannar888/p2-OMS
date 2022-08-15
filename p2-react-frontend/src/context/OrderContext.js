@@ -44,7 +44,7 @@ const OrderProvider = (props) => {
         )
         .catch((error) => console.log(error));
     }
-  }, [updateValues, cookies]);
+  }, [updateValues]);
 
   const value = {
     order,

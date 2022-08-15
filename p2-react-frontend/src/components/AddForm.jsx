@@ -44,6 +44,7 @@ export const AddForm = () => {
   };
 
   const itemChange = (event) => {
+    console.log(menu);
     const menuID = event.target.value * 1;
     const menuItem = menu.find((x) => x.menuID === menuID)?.price ?? 0.0;
     setItemPrice(menuItem);
